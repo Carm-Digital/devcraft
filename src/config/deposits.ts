@@ -11,7 +11,7 @@ export const OFFER_DEPOSITS: Record<OfferId, DepositConfig> = {
     label: "Site vitrine",
     shortLabel: "Acompte site vitrine",
     description: "Acompte de démarrage pour réserver le lancement de votre site vitrine.",
-    amountCents: 50000, // 500 € — à ajuster selon votre grille
+    amountCents: 10000, // 100 € — à ajuster selon votre grille
     includes: [
       "Réservation du créneau de création",
       "Cadrage validé ensemble",
@@ -24,7 +24,7 @@ export const OFFER_DEPOSITS: Record<OfferId, DepositConfig> = {
     label: "Site complet",
     shortLabel: "Acompte site complet",
     description: "Acompte de démarrage pour réserver le lancement de votre site complet.",
-    amountCents: 80000, // 800 € — à ajuster
+    amountCents: 25000, // 250 € — à ajuster
     includes: [
       "Réservation du créneau de création",
       "Périmètre et fonctionnalités validés",
@@ -35,9 +35,9 @@ export const OFFER_DEPOSITS: Record<OfferId, DepositConfig> = {
   abonnement: {
     id: "abonnement",
     label: "Site avec abonnement",
-    shortLabel: "Frais de mise en route",
-    description: "Frais de mise en route pour votre projet avec espace membre ou abonnement.",
-    amountCents: 100000, // 1 000 € — à ajuster
+    shortLabel: "Acompte site abonnement",
+    description: "Acompte de démarrage pour votre projet avec espace membre ou abonnement.",
+    amountCents: 40000, // 400 € — à ajuster
     includes: [
       "Réservation du lancement du projet",
       "Cadrage technique et fonctionnel validé",
