@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# DevCraft — Site web de l'agence
 
-## Getting Started
+Site vitrine professionnel pour l'agence **DevCraft**, orienté conversion et prise de contact.  
+Next.js 16, TypeScript, Tailwind CSS.
 
-First, run the development server:
+## Lancer le projet
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Ouvrir [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## Structure
 
-To learn more about Next.js, take a look at the following resources:
+- **`src/app/`** — Pages (Accueil, Services, Méthode, Réalisations, À propos, Contact, FAQ)
+- **`src/components/`** — Header, Footer, Button, Section
+- **Design** — Slate + amber, responsive, sticky header, formulaire de contact avec validations
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Parcours visiteur
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Le site ne permet pas de commander un site en ligne. Tous les CTA mènent vers la **page Contact** ou le formulaire de qualification pour générer des leads et échanger avant tout devis ou lancement.
 
-## Deploy on Vercel
+## Paiement Stripe (acompte)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Le tunnel de validation du projet permet de faire payer un acompte après échange et devis :
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. **Configuration** : copier `.env.local.example` vers `.env.local` et renseigner `STRIPE_SECRET_KEY` et `NEXT_PUBLIC_BASE_URL`.
+2. **Offres** : les montants et libellés sont dans `src/config/deposits.ts` (vitrine, complet, abonnement, personnalisé). Mettre `amountCents: null` pour une offre « sur devis » (pas de paiement en ligne).
+3. **Pages** : `/validation-projet?offer=vitrine` (ou complet, abonnement, personnalise), `/paiement-confirme`, `/paiement-annule`.
+4. **API** : `POST /api/stripe/create-checkout-session` avec `{ offerId }` crée une session Stripe Checkout et renvoie l’URL de redirection.
+
+L’architecture est prête pour ajouter plus tard Stripe Billing / abonnements (voir commentaire dans `src/lib/stripe/config.ts`).
+
+## Évolutions possibles
+
+- Brancher le formulaire de qualification sur une API / email
+- Webhook Stripe pour confirmer le paiement côté serveur
+- Abonnements récurrents (maintenance, options mensuelles)
+- Remplacer les visuels des réalisations par de vrais projets

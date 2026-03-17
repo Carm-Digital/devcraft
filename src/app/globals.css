@@ -1,26 +1,127 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
+/* DevCraft — Identité visuelle premium : bleu nuit, bleu électrique, doré */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  /* Couleurs principales (alignées logo) */
+  --color-nuit: #0a0e1a;
+  --color-nuit-light: #111827;
+  --color-nuit-muted: #1e293b;
+  --color-electric: #2563eb;
+  --color-electric-subtle: #3b82f6;
+  --color-electric-muted: #60a5fa;
+  --color-gold: #c9a227;
+  --color-gold-light: #d4af37;
+  --color-gold-bright: #e5c158;
+  --color-gold-muted: #b8962e;
+  --color-offwhite: #f8fafc;
+  --color-cream: #f1f5f9;
+  --color-ink: #0a0e1a;
+  --color-border: #1e293b;
+  --color-border-light: #334155;
+
+  /* Rétrocompatibilité + mapping */
+  --color-background: var(--color-offwhite);
+  --color-foreground: var(--color-ink);
+  --color-muted: #64748b;
+  --color-muted-foreground: #94a3b8;
+  --color-primary: var(--color-nuit);
+  --color-primary-foreground: var(--color-offwhite);
+  --color-accent: var(--color-gold);
+  --color-accent-hover: var(--color-gold-muted);
+  --color-card: #ffffff;
+  --color-card-hover: var(--color-cream);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-plus-jakarta);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --background: var(--color-offwhite);
+  --foreground: var(--color-ink);
+  --muted: #64748b;
+  --accent: var(--color-gold);
+  --accent-hover: var(--color-gold-muted);
+  --nuit: #0a0e1a;
+  --gold: #c9a227;
+  --gold-light: #d4af37;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
 }
+
+/* Titres premium */
+.font-display {
+  font-family: var(--font-display), var(--font-sans), system-ui, sans-serif;
+}
+
+/* Animations subtiles */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes hero-gradient-drift {
+  0% {
+    transform: translate3d(-12px, -8px, 0) scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translate3d(8px, 4px, 0) scale(1.05);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.6;
+  }
+}
+
+.hero-gradient-animated {
+  animation: hero-gradient-drift 18s ease-in-out infinite alternate;
+}
+
+.hero-cta-animated {
+  transition: transform 180ms ease-out, box-shadow 180ms ease-out, filter 180ms ease-out;
+}
+
+.hero-cta-animated:hover {
+  transform: translateY(-1px) scale(1.02);
+  filter: brightness(1.03);
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.6s ease-out forwards;
+}
+
+.animate-delay-1 { animation-delay: 0.1s; }
+.animate-delay-2 { animation-delay: 0.2s; }
+.animate-delay-3 { animation-delay: 0.3s; }
+.animate-delay-4 { animation-delay: 0.4s; }
+
+/* Focus visible (accent doré) */
+*:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+/* Utilitaires premium */
+.bg-nuit { background-color: var(--color-nuit); }
+.text-gold { color: var(--color-gold); }
+.border-gold { border-color: var(--color-gold); }
