@@ -27,6 +27,7 @@ export default function ExchangeForm() {
   const [form, setForm] = useState<ExchangeFormData>(DEFAULT_DATA);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const update = <K extends keyof ExchangeFormData>(field: K, value: ExchangeFormData[K]) => {
     setForm((prev) => ({ ...prev, [field]: value }));
@@ -37,15 +38,42 @@ export default function ExchangeForm() {
     e.preventDefault();
     // Validation très simple : champs principaux requis
     if (!form.nom.trim() || !form.telephone.trim() || !form.email.trim()) {
-      // On peut plus tard afficher des erreurs détaillées si besoin
+      setSubmitError("Veuillez renseigner votre nom, téléphone et email.");
       return;
     }
 
     setIsSubmitting(true);
-    await new Promise((r) => setTimeout(r, 600));
-    setIsSubmitting(false);
-    setForm(DEFAULT_DATA);
-    setSuccess(true);
+    setSubmitError(null);
+    setSuccess(false);
+    try {
+      // Envoi serveur (email) : évite les “succès factices”
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          kind: "exchange",
+          nom: form.nom,
+          telephone: form.telephone,
+          email: form.email,
+          creneau: form.creneau,
+          message: form.message,
+          source: "exchange_form",
+        }),
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => null);
+        throw new Error(data?.message ?? "Envoi impossible. Réessayez ou contactez-nous.");
+      }
+
+      setForm(DEFAULT_DATA);
+      setSuccess(true);
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "Une erreur est survenue lors de l'envoi.";
+      setSubmitError(message);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -132,6 +160,10 @@ export default function ExchangeForm() {
           Nous revenons vers vous rapidement pour vous proposer un créneau.
         </p>
       </div>
+
+      {submitError && (
+        <p className="rounded-xl border border-red-200 bg-red-50 px-4 py-2 text-sm text-red-700">{submitError}</p>
+      )}
 
       {success && (
         <p className="mt-3 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-2 text-sm text-emerald-800">

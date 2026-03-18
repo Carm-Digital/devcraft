@@ -36,6 +36,7 @@ export default function QualificationForm({ mode = "qualification" }: Qualificat
   const [errors, setErrors] = useState<QualificationFormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const isContactMode = mode === "contact";
 
   // Pré-remplissage depuis la page services (?offer=vitrine, etc.)
@@ -76,20 +77,53 @@ export default function QualificationForm({ mode = "qualification" }: Qualificat
     if (Object.keys(nextErrors).length > 0) return;
     setIsSubmitting(true);
     setSubmitSuccess(false);
-    await new Promise((r) => setTimeout(r, 600));
+    setSubmitError(null);
 
-    if (isContactMode) {
-      setSubmitSuccess(true);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          kind: "qualification",
+          prenom: form.prenom,
+          nom: form.nom,
+          email: form.email,
+          telephone: form.telephone,
+          entreprise: form.entreprise,
+          typeSite: form.typeSite,
+          budget: form.budget,
+          delai: form.delai,
+          description: form.description,
+          hasLogo: form.hasLogo,
+          hasTextes: form.hasTextes,
+          hasPhotos: form.hasPhotos,
+          styleSouhaite: form.styleSouhaite,
+          commentConnu: form.commentConnu,
+          acceptationRGPD: form.acceptationRGPD,
+          source: "qualification_form",
+        }),
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => null);
+        throw new Error(data?.message ?? "Envoi impossible. Réessayez ou contactez-nous.");
+      }
+
       setForm(QUALIFICATION_FORM_DEFAULT);
       setErrors({});
-      setIsSubmitting(false);
-      return;
-    }
 
-    setForm(QUALIFICATION_FORM_DEFAULT);
-    setErrors({});
-    setIsSubmitting(false);
-    router.push("/merci");
+      if (isContactMode) {
+        setSubmitSuccess(true);
+        return;
+      }
+
+      router.push("/merci");
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "Une erreur est survenue lors de l'envoi.";
+      setSubmitError(message);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const selectedOffer = form.typeSite ? OFFER_PRICES[form.typeSite] : null;
@@ -421,6 +455,10 @@ export default function QualificationForm({ mode = "qualification" }: Qualificat
           <p className="text-slate-500">Nous vous recontactons rapidement pour discuter de votre projet.</p>
         </div>
       </div>
+
+      {submitError && (
+        <p className="mt-3 rounded-xl border border-red-200 bg-red-50 px-4 py-2 text-sm text-red-700">{submitError}</p>
+      )}
 
       {submitSuccess && (
         <p className="mt-4 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800">

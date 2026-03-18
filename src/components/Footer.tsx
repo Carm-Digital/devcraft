@@ -7,7 +7,6 @@ const footerLinks = {
     { href: "/services", label: "Services" },
     { href: "/qualification", label: "Demander un devis" },
     { href: "/methode", label: "Méthode" },
-    { href: "/realisations", label: "Réalisations" },
     { href: "/a-propos", label: "À propos" },
     { href: "/faq", label: "FAQ" },
     { href: "/#contact", label: "Contact" },
