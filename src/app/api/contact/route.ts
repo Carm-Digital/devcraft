@@ -75,82 +75,128 @@ export async function POST(req: Request) {
   }
 
   const subject =
-    kind === "exchange" ? "Nouvelle demande d’échange — DevCraft" : "Nouvelle demande de devis — DevCraft";
+    kind === "exchange"
+      ? "Nouvelle demande d’échange — DevCraft"
+      : "🚀 Nouvelle demande de projet — DevCraft";
 
-  const replyTo = payload.email ? String(payload.email) : undefined;
+  // Après validation, `payload.email` est obligatoire (exchange/qualification)
+  const replyTo = payload.email!; // = body.email
+  const fullNameQualification =
+    kind === "qualification" ? [payload.prenom, payload.nom].filter(Boolean).join(" ") : undefined;
 
   const htmlParts: string[] = [];
-  htmlParts.push(`<div style="font-family: ui-sans-serif, system-ui; line-height:1.4;">`);
-  htmlParts.push(`<h2 style="margin:0 0 16px 0;">${escapeHtml(subject)}</h2>`);
-  htmlParts.push(`<p style="margin: 0 0 12px 0; color:#111827;">Source : ${escapeHtml(String(payload.source ?? "site"))}</p>`);
+  const baseContainer =
+    "font-family: ui-sans-serif, system-ui; line-height:1.4; background:#ffffff; padding:0; margin:0; color:#0a0e1a;";
 
+  htmlParts.push(`<div style="${baseContainer}">`);
+  htmlParts.push(
+    `<div style="max-width:600px;margin:0 auto;border:1px solid #e5e7eb;border-radius:14px;overflow:hidden;background:#ffffff;">`,
+  );
+
+  // Header
+  htmlParts.push(
+    `<div style="padding:22px 20px;background:linear-gradient(90deg,#0a0e1a 0%, #0a0e1a 65%, #f59e0b 100%);">` +
+      `<p style="margin:0 0 10px 0;font-size:14px;color:#ffffff;opacity:0.95;">Un nouveau prospect vient de remplir le formulaire sur ton site DevCraft.</p>` +
+      `<h1 style="margin:0;font-size:20px;line-height:1.2;color:#ffffff;">${kind === "qualification" ? "Nouvelle demande de projet" : escapeHtml(subject)}</h1>` +
+      `</div>`,
+  );
+
+  // Body sections
   if (kind === "exchange") {
-    htmlParts.push("<h3 style='margin: 16px 0 8px 0;'>Coordonnées</h3>");
-    htmlParts.push(`<p><strong>Nom :</strong> ${escapeHtml(String(payload.nom ?? ""))}</p>`);
-    htmlParts.push(`<p><strong>Téléphone :</strong> ${escapeHtml(String(payload.telephone ?? ""))}</p>`);
-    htmlParts.push(`<p><strong>Email :</strong> ${escapeHtml(String(payload.email ?? ""))}</p>`);
-    if (payload.creneau) htmlParts.push(`<p><strong>Créneau souhaité :</strong> ${escapeHtml(String(payload.creneau))}</p>`);
-    if (payload.message) htmlParts.push(`<p><strong>Message :</strong> ${escapeHtml(String(payload.message))}</p>`);
+    htmlParts.push(`<div style="padding:18px 20px 10px 20px;">`);
+    htmlParts.push(`<div style="border:1px solid #e5e7eb;border-radius:12px;padding:14px 14px;margin-bottom:12px;background:#ffffff;">`);
+    htmlParts.push(`<p style="margin:0 0 10px 0;font-weight:700;color:#0a0e1a;">Infos client</p>`);
+    htmlParts.push(`<p style="margin:0;"><strong>Nom :</strong> ${escapeHtml(String(payload.nom ?? ""))}</p>`);
+    htmlParts.push(`<p style="margin:6px 0 0 0;"><strong>Email :</strong> ${escapeHtml(String(payload.email ?? ""))}</p>`);
+    htmlParts.push(`<p style="margin:6px 0 0 0;"><strong>Téléphone :</strong> ${escapeHtml(String(payload.telephone ?? ""))}</p>`);
+    htmlParts.push(`</div>`);
+
+    htmlParts.push(`<div style="border:1px solid #e5e7eb;border-radius:12px;padding:14px 14px;background:#ffffff;">`);
+    htmlParts.push(`<p style="margin:0 0 10px 0;font-weight:700;color:#0a0e1a;">Message</p>`);
+    if (payload.creneau) htmlParts.push(`<p style="margin:0;"><strong>Créneau :</strong> ${escapeHtml(String(payload.creneau))}</p>`);
+    if (payload.message) htmlParts.push(`<p style="margin:6px 0 0 0;"><strong>Message :</strong> ${escapeHtml(String(payload.message))}</p>`);
+    htmlParts.push(`</div>`);
+
+    htmlParts.push(`</div>`);
   } else {
-    htmlParts.push("<h3 style='margin: 16px 0 8px 0;'>Coordonnées</h3>");
-    htmlParts.push(`<p><strong>Prénom :</strong> ${escapeHtml(String(payload.prenom ?? ""))}</p>`);
-    htmlParts.push(`<p><strong>Nom :</strong> ${escapeHtml(String(payload.nom ?? ""))}</p>`);
-    htmlParts.push(`<p><strong>Email :</strong> ${escapeHtml(String(payload.email ?? ""))}</p>`);
-    htmlParts.push(`<p><strong>Téléphone :</strong> ${escapeHtml(String(payload.telephone ?? ""))}</p>`);
-    if (payload.entreprise) htmlParts.push(`<p><strong>Entreprise / Activité :</strong> ${escapeHtml(String(payload.entreprise))}</p>`);
+    const clientName = fullNameQualification && fullNameQualification.trim().length > 0 ? fullNameQualification : payload.nom ?? "";
+    const sourceLabel = payload.commentConnu ? String(payload.commentConnu) : "—";
+    const projectMessage = payload.description ? String(payload.description) : "—";
 
-    htmlParts.push("<h3 style='margin: 16px 0 8px 0;'>Projet</h3>");
-    if (payload.typeSite) htmlParts.push(`<p><strong>Type de site :</strong> ${escapeHtml(String(payload.typeSite))}</p>`);
-    if (payload.budget) htmlParts.push(`<p><strong>Budget :</strong> ${escapeHtml(String(payload.budget))}</p>`);
-    if (payload.delai) htmlParts.push(`<p><strong>Délai :</strong> ${escapeHtml(String(payload.delai))}</p>`);
-    if (payload.description) htmlParts.push(`<p><strong>Description :</strong> ${escapeHtml(String(payload.description))}</p>`);
-    if (payload.styleSouhaite) htmlParts.push(`<p><strong>Style souhaité :</strong> ${escapeHtml(String(payload.styleSouhaite))}</p>`);
-    if (payload.commentConnu) htmlParts.push(`<p><strong>Comment nous avez-vous connu ? :</strong> ${escapeHtml(String(payload.commentConnu))}</p>`);
+    const replyEmail = payload.email ? String(payload.email) : "";
+    const mailto = replyEmail ? `mailto:${replyEmail}` : "";
 
-    if (payload.hasLogo) htmlParts.push(`<p><strong>Logo :</strong> ${escapeHtml(String(payload.hasLogo))}</p>`);
-    if (payload.hasTextes) htmlParts.push(`<p><strong>Textes :</strong> ${escapeHtml(String(payload.hasTextes))}</p>`);
-    if (payload.hasPhotos) htmlParts.push(`<p><strong>Photos / visuels :</strong> ${escapeHtml(String(payload.hasPhotos))}</p>`);
+    htmlParts.push(`<div style="padding:18px 20px 10px 20px;">`);
 
+    // Infos client
+    htmlParts.push(`<div style="border:1px solid #e5e7eb;border-radius:12px;padding:14px 14px;margin-bottom:12px;background:#ffffff;">`);
+    htmlParts.push(`<p style="margin:0 0 10px 0;font-weight:700;color:#0a0e1a;">Infos client</p>`);
+    htmlParts.push(`<p style="margin:0;"><strong>Nom :</strong> ${escapeHtml(String(clientName))}</p>`);
+    htmlParts.push(`<p style="margin:6px 0 0 0;"><strong>Email :</strong> ${escapeHtml(String(payload.email ?? ""))}</p>`);
+    htmlParts.push(`<p style="margin:6px 0 0 0;"><strong>Téléphone :</strong> ${escapeHtml(String(payload.telephone ?? ""))}</p>`);
+    htmlParts.push(`</div>`);
+
+    // Projet
+    htmlParts.push(`<div style="border:1px solid #e5e7eb;border-radius:12px;padding:14px 14px;margin-bottom:12px;background:#ffffff;">`);
+    htmlParts.push(`<p style="margin:0 0 10px 0;font-weight:700;color:#0a0e1a;">Projet</p>`);
+    htmlParts.push(`<p style="margin:0;"><strong>Type de site :</strong> ${escapeHtml(String(payload.typeSite ?? "—"))}</p>`);
+    htmlParts.push(`<p style="margin:6px 0 0 0;"><strong>Budget :</strong> ${escapeHtml(String(payload.budget ?? "—"))}</p>`);
+    htmlParts.push(`<p style="margin:6px 0 0 0;"><strong>Délai :</strong> ${escapeHtml(String(payload.delai ?? "—"))}</p>`);
+    htmlParts.push(`<p style="margin:10px 0 0 0;"><strong>Message :</strong></p>`);
     htmlParts.push(
-      `<p style="margin-top: 14px; padding: 10px 12px; background:#f8fafc; border:1px solid #e5e7eb; border-radius:10px;">RGPD : ${escapeHtml(
-        formatBool(payload.acceptationRGPD),
-      )}</p>`,
+      `<p style="margin:6px 0 0 0;color:#374151;white-space:pre-wrap;">${escapeHtml(projectMessage)}</p>`,
     );
+    htmlParts.push(`</div>`);
+
+    // Source
+    htmlParts.push(`<div style="border:1px solid #e5e7eb;border-radius:12px;padding:14px 14px;background:#ffffff;">`);
+    htmlParts.push(`<p style="margin:0 0 10px 0;font-weight:700;color:#0a0e1a;">Source</p>`);
+    htmlParts.push(`<p style="margin:0;"><strong>Comment il nous a connu :</strong> ${escapeHtml(sourceLabel)}</p>`);
+    htmlParts.push(`</div>`);
+
+    // CTA
+    htmlParts.push(`<div style="padding:18px 20px 24px 20px;">`);
+    if (mailto) {
+      htmlParts.push(
+        `<a href="${escapeHtml(mailto)}" style="display:inline-block;background:#f59e0b;color:#0a0e1a;text-decoration:none;font-weight:700;padding:12px 18px;border-radius:12px;">Répondre au client</a>`,
+      );
+    } else {
+      htmlParts.push(`<p style="margin:10px 0 0 0;color:#6b7280;font-size:14px;">Email client introuvable.</p>`);
+    }
+    htmlParts.push(`</div>`);
   }
 
-  htmlParts.push(`<p style="margin: 16px 0 0 0; font-size: 12px; color:#6b7280;">Message envoyé depuis dev-craft.store</p>`);
-  htmlParts.push("</div>");
+  // Footer
+  htmlParts.push(`<p style="margin:0;padding:0 20px 18px 20px;font-size:12px;color:#6b7280;">Message envoyé depuis dev-craft.store</p>`);
+  htmlParts.push(`</div></div>`);
 
   const html = htmlParts.join("");
-  const text = payload.kind === "exchange"
-    ? [
-        "Nouvelle demande d’échange — DevCraft",
-        `Source: ${payload.source ?? "site"}`,
-        `Nom: ${payload.nom}`,
-        `Téléphone: ${payload.telephone}`,
-        `Email: ${payload.email}`,
-        `Créneau: ${payload.creneau ?? "-"}`,
-        `Message: ${payload.message ?? "-"}`,
-      ].join("\n")
-    : [
-        "Nouvelle demande de devis — DevCraft",
-        `Source: ${payload.source ?? "site"}`,
-        `Prénom: ${payload.prenom}`,
-        `Nom: ${payload.nom}`,
-        `Téléphone: ${payload.telephone}`,
-        `Email: ${payload.email}`,
-        `Entreprise: ${payload.entreprise ?? "-"}`,
-        `Type de site: ${payload.typeSite ?? "-"}`,
-        `Budget: ${payload.budget ?? "-"}`,
-        `Délai: ${payload.delai ?? "-"}`,
-        `Description: ${payload.description ?? "-"}`,
-        `Style souhaité: ${payload.styleSouhaite ?? "-"}`,
-        `Comment connu: ${payload.commentConnu ?? "-"}`,
-        `Logo: ${payload.hasLogo ?? "-"}`,
-        `Textes: ${payload.hasTextes ?? "-"}`,
-        `Photos: ${payload.hasPhotos ?? "-"}`,
-        `RGPD: ${formatBool(payload.acceptationRGPD)}`,
-      ].join("\n");
+
+  const text =
+    kind === "exchange"
+      ? [
+          "Nouvelle demande d’échange — DevCraft",
+          `Nom: ${payload.nom ?? "-"}`,
+          `Email: ${payload.email ?? "-"}`,
+          `Téléphone: ${payload.telephone ?? "-"}`,
+          `Créneau: ${payload.creneau ?? "-"}`,
+          `Message: ${payload.message ?? "-"}`,
+        ].join("\n")
+      : [
+          "🚀 Nouvelle demande de projet — DevCraft",
+          "",
+          `Nom: ${fullNameQualification ?? payload.nom ?? "-"}`,
+          `Email: ${payload.email ?? "-"}`,
+          `Téléphone: ${payload.telephone ?? "-"}`,
+          "",
+          `Type de site: ${payload.typeSite ?? "-"}`,
+          `Budget: ${payload.budget ?? "-"}`,
+          `Délai: ${payload.delai ?? "-"}`,
+          "",
+          `Message: ${payload.description ?? "-"}`,
+          "",
+          `Comment il nous a connu: ${payload.commentConnu ?? "-"}`,
+        ].join("\n");
 
   if (!resendApiKey) {
     console.error("[api/contact]", { requestId, error: "MISSING_RESEND_API_KEY" });
