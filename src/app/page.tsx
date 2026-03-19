@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Section from "@/components/Section";
 import CTA from "@/components/CTA";
 import ProcessSteps from "@/components/ProcessSteps";
-import PaymentFAQ from "@/components/PaymentFAQ";
 import ExchangeForm from "@/components/ExchangeForm";
 import Image from "next/image";
 import { OFFERS } from "@/lib/offers";
@@ -174,24 +173,29 @@ export default function Home() {
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {[
             {
-              title: "Design professionnel",
-              desc: "Une mise en page soignée, des typographies modernes et un univers visuel aligné avec votre image de marque.",
+              title: "Un design pensé pour votre secteur, pas un template",
+              desc: "Restaurant, coach, artisan, consultant — chaque site est adapté à votre activité",
               icon: "M9.75 17L9 20l-1 1 4-1 4 1-1-1-.75-3M8 4h8l-1 5H9L8 4z",
             },
             {
-              title: "Livraison rapide",
-              desc: "Un processus clair et structuré pour livrer votre site dans des délais raisonnables, sans sacrifier la qualité.",
+              title: "Votre site en ligne en moins de 7 jours",
+              desc: "Pour les sites vitrines et landing pages, nous respectons ce délai",
               icon: "M12 6v6l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z",
             },
             {
-              title: "Accompagnement personnalisé",
-              desc: "Un interlocuteur dédié qui suit votre projet, répond à vos questions et vous aide à faire les bons choix.",
+              title: "Un seul interlocuteur du début à la fin",
+              desc: "Pas de passage entre plusieurs équipes — vous échangez directement avec le créateur",
               icon: "M18 14a3 3 0 11-6 0 3 3 0 016 0zm-9-4a3 3 0 11-6 0 3 3 0 016 0zm0 9a5 5 0 00-8 0m17.5-2.5A4.5 4.5 0 0015 21m0-14a3 3 0 110-6 3 3 0 010 6z",
             },
             {
-              title: "Site optimisé pour attirer des clients",
-              desc: "Un site pensé pour la prise de contact et les ventes : structure claire, messages orientés résultats et appels à l’action visibles.",
+              title: "Conçu pour générer des prises de contact",
+              desc: "Structure, textes et boutons pensés pour que vos visiteurs passent à l'action",
               icon: "M9 2h6a2 2 0 012 2v16a2 2 0 01-2 2H9a2 2 0 01-2-2V4a2 2 0 012-2zm0 14h6",
+            },
+            {
+              title: "Prix transparent, sans surprise",
+              desc: "Tarifs affichés, devis clair, acompte uniquement après validation",
+              icon: "M7 4h10a2 2 0 0 1 2 2v14l-2-1-2 1-2-1-2 1-2-1-2 1V6a2 2 0 0 1 2-2z",
             },
           ].map((item) => (
             <div
@@ -453,8 +457,18 @@ export default function Home() {
       >
         <div className="mx-auto max-w-2xl space-y-4">
           {[
-            { q: "Combien de temps prend la création d'un site ?", a: "Cela dépend du type de projet et de la disponibilité des contenus. Nous en discutons ensemble après analyse de votre besoin." },
-            { q: "De quoi avez-vous besoin pour commencer ?", a: "D'abord d'un échange avec vous : objectifs, fonctionnalités, textes et visuels si vous les avez, préférences de style. Ensuite nous établissons une proposition." },
+            {
+              q: "Combien de temps prend la création d'un site ?",
+              a: "Un site livré en moins de 7 jours selon l’offre choisie et la disponibilité de vos contenus. Nous validons le planning lors de votre demande.",
+            },
+            {
+              q: "Combien coûte un site web ?",
+              a: "Les tarifs sont clairs : site vitrine (300 €), site complet (900 €), site avec abonnement (1 300 €). Pour un projet sur mesure, on vous propose un devis après échange.",
+            },
+            {
+              q: "Le site est-il responsive ?",
+              a: "Oui. Tous nos sites sont pensés pour s’afficher correctement sur ordinateur, tablette et mobile, avec une expérience utilisateur optimisée.",
+            },
           ].map((faq) => (
             <details key={faq.q} className="group rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition hover:border-amber-100">
               <summary className="cursor-pointer font-display font-medium text-[#0a0e1a]">{faq.q}</summary>
@@ -485,9 +499,6 @@ export default function Home() {
           <ExchangeForm />
         </div>
       </Section>
-
-      {/* FAQ Paiement */}
-      <PaymentFAQ />
 
       {/* Contact CTA */}
       <Section

@@ -9,25 +9,25 @@ const STEPS = [
   {
     num: 1,
     title: "Contact",
-    desc: "Vous nous expliquez votre projet, vos objectifs et votre activité.",
+    desc: "Vous nous expliquez votre activité, vos objectifs et le type de site souhaité.",
     icon: "M8 10h.01M12 10h.01M16 10h.01M21 10c0 4.418-4.03 8-9 8s-9-3.582-9-8a9 9 0 0118 0z",
   },
   {
     num: 2,
     title: "Analyse",
-    desc: "Nous analysons votre activité et définissons la structure et les contenus clés du site.",
+    desc: "Nous définissons une structure claire et les contenus/fonctionnalités les plus utiles.",
     icon: "M9 17v-2a2 2 0 012-2h2a2 2 0 012 2v2m-9 4h10a2 2 0 002-2v-7a2 2 0 00-2-2h-3l-2-3H7l-2 3H2a2 2 0 00-2 2v7a2 2 0 002 2z",
   },
   {
     num: 3,
     title: "Création",
-    desc: "Nous concevons votre site avec un design professionnel, responsive et cohérent avec votre image.",
+    desc: "Design sur mesure, responsive et expérience pensée pour convertir.",
     icon: "M3 7h18M3 7a2 2 0 012-2h14a2 2 0 012 2M3 7v10a2 2 0 002 2h14a2 2 0 002-2V7m-9 8h4",
   },
   {
     num: 4,
     title: "Mise en ligne",
-    desc: "Après vos retours et les derniers ajustements, nous mettons le site en ligne.",
+    desc: "Validation finale puis publication. On s’assure que tout est prêt à produire des demandes.",
     icon: "M5 13l4 4L19 7M5 21h14",
   },
 ] as const;
@@ -70,8 +70,8 @@ export default function ProcessSteps() {
         À chaque étape, nous échangeons avec vous pour valider les choix avant d’avancer. Le projet ne démarre qu’après validation conjointe.
       </p>
       <div className="mt-10 flex flex-wrap justify-center gap-4">
-        <CTA href="/methode" variant="primary">
-          Voir notre méthode détaillée
+        <CTA href="/methode" variant="ghost">
+          Voir le processus complet &rarr;
         </CTA>
         <CTA href="/#contact" variant="outline">
           Parler de mon projet

@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 
 type AnimatedTargets = {
-  sites: number; // +10 (0..10)
+  deliveredInTime: number; // 100% (0..100)
   satisfaction: number; // 100% (0..100)
   days: number; // 7 jours (0..7)
 };
@@ -28,14 +28,14 @@ export default function HomeProofStats() {
 
   const targets = useMemo<AnimatedTargets>(
     () => ({
-      sites: 10,
+      deliveredInTime: 100,
       satisfaction: 100,
       days: 7,
     }),
     [],
   );
 
-  const [sites, setSites] = useState(0);
+  const [deliveredInTime, setDeliveredInTime] = useState(0);
   const [satisfaction, setSatisfaction] = useState(0);
   const [days, setDays] = useState(0);
 
@@ -64,7 +64,7 @@ export default function HomeProofStats() {
     if (reducedMotion) {
       // Lint: éviter setState synchrones dans l'effet.
       requestAnimationFrame(() => {
-        setSites(targets.sites);
+        setDeliveredInTime(targets.deliveredInTime);
         setSatisfaction(targets.satisfaction);
         setDays(targets.days);
       });
@@ -79,7 +79,7 @@ export default function HomeProofStats() {
       // easing (easeOutCubic)
       const eased = 1 - Math.pow(1 - t, 3);
 
-      setSites(Math.round(targets.sites * eased));
+      setDeliveredInTime(Math.round(targets.deliveredInTime * eased));
       setSatisfaction(Math.round(targets.satisfaction * eased));
       setDays(Math.round(targets.days * eased));
 
@@ -92,18 +92,20 @@ export default function HomeProofStats() {
   return (
     <div ref={wrapRef} className="mt-10 grid gap-4 rounded-2xl border border-slate-200/80 bg-white p-6 text-center shadow-sm sm:grid-cols-3 sm:text-left">
       <div className="space-y-1">
-        <p className="font-display text-2xl font-semibold text-[#0a0e1a]">+{sites}</p>
-        <p className="text-sm text-slate-600">sites créés et mis en ligne</p>
+        <p className="font-display text-2xl font-semibold text-[#0a0e1a]">{deliveredInTime}%</p>
+        <p className="text-sm text-slate-600">des sites livrés dans les délais</p>
       </div>
       <div className="space-y-1">
         <p className="font-display text-2xl font-semibold text-[#0a0e1a]">{satisfaction}%</p>
-        <p className="text-sm text-slate-600">de clients satisfaits</p>
+        <p className="text-sm text-slate-600">
+          de clients satisfaits (sur 10+ projets)
+        </p>
       </div>
       <div className="space-y-1">
         <p className="font-display text-2xl font-semibold text-[#0a0e1a]">
           {days} jours
         </p>
-        <p className="text-sm text-slate-600">délai moyen de livraison</p>
+        <p className="text-sm text-slate-600">délai moyen site vitrine</p>
       </div>
     </div>
   );

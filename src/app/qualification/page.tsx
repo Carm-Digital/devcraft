@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
 import Section from "@/components/Section";
 import QualificationForm from "@/components/QualificationForm";
 import CTA from "@/components/CTA";
+import QualificationFormLoadFallback from "@/components/QualificationFormLoadFallback";
 
 export const metadata: Metadata = {
   title: "Demande de devis — Parlez-nous de votre projet",
@@ -41,11 +41,23 @@ export default function QualificationPage() {
           <p className="mb-6 text-sm text-slate-600 text-center sm:text-left">
             Plus votre demande est précise, plus nous pourrons vous proposer une solution adaptée.
           </p>
-          <Suspense fallback={<div className="rounded-2xl border border-slate-200/80 bg-white p-8 text-center text-slate-500">Chargement du formulaire…</div>}>
+          <div id="qualification-form-root">
             <QualificationForm />
-          </Suspense>
+          </div>
+
+          <noscript>
+            <div className="mt-6 rounded-2xl border border-amber-200 bg-amber-50 p-6 text-left text-slate-700">
+              Le formulaire ne se charge pas ? Écrivez-nous directement :{" "}
+              <a href="mailto:devcraft.store@gmail.com" className="font-semibold text-amber-800">
+                devcraft.store@gmail.com
+              </a>
+              .
+            </div>
+          </noscript>
         </div>
       </Section>
+
+      <QualificationFormLoadFallback />
     </>
   );
 }

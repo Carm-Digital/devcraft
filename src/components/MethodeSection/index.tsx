@@ -22,42 +22,92 @@ export default function MethodeSection({
       title="Comment ça marche"
       subtitle="Un processus clair et rassurant, de la première prise de contact jusqu’à la mise en ligne. Chaque étape est expliquée pour que vous sachiez exactement comment nous travaillons."
     >
-      {/* Timeline des 7 étapes */}
-      <div className="relative mx-auto max-w-3xl">
-        {/* Ligne verticale (desktop) */}
-        <div
-          className="absolute left-6 top-0 bottom-0 w-0.5 bg-slate-200 hidden sm:block"
-          aria-hidden
-        />
-        <ul className="space-y-10 sm:space-y-12">
+      {/* Timeline verticale des 7 étapes */}
+      <div className="relative mx-auto max-w-4xl">
+        {/* Ligne de progression */}
+        <div className="absolute left-5 top-0 bottom-0 w-px bg-slate-200" aria-hidden />
+
+        <ul className="space-y-8 sm:space-y-10">
           {METHODE_STEPS.map((step) => (
-            <li key={step.num} className="relative flex gap-6 sm:gap-8">
-              {/* Cercle + icône */}
-              <span
-                className="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-full border-2 border-amber-500 bg-white text-amber-600 shadow-sm"
-                aria-hidden
-              >
-                <svg
-                  className="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d={step.icon} />
-                </svg>
-              </span>
+            <li key={step.num} className="relative grid grid-cols-12 gap-4 sm:gap-6">
+              {/* Colonne gauche : numéro */}
+              <div className="col-span-2 sm:col-span-1">
+                <div className="sticky top-24">
+                  <div className="flex items-center gap-3">
+                    <span className="relative flex h-12 w-12 items-center justify-center rounded-2xl border border-amber-200 bg-amber-50 text-amber-700 shadow-sm">
+                      <span className="font-display text-xl font-bold">{step.num}</span>
+                      <span className="absolute -bottom-3 left-1/2 h-6 w-0.5 -translate-x-1/2 bg-slate-200 sm:hidden" aria-hidden />
+                    </span>
+                    <span className="hidden sm:flex h-10 w-10 items-center justify-center rounded-xl bg-white border border-slate-200/70 text-amber-600 shadow-sm">
+                      <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d={step.icon} />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
               {/* Contenu */}
-              <div className="flex-1 rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition hover:border-amber-200 hover:shadow-lg sm:p-6">
-                <span className="inline-block rounded-full bg-amber-100 px-2.5 py-0.5 text-xs font-bold text-amber-800">
-                  Étape {step.num}
-                </span>
-                <h3 className="mt-3 font-display text-xl font-semibold text-[#0a0e1a]">{step.title}</h3>
-                <p className="mt-2 leading-relaxed text-slate-600">{step.desc}</p>
+              <div className="col-span-10 sm:col-span-11">
+                <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm sm:p-6">
+                  <h3 className="font-display text-xl font-bold text-[#0a0e1a]">{step.title}</h3>
+                  <p className="mt-2 leading-relaxed text-slate-600">{step.desc}</p>
+                </div>
+
+                {/* Encadré après l’étape 3 */}
+                {step.num === 3 && (
+                  <div className="mt-5 rounded-2xl border border-amber-200 bg-amber-50 p-5">
+                    <p className="text-sm font-semibold text-slate-800">
+                      Vous n&apos;avez pas encore tous vos contenus ? Pas de problème — nous pouvons avancer par étapes et intégrer les éléments au fur et à mesure.
+                    </p>
+                  </div>
+                )}
               </div>
             </li>
           ))}
         </ul>
+      </div>
+
+      {/* Délais typiques */}
+      <div className="mx-auto mt-14 max-w-4xl">
+        <div className="rounded-2xl border border-slate-200/80 bg-[#f8fafc] p-6 sm:p-8">
+          <h3 className="font-display text-xl font-semibold text-[#0a0e1a]">Délais typiques</h3>
+          <p className="mt-2 text-sm text-slate-600">
+            Estimations pour les projets standards. Le délai final dépend de la disponibilité des contenus et des validations.
+          </p>
+          <div className="mt-6 overflow-x-auto">
+            <table className="min-w-full border-separate border-spacing-0">
+              <thead>
+                <tr>
+                  <th className="border-b border-slate-200 px-4 py-3 text-left text-sm font-semibold text-[#0a0e1a]">
+                    Type de site
+                  </th>
+                  <th className="border-b border-slate-200 px-4 py-3 text-left text-sm font-semibold text-[#0a0e1a]">
+                    Délai estimé
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="border-b border-slate-100 px-4 py-3 text-sm text-slate-700">Site vitrine</td>
+                  <td className="border-b border-slate-100 px-4 py-3 text-sm text-slate-700">5 à 7 jours</td>
+                </tr>
+                <tr>
+                  <td className="border-b border-slate-100 px-4 py-3 text-sm text-slate-700">Site complet</td>
+                  <td className="border-b border-slate-100 px-4 py-3 text-sm text-slate-700">10 à 14 jours</td>
+                </tr>
+                <tr>
+                  <td className="border-b border-slate-100 px-4 py-3 text-sm text-slate-700">Site abonnement</td>
+                  <td className="border-b border-slate-100 px-4 py-3 text-sm text-slate-700">2 à 3 semaines</td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-3 text-sm text-slate-700">Sur mesure</td>
+                  <td className="px-4 py-3 text-sm text-slate-700">Sur devis</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
 
       {/* Sous-section Paiement */}

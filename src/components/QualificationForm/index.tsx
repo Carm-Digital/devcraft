@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import type { FormEvent } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import type { QualificationFormData, QualificationFormErrors, TypeSite } from "@/types/qualification";
 import { QUALIFICATION_FORM_DEFAULT } from "@/types/qualification";
 import { validateQualificationForm } from "@/lib/validateQualification";
@@ -31,7 +31,6 @@ const BUDGET_OPTIONS = [
 
 export default function QualificationForm({ mode = "qualification" }: QualificationFormProps) {
   const router = useRouter();
-  const searchParams = useSearchParams();
   const [form, setForm] = useState<QualificationFormData>(QUALIFICATION_FORM_DEFAULT);
   const [errors, setErrors] = useState<QualificationFormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -39,17 +38,20 @@ export default function QualificationForm({ mode = "qualification" }: Qualificat
   const [submitError, setSubmitError] = useState<string | null>(null);
   const isContactMode = mode === "contact";
 
-  // Pré-remplissage depuis la page services (?offer=vitrine, etc.)
+  // Pré-remplissage via l'URL (sans `useSearchParams` pour éviter le besoin de Suspense)
   useEffect(() => {
-    const offer = searchParams.get("offer") as TypeSite | null;
+    if (typeof window === "undefined") return;
+
+    const params = new URLSearchParams(window.location.search);
+
+    // Pré-remplissage depuis la page services (?offer=vitrine, etc.)
+    const offer = params.get("offer") as TypeSite | null;
     if (offer && OFFER_VALUES.includes(offer)) {
       setForm((prev) => ({ ...prev, typeSite: offer }));
     }
-  }, [searchParams]);
 
-  // Pré-remplissage quand on vient de "Demander mon projet"
-  useEffect(() => {
-    const source = searchParams.get("source");
+    // Pré-remplissage quand on vient de "Demander mon projet"
+    const source = params.get("source");
     if (source === "demander-mon-projet") {
       setForm((prev) =>
         prev.description
@@ -60,7 +62,7 @@ export default function QualificationForm({ mode = "qualification" }: Qualificat
             },
       );
     }
-  }, [searchParams]);
+  }, []);
 
   const update = <K extends keyof QualificationFormData>(
     field: K,
