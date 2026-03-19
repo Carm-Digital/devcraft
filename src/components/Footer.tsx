@@ -48,19 +48,13 @@ export default function Footer() {
             <div>
               <h3 className="text-xs font-semibold uppercase tracking-wider text-amber-400/90">Contact</h3>
               <div className="mt-4 text-sm text-slate-400">
-                <p>
-                  Disponible par{" "}
-                  <a href={`mailto:${footerLinks.contact.email}`} className="font-semibold text-amber-400/90 transition hover:text-amber-400/100">
-                    email
-                  </a>{" "}
-                  sous 24h.
-                </p>
                 <a
                   href={`mailto:${footerLinks.contact.email}`}
-                  className="mt-2 inline-block text-sm text-slate-400 transition hover:text-amber-400/90"
+                  className="inline-block font-semibold text-amber-400/90 transition hover:text-amber-400/100"
                 >
                   {footerLinks.contact.email}
                 </a>
+                <p className="mt-1 text-sm text-slate-400">Disponible sous 24h</p>
               </div>
               <div className="mt-4 flex gap-3">
                 <a href="#" className="text-slate-500 transition hover:text-amber-400/90" aria-label="LinkedIn">
