@@ -3,6 +3,7 @@ import Section from "@/components/Section";
 import QualificationForm from "@/components/QualificationForm";
 import CTA from "@/components/CTA";
 import QualificationFormLoadFallback from "@/components/QualificationFormLoadFallback";
+import { readSiteContent, toOfferPrices } from "@/lib/siteContent";
 
 export const metadata: Metadata = {
   title: "Demande de devis — Parlez-nous de votre projet",
@@ -10,7 +11,10 @@ export const metadata: Metadata = {
     "Choisissez votre offre (vitrine 300 €, complet 900 €, abonnement 1300 €, personnalisé sur devis). DevCraft vous recontacte pour valider les détails avant lancement.",
 };
 
-export default function QualificationPage() {
+export default async function QualificationPage() {
+  const content = await readSiteContent();
+  const offerPrices = toOfferPrices(content);
+
   return (
     <>
       <section className="relative overflow-hidden bg-[#0a0e1a] px-4 py-16 text-white sm:px-6 sm:py-24 lg:px-8">
@@ -42,7 +46,7 @@ export default function QualificationPage() {
             Plus votre demande est précise, plus nous pourrons vous proposer une solution adaptée.
           </p>
           <div id="qualification-form-root">
-            <QualificationForm />
+            <QualificationForm offerPrices={offerPrices} />
           </div>
 
           <noscript>

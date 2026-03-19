@@ -1,0 +1,12 @@
+{
+  "heroTitle": "Un design sur mesure qui convertit",
+  "heroSubtitle": "Votre site livre en moins de 7 jours. Design sur mesure, optimise mobile, pret a convertir.",
+  "servicesText": "Quatre types d'offres pour generer plus de visibilite, de demandes et de ventes.",
+  "contactText": "Chaque projet est different. Contactez-nous pour echanger sur vos besoins, vos contenus et le rendu souhaite. Nous vous repondrons pour definir ensemble la meilleure approche.",
+  "footerText": "Creation de sites professionnels sur mesure. Design, developpement et accompagnement pour votre presence en ligne.",
+  "offerPrices": {
+    "vitrine": "300 EUR",
+    "complet": "900 EUR",
+    "abonnement": "1 300 EUR"
+  }
+}

@@ -4,9 +4,10 @@ import CTA from "@/components/CTA";
 import ProcessSteps from "@/components/ProcessSteps";
 import ExchangeForm from "@/components/ExchangeForm";
 import Image from "next/image";
-import { OFFERS } from "@/lib/offers";
+import { buildOffers } from "@/lib/offers";
 import RealizationPreviewModalButton from "@/components/RealizationPreviewModalButton";
 import HomeProofStats from "@/components/HomeProofStats";
+import { readSiteContent, toOfferPrices } from "@/lib/siteContent";
 
 export const metadata: Metadata = {
   title: "Création de site web professionnel en Île-de-France | DevCraft",
@@ -14,7 +15,10 @@ export const metadata: Metadata = {
     "DevCraft crée votre site web professionnel en moins de 7 jours. Vitrine, e-commerce, sur mesure. Devis gratuit sous 24h.",
 };
 
-export default function Home() {
+export default async function Home() {
+  const content = await readSiteContent();
+  const OFFERS = buildOffers(toOfferPrices(content));
+
   return (
     <>
       {/* Hero — bleu nuit, doré, impact premium */}
@@ -34,14 +38,11 @@ export default function Home() {
           <div className="relative inline-block">
             <div className="pointer-events-none absolute -inset-x-10 -inset-y-6 -z-10 rounded-full bg-[radial-gradient(circle_at_top,rgba(234,179,8,0.18),transparent_60%)] blur-3xl" />
             <h1 className="animate-fade-up animate-delay-1 font-display mt-4 text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
-              Un design sur mesure{" "}
-              <span className="bg-gradient-to-r from-amber-300 to-amber-500 bg-clip-text text-transparent">
-                qui convertit
-              </span>
+              {content.heroTitle}
             </h1>
           </div>
           <p className="animate-fade-up animate-delay-2 mt-6 text-xl text-slate-300 sm:text-2xl">
-            Votre site livré en moins de 7 jours. Design sur mesure, optimisé mobile, prêt à convertir.
+            {content.heroSubtitle}
           </p>
           <p className="animate-fade-up animate-delay-3 mx-auto mt-4 max-w-2xl text-lg text-slate-300/90">
             Nous créons des sites qui mettent en avant votre activité, génèrent des prises de contact et soutiennent vos ventes au quotidien.
@@ -223,7 +224,7 @@ export default function Home() {
       <Section
         id="services"
         title="Nos services"
-        subtitle="Quatre types d'offres pour générer plus de visibilité, de demandes et de ventes."
+        subtitle={content.servicesText}
         dark
       >
         <div className="grid gap-6 sm:grid-cols-2">
@@ -504,7 +505,7 @@ export default function Home() {
       <Section
         id="contact"
         title="Prêt à lancer votre projet ?"
-        subtitle="Chaque projet est différent. Contactez-nous pour échanger sur vos besoins, vos contenus et le rendu souhaité. Nous vous répondrons pour définir ensemble la meilleure approche."
+        subtitle={content.contactText}
         dark
       >
         <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">

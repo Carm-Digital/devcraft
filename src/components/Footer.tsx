@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Logo from "@/components/Logo";
+import { readSiteContent } from "@/lib/siteContent";
 
 const footerLinks = {
   navigation: [
@@ -17,7 +18,9 @@ const footerLinks = {
   },
 };
 
-export default function Footer() {
+export default async function Footer() {
+  const content = await readSiteContent();
+
   return (
     <footer className="border-t border-white/10 bg-[#0a0e1a]">
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
@@ -25,7 +28,7 @@ export default function Footer() {
           <div className="max-w-xs">
             <Logo background="dark" href="/" className="mb-4 inline-block" />
             <p className="text-sm leading-relaxed text-slate-400">
-              Création de sites professionnels sur mesure. Design, développement et accompagnement pour votre présence en ligne.
+              {content.footerText}
             </p>
           </div>
 

@@ -6,6 +6,8 @@ import Footer from "@/components/Footer";
 import DevCraftAgent from "@/components/DevCraftAgent";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
 
+export const dynamic = "force-dynamic";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],

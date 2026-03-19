@@ -20,6 +20,7 @@ const OFFER_VALUES: TypeSite[] = ["vitrine", "complet", "abonnement", "personnal
 type QualificationFormProps = {
   /** Contexte d'utilisation : page de devis ou page contact */
   mode?: "qualification" | "contact";
+  offerPrices?: typeof OFFER_PRICES;
 };
 
 const BUDGET_OPTIONS = [
@@ -29,7 +30,7 @@ const BUDGET_OPTIONS = [
   { id: "1200-plus", label: "+ 1 200 €" },
 ] as const;
 
-export default function QualificationForm({ mode = "qualification" }: QualificationFormProps) {
+export default function QualificationForm({ mode = "qualification", offerPrices = OFFER_PRICES }: QualificationFormProps) {
   const router = useRouter();
   const [form, setForm] = useState<QualificationFormData>(QUALIFICATION_FORM_DEFAULT);
   const [errors, setErrors] = useState<QualificationFormErrors>({});
@@ -128,7 +129,7 @@ export default function QualificationForm({ mode = "qualification" }: Qualificat
     }
   };
 
-  const selectedOffer = form.typeSite ? OFFER_PRICES[form.typeSite] : null;
+  const selectedOffer = form.typeSite ? offerPrices[form.typeSite] : null;
 
   return (
     <form

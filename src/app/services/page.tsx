@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Section from "@/components/Section";
 import CTA from "@/components/CTA";
-import { OFFERS } from "@/lib/offers";
+import { buildOffers } from "@/lib/offers";
+import { readSiteContent, toOfferPrices } from "@/lib/siteContent";
 
 export const metadata: Metadata = {
   title: "Nos offres web | Site vitrine, e-commerce, sur mesure | DevCraft",
@@ -12,9 +13,11 @@ export const metadata: Metadata = {
 
 const offerIds = ["vitrine", "complet", "abonnement", "personnalise"] as const;
 
-const offers = offerIds.map((id) => OFFERS[id]);
+export default async function ServicesPage() {
+  const content = await readSiteContent();
+  const OFFERS = buildOffers(toOfferPrices(content));
+  const offers = offerIds.map((id) => OFFERS[id]);
 
-export default function ServicesPage() {
   return (
     <>
       <section className="relative overflow-hidden bg-[#0a0e1a] px-4 py-16 text-white sm:px-6 sm:py-24 lg:px-8">
@@ -24,7 +27,7 @@ export default function ServicesPage() {
             Nos offres
           </h1>
           <p className="mt-6 text-lg text-slate-300">
-            Quatre types de projets pour répondre à tous les besoins. Les tarifs sont clairs ; nous échangeons avec vous pour valider les détails avant tout lancement.
+            {content.servicesText}
           </p>
           <p className="mt-4 text-slate-400">
             Choisissez l’offre qui vous correspond, envoyez-nous votre demande : nous vous recontactons pour valider le projet.
