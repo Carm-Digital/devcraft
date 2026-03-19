@@ -2,74 +2,17 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Section from "@/components/Section";
 import CTA from "@/components/CTA";
-import { OFFER_PRICES } from "@/config/offers";
+import { OFFERS } from "@/lib/offers";
 
 export const metadata: Metadata = {
-  title: "Nos offres — Sites vitrine, complets, abonnement et sur mesure",
+  title: "Nos offres web | Site vitrine, e-commerce, sur mesure | DevCraft",
   description:
-    "DevCraft propose 4 types d'offres : site vitrine 300 €, site complet 900 €, site avec abonnement 1300 €, site personnalisé sur devis. Tarifs clairs, projet validé avec vous avant lancement.",
+    "DevCraft conçoit des sites vitrine, e-commerce, sur mesure. Tarifs clairs et devis gratuit sous 24h.",
 };
 
 const offerIds = ["vitrine", "complet", "abonnement", "personnalise"] as const;
 
-const offers = [
-  {
-    id: "vitrine" as const,
-    title: "Site vitrine",
-    tagline: "Présentez votre activité avec professionnalisme",
-    description:
-      "Idéal pour une entreprise, un commerce, un artisan ou un indépendant qui souhaite une présence en ligne claire et soignée. Pages essentielles, image professionnelle et contact simplifié.",
-    benefits: [
-      "Présentation claire de votre activité",
-      "Image professionnelle et crédible",
-      "Contact et prise de rendez-vous simplifiés",
-      "Pages essentielles (accueil, services, contact)",
-      "Idéal pour démarrer ou compléter votre communication",
-    ],
-  },
-  {
-    id: "complet" as const,
-    title: "Site complet avec achat intégré",
-    tagline: "Une présence en ligne solide et évoluée",
-    description:
-      "Pour les besoins plus poussés : plusieurs pages, structure riche, fonctionnalités avancées et expérience utilisateur travaillée. Parfait pour une activité qui veut un site à la hauteur de son ambition.",
-    benefits: [
-      "Plusieurs pages et sections dédiées",
-      "Structure plus riche et hiérarchisée",
-      "Fonctionnalités avancées selon vos besoins",
-      "Expérience utilisateur soignée",
-      "Site solide et complet pour votre activité",
-    ],
-  },
-  {
-    id: "abonnement" as const,
-    title: "Site avec abonnement intégré",
-    tagline: "Espace membre et accès récurrents",
-    description:
-      "Pour les projets qui nécessitent un espace membre, des accès récurrents ou une formule mensuelle. Gestion plus évoluée : contenus ou services accessibles via abonnement.",
-    benefits: [
-      "Espace membre sécurisé",
-      "Accès récurrents et formules au choix",
-      "Gestion des abonnements et des accès",
-      "Contenus ou services réservés aux abonnés",
-      "Évolution possible selon votre modèle",
-    ],
-  },
-  {
-    id: "personnalise" as const,
-    title: "Site personnalisé",
-    tagline: "Projet 100 % sur mesure",
-    description:
-      "Pour les demandes spécifiques qui sortent des cadres classiques. Design et fonctionnalités entièrement personnalisés, étude du besoin avant devis et accompagnement renforcé.",
-    benefits: [
-      "Projet totalement sur mesure",
-      "Design et fonctionnalités à la carte",
-      "Étude détaillée du besoin avant devis",
-      "Accompagnement plus poussé",
-      "Solution adaptée à vos enjeux uniques",
-    ],
-  },
-];
+const offers = offerIds.map((id) => OFFERS[id]);
 
 export default function ServicesPage() {
   return (
@@ -108,7 +51,7 @@ export default function ServicesPage() {
           </p>
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {offerIds.map((id) => {
-              const info = OFFER_PRICES[id];
+              const info = OFFERS[id];
               return (
                 <div
                   key={id}
@@ -120,12 +63,13 @@ export default function ServicesPage() {
                   </p>
                   <Link
                     href={`/qualification?offer=${id}#formulaire`}
-                    className="mt-auto pt-6"
+                    className="mt-6"
                   >
                     <span className="inline-flex items-center justify-center rounded-xl bg-[#0a0e1a] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#111827] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-500">
                       Choisir cette offre
                     </span>
                   </Link>
+                  <p className="mt-4 text-center text-sm text-slate-600">Devis gratuit · Sans engagement</p>
                 </div>
               );
             })}
@@ -135,7 +79,6 @@ export default function ServicesPage() {
 
       <div className="bg-white">
         {offers.map((offer, index) => {
-          const priceInfo = OFFER_PRICES[offer.id];
           return (
             <section
               key={offer.id}
@@ -151,10 +94,10 @@ export default function ServicesPage() {
                       Offre {index + 1}
                     </p>
                     <h2 className="mt-2 font-display text-3xl font-bold tracking-tight text-[#0a0e1a] sm:text-4xl">
-                      {offer.title}
+                      {offer.label}
                     </h2>
                     <p className="mt-3 font-display text-2xl font-bold text-amber-600">
-                      {priceInfo.price}
+                      {offer.price}
                     </p>
                     <p className="mt-4 text-lg text-slate-600">{offer.tagline}</p>
                     <p className="mt-4 text-slate-600">{offer.description}</p>
@@ -176,17 +119,18 @@ export default function ServicesPage() {
                 <div className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm lg:p-8">
                   <h3 className="font-display font-semibold text-[#0a0e1a]">Ce que vous en retirez</h3>
                     <ul className="mt-4 space-y-3">
-                      {offer.benefits.map((benefit) => (
-                        <li key={benefit} className="flex gap-3 text-slate-600">
+                      {offer.features.map((feature) => (
+                        <li key={feature} className="flex gap-3 text-slate-600">
                           <span className="mt-1.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-amber-100">
                             <svg className="h-3 w-3 text-amber-600" fill="currentColor" viewBox="0 0 20 20">
                               <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                             </svg>
                           </span>
-                          {benefit}
+                          {feature}
                         </li>
                       ))}
                     </ul>
+                    <p className="mt-6 text-sm text-slate-600">Devis gratuit · Sans engagement</p>
                   </div>
                 </div>
               </div>

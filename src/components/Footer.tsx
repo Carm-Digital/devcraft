@@ -14,7 +14,6 @@ const footerLinks = {
   ],
   contact: {
     email: "devcraft.store@gmail.com",
-    phone: "01 23 45 67 89",
   },
 };
 
@@ -48,18 +47,21 @@ export default function Footer() {
             </div>
             <div>
               <h3 className="text-xs font-semibold uppercase tracking-wider text-amber-400/90">Contact</h3>
-              <ul className="mt-4 space-y-2 text-sm text-slate-400">
-                <li>
-                  <a href={`mailto:${footerLinks.contact.email}`} className="transition hover:text-amber-400/90">
-                    {footerLinks.contact.email}
-                  </a>
-                </li>
-                <li>
-                  <a href={`tel:${footerLinks.contact.phone.replace(/\s/g, "")}`} className="transition hover:text-amber-400/90">
-                    {footerLinks.contact.phone}
-                  </a>
-                </li>
-              </ul>
+              <div className="mt-4 text-sm text-slate-400">
+                <p>
+                  Disponible par{" "}
+                  <a href={`mailto:${footerLinks.contact.email}`} className="font-semibold text-amber-400/90 transition hover:text-amber-400/100">
+                    email
+                  </a>{" "}
+                  sous 24h.
+                </p>
+                <a
+                  href={`mailto:${footerLinks.contact.email}`}
+                  className="mt-2 inline-block text-sm text-slate-400 transition hover:text-amber-400/90"
+                >
+                  {footerLinks.contact.email}
+                </a>
+              </div>
               <div className="mt-4 flex gap-3">
                 <a href="#" className="text-slate-500 transition hover:text-amber-400/90" aria-label="LinkedIn">
                   <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">

@@ -4,9 +4,9 @@ import PaymentFAQ from "@/components/PaymentFAQ";
 import CTA from "@/components/CTA";
 
 export const metadata: Metadata = {
-  title: "FAQ — Questions fréquentes sur la création de site",
+  title: "FAQ | Questions fréquentes | DevCraft",
   description:
-    "Réponses aux questions fréquentes : délais, différences entre offres, paiement, contenu nécessaire, modifications, responsive. DevCraft vous explique tout.",
+    "Réponses aux questions fréquentes sur les délais, les offres, le contenu nécessaire, les modifications et le paiement. DevCraft vous explique tout.",
 };
 
 const faqs = [

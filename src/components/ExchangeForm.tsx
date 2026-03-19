@@ -154,7 +154,21 @@ export default function ExchangeForm() {
 
       <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
         <CTA type="submit" variant="primary" className="min-w-[200px]" disabled={isSubmitting}>
-          {isSubmitting ? "Envoi en cours…" : "Réserver mon échange"}
+          {isSubmitting ? (
+            <span className="inline-flex items-center gap-2">
+              <svg
+                className="h-4 w-4 animate-spin text-[#0a0e1a]"
+                viewBox="0 0 24 24"
+                fill="none"
+              >
+                <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" opacity="0.25" />
+                <path d="M22 12a10 10 0 0 1-10 10" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+              </svg>
+              Envoi en cours...
+            </span>
+          ) : (
+            "Réserver mon échange"
+          )}
         </CTA>
         <p className="text-sm text-slate-500">
           Nous revenons vers vous rapidement pour vous proposer un créneau.
@@ -167,7 +181,7 @@ export default function ExchangeForm() {
 
       {success && (
         <p className="mt-3 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-2 text-sm text-emerald-800">
-          Votre demande d’échange a bien été envoyée.
+          Message envoyé ✓
         </p>
       )}
     </form>

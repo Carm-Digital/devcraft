@@ -39,10 +39,6 @@ function escapeHtml(value: string) {
     .replaceAll("'", "&#039;");
 }
 
-function formatBool(value: unknown) {
-  return value ? "Oui" : "Non";
-}
-
 export async function POST(req: Request) {
   const payload = (await req.json().catch(() => null)) as LeadPayload | null;
   if (!payload || typeof payload !== "object" || payload.kind === undefined) {

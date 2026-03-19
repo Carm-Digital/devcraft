@@ -1,9 +1,19 @@
+import type { Metadata } from "next";
 import Section from "@/components/Section";
 import CTA from "@/components/CTA";
 import ProcessSteps from "@/components/ProcessSteps";
 import PaymentFAQ from "@/components/PaymentFAQ";
 import ExchangeForm from "@/components/ExchangeForm";
 import Image from "next/image";
+import { OFFERS } from "@/lib/offers";
+import RealizationPreviewModalButton from "@/components/RealizationPreviewModalButton";
+import HomeProofStats from "@/components/HomeProofStats";
+
+export const metadata: Metadata = {
+  title: "Création de site web professionnel en Île-de-France | DevCraft",
+  description:
+    "DevCraft crée votre site web professionnel en moins de 7 jours. Vitrine, e-commerce, sur mesure. Devis gratuit sous 24h.",
+};
 
 export default function Home() {
   return (
@@ -25,44 +35,53 @@ export default function Home() {
           <div className="relative inline-block">
             <div className="pointer-events-none absolute -inset-x-10 -inset-y-6 -z-10 rounded-full bg-[radial-gradient(circle_at_top,rgba(234,179,8,0.18),transparent_60%)] blur-3xl" />
             <h1 className="animate-fade-up animate-delay-1 font-display mt-4 text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
-              Attirez plus de clients{" "}
+              Un design sur mesure{" "}
               <span className="bg-gradient-to-r from-amber-300 to-amber-500 bg-clip-text text-transparent">
-                avec un site professionnel
+                qui convertit
               </span>
             </h1>
           </div>
           <p className="animate-fade-up animate-delay-2 mt-6 text-xl text-slate-300 sm:text-2xl">
-            Transformez vos visiteurs en clients grâce à un site clair, rapide et pensé pour vendre.
+            Votre site livré en moins de 7 jours. Design sur mesure, optimisé mobile, prêt à convertir.
           </p>
           <p className="animate-fade-up animate-delay-3 mx-auto mt-4 max-w-2xl text-lg text-slate-300/90">
             Nous créons des sites qui mettent en avant votre activité, génèrent des prises de contact et soutiennent vos ventes au quotidien.
           </p>
           <div className="animate-fade-up animate-delay-4 mt-10 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
-            <CTA href="/qualification" variant="primary" className="hero-cta-animated">
-              Recevoir mon devis gratuit
-            </CTA>
-            <CTA href="/qualification" variant="secondary" dark className="hero-cta-animated">
-              Lancer mon projet
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              <CTA href="/qualification" variant="primary" className="hero-cta-animated">
+                Recevoir mon devis gratuit
+              </CTA>
+              <span className="inline-flex items-center gap-2 rounded-full border border-amber-400/30 bg-[#0a0e1a]/30 px-4 py-2 text-xs font-semibold text-amber-200 backdrop-blur">
+                <span className="h-2 w-2 rounded-full bg-red-500 animate-pulse" />
+                Places limitées cette semaine
+              </span>
+            </div>
+            <CTA href="#realisations" variant="outline" dark className="hero-cta-animated">
+              Voir nos réalisations
             </CTA>
             <CTA href="#echange" variant="outline" dark className="hero-cta-animated">
               Parler de mon besoin
             </CTA>
           </div>
-          <p className="animate-fade-up animate-delay-4 mt-4 text-sm text-slate-400">
-            Réponse en moins de 24&nbsp;h · Places limitées chaque semaine
-          </p>
-          <div className="animate-fade-up animate-delay-4 mt-10 flex flex-wrap justify-center gap-6 text-sm text-slate-300">
+          <div className="animate-fade-up animate-delay-5 mt-4 flex flex-wrap items-center justify-center gap-6 text-sm text-slate-300">
             <span className="flex items-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
-              + de visibilité en ligne
+              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-amber-500/15 text-amber-300">
+                ✓
+              </span>
+              Livraison en 7 jours
             </span>
             <span className="flex items-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
-              + de clients qualifiés
+              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-amber-500/15 text-amber-300">
+                ✓
+              </span>
+              +10 clients satisfaits
             </span>
             <span className="flex items-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
-              + de ventes avec votre site
+              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-amber-500/15 text-amber-300">
+                ✓
+              </span>
+              Paiement après validation
             </span>
           </div>
         </div>
@@ -78,77 +97,59 @@ export default function Home() {
         <div className="grid gap-6 md:grid-cols-3">
           {/* Offre 1 : Site vitrine */}
           <div className="flex flex-col rounded-2xl border border-white/10 bg-white/5 p-6 shadow-sm transition hover:-translate-y-1 hover:border-amber-400/40 hover:shadow-lg sm:p-7">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-400">
-              Site vitrine
-            </p>
-            <h3 className="mt-2 font-display text-xl font-semibold text-white">
-              Pour une présence claire et professionnelle
-            </h3>
-            <p className="mt-4 font-display text-3xl font-bold text-amber-300">
-              290&nbsp;€
-            </p>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-400">{OFFERS.vitrine.label}</p>
+            <h3 className="mt-2 font-display text-xl font-semibold text-white">{OFFERS.vitrine.tagline}</h3>
+            <p className="mt-4 font-display text-3xl font-bold text-amber-300">{OFFERS.vitrine.price}</p>
             <ul className="mt-4 flex-1 space-y-2 text-sm text-slate-200">
-              <li>1 à 5 pages</li>
-              <li>Design professionnel</li>
-              <li>Optimisé mobile</li>
-              <li>Livraison rapide</li>
+              {OFFERS.vitrine.features.map((feature) => (
+                <li key={feature}>{feature}</li>
+              ))}
             </ul>
             <div className="mt-6">
               <CTA href="/qualification?offer=vitrine#formulaire" variant="primary" dark className="w-full">
                 Choisir cette offre
               </CTA>
             </div>
+            <p className="mt-4 text-sm text-slate-300/90">Devis gratuit · Sans engagement</p>
           </div>
 
           {/* Offre 2 : Site complet (mise en avant) */}
-          <div className="relative flex flex-col rounded-2xl border border-amber-400/70 bg-gradient-to-b from-amber-500/15 via-amber-500/5 to-transparent p-6 shadow-md ring-2 ring-amber-400/40 transition hover:-translate-y-1.5 hover:shadow-xl sm:p-7">
-            <span className="absolute -top-3 left-1/2 inline-flex -translate-x-1/2 items-center rounded-full bg-amber-400 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-[#0a0e1a] shadow-md">
-              Plus choisie
+          <div className="relative flex flex-col rounded-2xl border border-amber-400/80 bg-gradient-to-b from-amber-500/25 via-amber-500/10 to-transparent p-6 shadow-md ring-2 ring-amber-300/60 transition hover:-translate-y-1.5 hover:shadow-xl sm:p-7">
+            <span className="absolute -top-3 left-1/2 inline-flex -translate-x-1/2 items-center rounded-full bg-amber-400 px-4 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-[#0a0e1a] shadow-md">
+              {OFFERS.complet.badge?.text ?? "Plus choisie"}
             </span>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-300">
-              Site complet
-            </p>
-            <h3 className="mt-2 font-display text-xl font-semibold text-white">
-              Pour une présence en ligne avancée
-            </h3>
-            <p className="mt-4 font-display text-3xl font-bold text-amber-50">
-              690&nbsp;€
-            </p>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-300 truncate">{OFFERS.complet.label}</p>
+            <h3 className="mt-2 font-display text-xl font-semibold text-white">{OFFERS.complet.tagline}</h3>
+            <p className="mt-4 font-display text-3xl font-bold text-amber-50">{OFFERS.complet.price}</p>
             <ul className="mt-4 flex-1 space-y-2 text-sm text-slate-100">
-              <li>Pages illimitées</li>
-              <li>Formulaire de contact</li>
-              <li>Design sur mesure</li>
-              <li>SEO basique</li>
+              {OFFERS.complet.features.map((feature) => (
+                <li key={feature}>{feature}</li>
+              ))}
             </ul>
             <div className="mt-6">
               <CTA href="/qualification?offer=complet#formulaire" variant="primary" dark className="w-full">
                 Choisir cette offre
               </CTA>
             </div>
+            <p className="mt-4 text-sm text-slate-200/90">Devis gratuit · Sans engagement</p>
           </div>
 
           {/* Offre 3 : Site avec abonnement */}
           <div className="flex flex-col rounded-2xl border border-white/10 bg-white/5 p-6 shadow-sm transition hover:-translate-y-1 hover:border-amber-400/40 hover:shadow-lg sm:p-7">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-400">
-              Site avec abonnement
-            </p>
-            <h3 className="mt-2 font-display text-xl font-semibold text-white">
-              Pour un business récurrent en ligne
-            </h3>
-            <p className="mt-4 font-display text-3xl font-bold text-amber-300">
-              990&nbsp;€
-            </p>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-400">{OFFERS.abonnement.label}</p>
+            <h3 className="mt-2 font-display text-xl font-semibold text-white">{OFFERS.abonnement.tagline}</h3>
+            <p className="mt-4 font-display text-3xl font-bold text-amber-300">{OFFERS.abonnement.price}</p>
             <ul className="mt-4 flex-1 space-y-2 text-sm text-slate-200">
-              <li>Système de paiement</li>
-              <li>Espace client</li>
-              <li>Gestion abonnement</li>
-              <li>Maintenance incluse</li>
+              {OFFERS.abonnement.features.map((feature) => (
+                <li key={feature}>{feature}</li>
+              ))}
             </ul>
             <div className="mt-6">
               <CTA href="/qualification?offer=abonnement#formulaire" variant="secondary" dark className="w-full">
                 Choisir cette offre
               </CTA>
             </div>
+            <p className="mt-4 text-sm text-slate-300/90">Devis gratuit · Sans engagement</p>
           </div>
         </div>
       </Section>
@@ -336,10 +337,7 @@ export default function Home() {
                   <span className="text-emerald-600">✔</span>
                   {project.ideal}
                 </p>
-                <span className="mt-4 inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-600">
-                  <span className="mr-1.5 h-1.5 w-1.5 rounded-full bg-amber-400" />
-                  Aperçu démo
-                </span>
+                <RealizationPreviewModalButton imageSrc={project.image} imageAlt={project.name} />
               </div>
             </article>
           ))}
@@ -360,6 +358,21 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Secteurs */}
+      <div className="border-b border-slate-200/80 bg-white py-8">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-3 gap-y-2 px-4 sm:px-6 lg:px-8 text-center">
+          <span className="text-sm font-semibold text-[#0a0e1a]">Restaurant</span>
+          <span className="text-sm text-slate-400">·</span>
+          <span className="text-sm font-semibold text-[#0a0e1a]">Coach</span>
+          <span className="text-sm text-slate-400">·</span>
+          <span className="text-sm font-semibold text-[#0a0e1a]">Artisan</span>
+          <span className="text-sm text-slate-400">·</span>
+          <span className="text-sm font-semibold text-[#0a0e1a]">Consultant</span>
+          <span className="text-sm text-slate-400">·</span>
+          <span className="text-sm font-semibold text-[#0a0e1a]">E-commerce</span>
+        </div>
+      </div>
+
       {/* Avis clients & preuves sociales */}
       <Section
         id="avis"
@@ -370,15 +383,21 @@ export default function Home() {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {[
             {
-              name: "Karim – Restaurant",
+              initial: "K",
+              name: "Karim",
+              cityLine: "Restaurant, Paris 15e",
               text: "Très satisfait du site, j’ai beaucoup plus de clients depuis. Travail rapide et professionnel.",
             },
             {
-              name: "Sarah – Coach sportif",
+              initial: "S",
+              name: "Sarah",
+              cityLine: "Coach sportif, Lyon",
               text: "Le site est moderne et m’aide à trouver de nouveaux clients chaque semaine.",
             },
             {
-              name: "David – Artisan",
+              initial: "D",
+              name: "David",
+              cityLine: "Artisan, Bordeaux",
               text: "Simple, efficace, j’ai des demandes tous les jours grâce au site.",
             },
           ].map((t) => (
@@ -397,28 +416,29 @@ export default function Home() {
                 « {t.text} »
               </blockquote>
               <figcaption className="mt-4">
-                <cite className="font-display not-italic font-semibold text-[#0a0e1a]">
-                  {t.name}
-                </cite>
+                <div className="flex items-center gap-3">
+                  <div
+                    className={`flex h-10 w-10 items-center justify-center rounded-full border ${
+                      t.initial === "K"
+                        ? "border-amber-200 bg-amber-50 text-amber-600"
+                        : t.initial === "S"
+                          ? "border-emerald-200 bg-emerald-50 text-emerald-600"
+                          : "border-indigo-200 bg-indigo-50 text-indigo-600"
+                    }`}
+                  >
+                    <span className="font-display font-semibold">{t.initial}</span>
+                  </div>
+                  <div className="min-w-0">
+                    <cite className="font-display not-italic font-semibold text-[#0a0e1a]">{t.name}</cite>
+                    <p className="mt-0.5 truncate text-sm text-slate-600">{t.cityLine}</p>
+                  </div>
+                </div>
               </figcaption>
             </figure>
           ))}
         </div>
 
-        <div className="mt-10 grid gap-4 rounded-2xl border border-slate-200/80 bg-white p-6 text-center shadow-sm sm:grid-cols-3 sm:text-left">
-          <div className="space-y-1">
-            <p className="font-display text-2xl font-semibold text-[#0a0e1a]">+10</p>
-            <p className="text-sm text-slate-600">sites créés et mis en ligne</p>
-          </div>
-          <div className="space-y-1">
-            <p className="font-display text-2xl font-semibold text-[#0a0e1a]">100&nbsp;%</p>
-            <p className="text-sm text-slate-600">de clients satisfaits</p>
-          </div>
-          <div className="space-y-1">
-            <p className="font-display text-2xl font-semibold text-[#0a0e1a]">Livraison</p>
-            <p className="text-sm text-slate-600">délais courts et respectés</p>
-          </div>
-        </div>
+        <HomeProofStats />
 
         <p className="mt-6 text-center text-sm text-slate-600">
           Nous accompagnons chaque client de A à Z pour créer un site efficace et rentable.

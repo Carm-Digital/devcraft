@@ -5,9 +5,9 @@ import CTA from "@/components/CTA";
 import MethodeSection from "@/components/MethodeSection";
 
 export const metadata: Metadata = {
-  title: "Notre méthode — Comment nous créons votre site",
+  title: "Notre méthode | DevCraft",
   description:
-    "Comment DevCraft crée votre site : prise de contact, analyse du projet, récupération des contenus, validation, lancement, création, mise en ligne. Paiement en plusieurs étapes. Transparence et accompagnement.",
+    "Découvrez notre méthode de création de site : échange, cadrage, récupération des contenus, validation, conception, mise en ligne et paiement en étapes.",
 };
 
 const NEEDS = [
