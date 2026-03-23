@@ -3,7 +3,6 @@ import { Geist, Geist_Mono, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import DevCraftAgent from "@/components/DevCraftAgent";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
 
 export const dynamic = "force-dynamic";
@@ -66,7 +65,6 @@ export default function RootLayout({
         <Header />
         <main className="min-h-screen">{children}</main>
         <Footer />
-        <DevCraftAgent />
         <ScrollToTopButton />
         <script
           type="application/ld+json"
