@@ -5,12 +5,10 @@ import { readSiteContent } from "@/lib/siteContent";
 const footerLinks = {
   navigation: [
     { href: "/", label: "Accueil" },
-    { href: "/services", label: "Services" },
-    { href: "/qualification", label: "Demander un devis" },
-    { href: "/methode", label: "Méthode" },
+    { href: "/formulaire", label: "Demander un devis" },
     { href: "/a-propos", label: "À propos" },
     { href: "/faq", label: "FAQ" },
-    { href: "/#contact", label: "Contact" },
+    { href: "/contact", label: "Contact" },
     { href: "/validation-projet", label: "Paiement acompte" },
   ],
   contact: {
@@ -34,13 +32,13 @@ export default async function Footer() {
 
           <div className="flex flex-col gap-8 sm:flex-row sm:gap-12">
             <div>
-              <h3 className="text-xs font-semibold uppercase tracking-wider text-amber-400/90">Navigation</h3>
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-[#F1E83B]/90">Navigation</h3>
               <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-2">
                 {footerLinks.navigation.map((link) => (
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-sm text-slate-400 transition hover:text-amber-400/90"
+                      className="text-sm text-slate-400 transition hover:text-[#F1E83B]/90"
                     >
                       {link.label}
                     </Link>
@@ -49,11 +47,11 @@ export default async function Footer() {
               </ul>
             </div>
             <div>
-              <h3 className="text-xs font-semibold uppercase tracking-wider text-amber-400/90">Contact</h3>
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-[#F1E83B]/90">Contact</h3>
               <div className="mt-4 text-sm text-slate-400">
                 <a
                   href={`mailto:${footerLinks.contact.email}`}
-                  className="inline-block font-semibold text-amber-400/90 transition hover:text-amber-400/100"
+                  className="inline-block font-semibold text-[#F1E83B]/90 transition hover:text-[#F1E83B]/100"
                 >
                   {footerLinks.contact.email}
                 </a>
@@ -64,7 +62,7 @@ export default async function Footer() {
                   href="https://www.instagram.com/devcraft.store/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-slate-500 transition hover:text-amber-400/90"
+                  className="text-slate-500 transition hover:text-[#F1E83B]/90"
                   aria-label="Instagram DevCraft"
                 >
                   <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden>

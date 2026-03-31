@@ -34,11 +34,11 @@ export default function MethodeSection({
               <div className="col-span-2 sm:col-span-1">
                 <div className="sticky top-24">
                   <div className="flex items-center gap-3">
-                    <span className="relative flex h-12 w-12 items-center justify-center rounded-2xl border border-amber-200 bg-amber-50 text-amber-700 shadow-sm">
+                  <span className="relative flex h-12 w-12 items-center justify-center rounded-2xl border border-[#F1E83B]/40 bg-amber-50 text-[#F1E83B] shadow-sm">
                       <span className="font-display text-xl font-bold">{step.num}</span>
                       <span className="absolute -bottom-3 left-1/2 h-6 w-0.5 -translate-x-1/2 bg-slate-200 sm:hidden" aria-hidden />
                     </span>
-                    <span className="hidden sm:flex h-10 w-10 items-center justify-center rounded-xl bg-white border border-slate-200/70 text-amber-600 shadow-sm">
+                  <span className="hidden sm:flex h-10 w-10 items-center justify-center rounded-xl bg-white border border-slate-200/70 text-[#F1E83B] shadow-sm">
                       <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                         <path strokeLinecap="round" strokeLinejoin="round" d={step.icon} />
                       </svg>
@@ -144,10 +144,10 @@ export default function MethodeSection({
             Chaque projet est étudié sur mesure. Contactez-nous pour discuter de votre besoin et lancer la création de votre site.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-            <CTA href="/qualification" variant="primary">
+            <CTA href="/formulaire" variant="primary">
               Parler de mon projet
             </CTA>
-            <CTA href="/qualification" variant="outline">
+            <CTA href="/formulaire" variant="outline">
               Demander un devis
             </CTA>
           </div>

@@ -21,9 +21,19 @@ npm start
 
 ## Structure
 
-- **`src/app/`** — Pages (Accueil, Services, Méthode, Réalisations, À propos, Contact, FAQ)
-- **`src/components/`** — Header, Footer, Button, Section
-- **Design** — Slate + amber, responsive, sticky header, formulaire de contact avec validations
+- **`src/app/`** — Pages (Accueil, Services, Méthode, Réalisations, À propos, Contact, FAQ, tunnel Stripe, admin)
+- **`src/components/`** — Composants UI réutilisables (Header, Footer, Button, Section, CTA, formulaires, etc.)
+- **`src/lib/` & `src/config/`** — Logique métier (offres, paiements, contenus, validation)
+- **`skills/`** — Skills génériques et externes (frontend-design, algorithmic-art, canvas-design, web-artifacts-builder, etc.)
+- **`workspace/agents/`** — Système multi‑agents documenté (growth, design, frontend, creative, builder, orchestrator)
+
+Le flux logique d’un projet suit globalement :
+
+1. **Contenu & logique métier** : `src/lib/`, `src/config/`, décisions business (`growth-agent`).
+2. **Design & UX** : structure de page et design system (`design-agent`, skills visuels).
+3. **Composants UI** : `src/components/`, implémentés par `frontend-agent`.
+4. **Pages Next.js** : `src/app/.../page.tsx`, assemblées par `builder-agent`.
+5. **Automation / artefacts** : scripts, artefacts p5.js ou React via `skills/` et `workspace/agents`.
 
 ## Parcours visiteur
 

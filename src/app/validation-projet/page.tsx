@@ -72,7 +72,7 @@ export default async function ValidationProjetPage({ searchParams }: PageProps) 
                   <p className="text-slate-600">
                     Le paiement en ligne sera bientôt disponible. En attendant, nous vous enverrons un lien de paiement après validation du devis.
                   </p>
-                  <CTA href="/qualification" variant="primary" className="mt-4">
+                  <CTA href="/formulaire" variant="primary" className="mt-4">
                     Nous contacter pour finaliser
                   </CTA>
                 </div>
@@ -81,7 +81,7 @@ export default async function ValidationProjetPage({ searchParams }: PageProps) 
                   <p className="text-slate-600">
                     Pour un projet personnalisé, l’acompte est défini dans le devis que nous vous avons adressé. Nous vous enverrons un lien de paiement dédié.
                   </p>
-                  <CTA href="/#contact" variant="primary" className="mt-4">
+                  <CTA href="/contact" variant="primary" className="mt-4">
                     Reprendre contact
                   </CTA>
                 </div>
@@ -128,10 +128,10 @@ export default async function ValidationProjetPage({ searchParams }: PageProps) 
         className="bg-slate-50"
       >
         <div className="flex flex-wrap justify-center gap-4">
-          <CTA href="/qualification" variant="primary">
+          <CTA href="/formulaire" variant="primary">
             Décrire mon projet
           </CTA>
-          <CTA href="/#contact" variant="outline">
+          <CTA href="/contact" variant="outline">
             Nous contacter
           </CTA>
         </div>

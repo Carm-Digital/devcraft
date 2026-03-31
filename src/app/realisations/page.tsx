@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Section from "@/components/Section";
 import CTA from "@/components/CTA";
+import PageHero from "@/components/PageHero";
 
 export const metadata: Metadata = {
   title: "Réalisations — Projets et sites créés par DevCraft",
@@ -47,17 +48,11 @@ const projects = [
 export default function RealisationsPage() {
   return (
     <>
-      <section className="relative overflow-hidden bg-[#0a0e1a] px-4 py-16 text-white sm:px-6 sm:py-24 lg:px-8">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(37,99,235,0.08),transparent)]" />
-        <div className="relative mx-auto max-w-3xl text-center">
-          <h1 className="font-display text-4xl font-bold tracking-tight sm:text-5xl">
-            Réalisations
-          </h1>
-          <p className="mt-6 text-lg text-slate-300">
-            Quelques projets que nous avons accompagnés. Chaque site est conçu sur mesure pour son client : objectifs, contenus et design sont adaptés à chaque contexte.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Projets DevCraft"
+        title="Réalisations"
+        description="Quelques projets que nous avons accompagnés. Chaque site est conçu sur mesure selon les objectifs, les contenus et le contexte du client."
+      />
 
       <Section>
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
@@ -68,14 +63,14 @@ export default function RealisationsPage() {
             >
               <div className={`aspect-video bg-gradient-to-br ${project.image}`} />
               <div className="p-5">
-                <p className="text-xs font-semibold uppercase tracking-wider text-amber-600">
+                <p className="text-xs font-semibold uppercase tracking-wider text-[#F1E83B]">
                   {project.category}
                 </p>
                 <h2 className="mt-2 font-display text-xl font-semibold text-[#0a0e1a]">{project.name}</h2>
                 <p className="mt-2 text-sm text-slate-600">{project.description}</p>
                 <Link
-                  href="/qualification"
-                  className="mt-4 inline-flex items-center text-sm font-medium text-slate-900 transition group-hover:text-amber-600"
+                  href="/formulaire"
+                  className="mt-4 inline-flex items-center text-sm font-medium text-slate-900 transition group-hover:text-[#F1E83B]"
                 >
                   Parler de mon projet
                   <svg className="ml-1 h-4 w-4 transition group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -97,7 +92,7 @@ export default function RealisationsPage() {
         dark
       >
         <div className="flex justify-center">
-          <CTA href="/qualification" variant="secondary" dark>
+          <CTA href="/formulaire" variant="secondary" dark>
             Parler de mon projet
           </CTA>
         </div>

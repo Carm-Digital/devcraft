@@ -30,8 +30,8 @@ export default function Logo({
 }: LogoProps) {
   const isDarkBackground = background === "dark";
   const textClass = isDarkBackground
-    ? "text-white font-display font-bold tracking-tight"
-    : "text-[#0a0e1a] font-display font-bold tracking-tight";
+    ? "text-[#F1E83B] font-display font-bold tracking-tight"
+    : "text-[#F1E83B] font-display font-bold tracking-tight";
 
   // Si on n'affiche pas le nom (ex. navbar), on privilégie le symbole seul
   const src = showName
@@ -49,7 +49,7 @@ export default function Logo({
         width={96}
         height={96}
         priority
-        className="h-12 w-12 object-contain"
+        className="object-contain"
         sizes="48px"
       />
     );

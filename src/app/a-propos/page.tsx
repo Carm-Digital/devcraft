@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Section from "@/components/Section";
 import CTA from "@/components/CTA";
+import PageHero from "@/components/PageHero";
 
 export const metadata: Metadata = {
   title: "À propos | DevCraft, agence web Île-de-France",
@@ -13,7 +14,7 @@ const values = [
     title: "Sérieux",
     desc: "Nous nous engageons sur des livrables clairs et des délais réalistes. Pas de promesse impossible, juste un travail soigné.",
     icon: (
-      <svg className="h-5 w-5 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+      <svg className="h-5 w-5 text-[#F1E83B]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4" />
         <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
@@ -23,7 +24,7 @@ const values = [
     title: "Écoute",
     desc: "Chaque projet commence par comprendre votre besoin, votre activité et vos objectifs. Nous posons les bonnes questions.",
     icon: (
-      <svg className="h-5 w-5 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+      <svg className="h-5 w-5 text-[#F1E83B]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M8 10h.01M12 10h.01M16 10h.01" />
         <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 16h0" />
@@ -34,7 +35,7 @@ const values = [
     title: "Personnalisation",
     desc: "Pas de site en série : chaque réalisation est adaptée à son client, à son secteur et à son image.",
     icon: (
-      <svg className="h-5 w-5 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+      <svg className="h-5 w-5 text-[#F1E83B]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 20h9" />
         <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4 12.5-12.5z" />
       </svg>
@@ -44,7 +45,7 @@ const values = [
     title: "Modernité",
     desc: "Sites responsive, performants et aux standards actuels. Votre présence en ligne doit être à la hauteur.",
     icon: (
-      <svg className="h-5 w-5 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+      <svg className="h-5 w-5 text-[#F1E83B]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 2l3 7 7 3-7 3-3 7-3-7-7-3 7-3 3-7z" />
       </svg>
     ),
@@ -53,7 +54,7 @@ const values = [
     title: "Accompagnement humain",
     desc: "Un interlocuteur dédié, des échanges directs. Nous restons disponibles pour les ajustements et les questions.",
     icon: (
-      <svg className="h-5 w-5 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+      <svg className="h-5 w-5 text-[#F1E83B]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
         <path strokeLinecap="round" strokeLinejoin="round" d="M8.5 11a4 4 0 100-8 4 4 0 000 8z" />
         <path strokeLinecap="round" strokeLinejoin="round" d="M20 8v6" />
@@ -65,7 +66,7 @@ const values = [
     title: "Souci du détail",
     desc: "Design soigné, textes clairs, expérience utilisateur travaillée. Les détails font la différence.",
     icon: (
-      <svg className="h-5 w-5 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+      <svg className="h-5 w-5 text-[#F1E83B]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 6V4" />
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 20v-2" />
         <path strokeLinecap="round" strokeLinejoin="round" d="M6 12H4" />
@@ -83,17 +84,11 @@ const values = [
 export default function AProposPage() {
   return (
     <>
-      <section className="relative overflow-hidden bg-[#0a0e1a] px-4 py-16 text-white sm:px-6 sm:py-24 lg:px-8">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(37,99,235,0.08),transparent)]" />
-        <div className="relative mx-auto max-w-3xl text-center">
-          <h1 className="font-display text-4xl font-bold tracking-tight sm:text-5xl">
-            À propos de DevCraft
-          </h1>
-          <p className="mt-6 text-lg text-slate-300">
-            Une agence à la fois créative et technique, qui place la confiance et la personnalisation au centre de chaque projet.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Agence web"
+        title="À propos de DevCraft"
+        description="Une agence à la fois créative et technique, qui place la confiance et la personnalisation au centre de chaque projet."
+      />
 
       {/* Fondateur */}
       <Section
@@ -147,7 +142,7 @@ export default function AProposPage() {
               className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm transition hover:border-amber-200 hover:shadow-lg"
             >
               <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-50 text-amber-600">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-50 text-[#F1E83B]">
                   {v.icon}
                 </div>
                 <h3 className="font-display text-lg font-semibold text-[#0a0e1a]">{v.title}</h3>
@@ -164,11 +159,8 @@ export default function AProposPage() {
         dark
       >
         <div className="flex flex-wrap justify-center gap-4">
-          <CTA href="/qualification" variant="secondary" dark>
+          <CTA href="/formulaire" variant="secondary" dark>
             Nous contacter
-          </CTA>
-          <CTA href="/services" variant="outline" dark>
-            Voir nos offres
           </CTA>
         </div>
       </Section>

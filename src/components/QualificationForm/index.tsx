@@ -280,7 +280,7 @@ export default function QualificationForm({ mode = "qualification", offerPrices 
         {/* Bloc tarif : visible dès qu’un type est choisi */}
         {selectedOffer && (
           <div className="rounded-2xl border-2 border-amber-200/80 bg-gradient-to-br from-amber-50/90 to-white p-6 shadow-lg sm:p-8">
-            <p className="text-xs font-semibold uppercase tracking-wider text-amber-600">
+            <p className="text-xs font-semibold uppercase tracking-wider text-[#F1E83B]">
               Tarif
             </p>
             <p className="mt-2 font-display text-3xl font-bold tracking-tight text-[#0a0e1a] sm:text-4xl">
@@ -320,7 +320,7 @@ export default function QualificationForm({ mode = "qualification", offerPrices 
                     {option.name}
                   </span>
                   <span className="mt-1 text-sm text-slate-600">{option.daysLabel}</span>
-                  <span className={`mt-2 text-sm font-medium ${option.supplementEur === 0 ? "text-slate-600" : "text-amber-700"}`}>
+                  <span className={`mt-2 text-sm font-medium ${option.supplementEur === 0 ? "text-slate-600" : "text-[#F1E83B]"}`}>
                     {option.supplementLabel}
                   </span>
                 </button>
@@ -429,7 +429,7 @@ export default function QualificationForm({ mode = "qualification", offerPrices 
             type="checkbox"
             checked={form.acceptationRGPD}
             onChange={(e) => update("acceptationRGPD", e.target.checked)}
-            className="mt-1 h-4 w-4 rounded border-slate-300 text-amber-600 focus:ring-2 focus:ring-amber-500/20"
+            className="mt-1 h-4 w-4 rounded border-slate-300 text-[#F1E83B] focus:ring-2 focus:ring-amber-500/20"
           />
           <div>
             <label htmlFor="qf-rgpd" className="cursor-pointer text-sm text-slate-700">

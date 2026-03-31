@@ -19,7 +19,7 @@ const BASE =
 /* Clair (sur fond clair) : primary = doré, secondary = bleu nuit contour */
 const VARIANTS: Record<CTAVariant, string> = {
   primary:
-    "bg-gradient-to-r from-[#b8962e] to-[#c9a227] text-[#0a0e1a] shadow-lg shadow-amber-900/20 hover:from-[#c9a227] hover:to-[#d4af37] hover:shadow-amber-900/30 px-5 py-2.5 text-sm",
+    "bg-gradient-to-r from-[#F1E83B] to-[#F1E83B] text-[#0a0e1a] shadow-lg shadow-amber-900/20 hover:from-[#F1E83B] hover:to-[#F1E83B] hover:shadow-amber-900/30 px-5 py-2.5 text-sm",
   secondary:
     "border-2 border-[#0a0e1a] text-[#0a0e1a] hover:bg-[#0a0e1a] hover:text-white px-5 py-2.5 text-sm",
   outline:
@@ -31,7 +31,7 @@ const VARIANTS: Record<CTAVariant, string> = {
 /* Sombre (sur fond nuit) : primary = doré, secondary = contour blanc/doré */
 const VARIANTS_DARK: Record<CTAVariant, string> = {
   primary:
-    "bg-gradient-to-r from-[#b8962e] to-[#c9a227] text-[#0a0e1a] shadow-lg shadow-amber-900/30 hover:from-[#c9a227] hover:to-[#d4af37] px-5 py-2.5 text-sm",
+    "bg-gradient-to-r from-[#F1E83B] to-[#F1E83B] text-[#0a0e1a] shadow-lg shadow-amber-900/30 hover:from-[#F1E83B] hover:to-[#F1E83B] px-5 py-2.5 text-sm",
   secondary:
     "border-2 border-white/80 text-white hover:bg-white hover:text-[#0a0e1a] px-5 py-2.5 text-sm",
   outline:
@@ -40,7 +40,7 @@ const VARIANTS_DARK: Record<CTAVariant, string> = {
     "text-slate-300 hover:bg-white/5 hover:text-white px-5 py-2.5 text-sm",
 };
 
-const DEFAULT_HREF = "/qualification";
+const DEFAULT_HREF = "/formulaire";
 
 export default function CTA({
   children,

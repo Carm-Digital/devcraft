@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Section from "@/components/Section";
 import CTA from "@/components/CTA";
+import PageHero from "@/components/PageHero";
 
 export const metadata: Metadata = {
   title: "FAQ | Questions fréquentes | DevCraft",
@@ -94,17 +95,11 @@ const allFaqs = (() => {
 export default function FAQPage() {
   return (
     <>
-      <section className="relative overflow-hidden bg-[#0a0e1a] px-4 py-16 text-white sm:px-6 sm:py-24 lg:px-8">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(37,99,235,0.08),transparent)]" />
-        <div className="relative mx-auto max-w-3xl text-center">
-          <h1 className="font-display text-4xl font-bold tracking-tight sm:text-5xl">
-            Questions fréquentes
-          </h1>
-          <p className="mt-6 text-lg text-slate-300">
-            Réponses aux questions que nos clients nous posent le plus souvent. Si la vôtre n’apparaît pas ici, n’hésitez pas à nous contacter.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="FAQ"
+        title="Questions fréquentes"
+        description="Réponses aux questions que nos clients nous posent le plus souvent. Si la vôtre n’apparaît pas ici, n’hésitez pas à nous contacter."
+      />
 
       <Section>
         <div className="mx-auto max-w-3xl space-y-4">
@@ -137,10 +132,10 @@ export default function FAQPage() {
         dark
       >
         <div className="flex flex-wrap justify-center gap-4">
-          <CTA href="/qualification" variant="secondary" dark>
+          <CTA href="/formulaire" variant="secondary" dark>
             Parler de mon projet
           </CTA>
-          <CTA href="/#contact" variant="outline" dark>
+          <CTA href="/contact" variant="outline" dark>
             Page contact
           </CTA>
         </div>

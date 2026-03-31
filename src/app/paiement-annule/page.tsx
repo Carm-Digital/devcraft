@@ -38,7 +38,7 @@ export default async function PaiementAnnulePage({ searchParams }: PageProps) {
           <CTA href={retryHref} variant="primary">
             Reprendre le paiement
           </CTA>
-          <CTA href="/#contact" variant="outline">
+          <CTA href="/contact" variant="outline">
             Nous contacter
           </CTA>
           <CTA href="/" variant="ghost">

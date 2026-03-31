@@ -13,8 +13,8 @@ export default function RealizationPreviewModalButton({ imageSrc, imageAlt }: Pr
   const [open, setOpen] = useState(false);
 
   const mailCta = useMemo(() => {
-    // CTA fixe demandé : redirection vers /qualification
-    return "/qualification";
+    // CTA fixe demandé : redirection vers /formulaire
+    return "/formulaire";
   }, []);
 
   return (

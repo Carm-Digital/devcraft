@@ -71,7 +71,7 @@ export default function PaymentFAQ() {
         ))}
       </div>
       <div className="mt-8 text-center">
-        <CTA href="/qualification" variant="outline">
+        <CTA href="/formulaire" variant="outline">
           Parler de mon projet
         </CTA>
       </div>

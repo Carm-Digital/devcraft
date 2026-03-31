@@ -11,7 +11,7 @@ export default function PaymentSummaryCard({ config, showAmount }: PaymentSummar
   return (
     <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-lg sm:p-8">
       <div className="border-b border-slate-100 pb-6">
-        <p className="text-sm font-semibold uppercase tracking-wider text-amber-600">
+        <p className="text-sm font-semibold uppercase tracking-wider text-[#F1E83B]">
           Récapitulatif
         </p>
         <h2 className="mt-2 text-xl font-bold text-slate-900">{config.shortLabel}</h2>

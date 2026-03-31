@@ -55,7 +55,7 @@ export async function POST(req: Request) {
   const to = "devcraft.store@gmail.com";
 
   const requestId = String(req.headers.get("x-request-id") ?? Date.now());
-  console.log("[api/contact]", { requestId, kind, source: payload.source ?? "site", resendConfigured: Boolean(resendApiKey) });
+  // Log structuré côté serveur (garder les erreurs, limiter les traces info)
 
   // Validation minimale (le front valide aussi, mais on sécurise côté serveur)
   if (kind === "exchange") {
@@ -205,7 +205,7 @@ export async function POST(req: Request) {
     );
   }
 
-  console.log("[api/contact] sending via Resend", { requestId, from, to, kind });
+  // Envoi via Resend
   const resend = new Resend(resendApiKey);
 
   try {
@@ -217,7 +217,7 @@ export async function POST(req: Request) {
       html,
       text,
     });
-    console.log("[api/contact] resend sent", { requestId });
+    // Succès silencieux en prod
   } catch (err) {
     const message = err instanceof Error ? err.message : "Envoi Resend impossible.";
     console.error("[api/contact] resend failed", { requestId, message, err });

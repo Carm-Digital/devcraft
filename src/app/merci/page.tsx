@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import CTA from "@/components/CTA";
 
 export const metadata: Metadata = {
@@ -54,7 +53,7 @@ export default function MerciPage() {
           </p>
           <a
             href="/validation-projet"
-            className="mt-3 inline-flex text-sm font-semibold text-amber-600 hover:text-amber-700"
+            className="mt-3 inline-flex text-sm font-semibold text-[#F1E83B] hover:text-[#F1E83B]"
           >
             Accéder à la validation du projet →
           </a>
@@ -64,7 +63,7 @@ export default function MerciPage() {
           <CTA href="/" variant="primary">
             Retour à l’accueil
           </CTA>
-          <CTA href="/#contact" variant="outline">
+          <CTA href="/contact" variant="outline">
             Reprendre contact
           </CTA>
         </div>

@@ -47,7 +47,7 @@ export default function ProcessSteps() {
               className="group flex flex-col rounded-2xl border border-slate-200/80 bg-white p-5 text-left shadow-sm transition hover:-translate-y-1 hover:border-amber-200 hover:shadow-lg sm:p-6"
             >
               <div className="flex items-center gap-3">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-amber-50 font-display text-sm font-bold text-amber-700">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-amber-50 font-display text-sm font-bold text-[#F1E83B]">
                   {step.num}
                 </span>
                 <span className="flex h-9 w-9 items-center justify-center rounded-full bg-slate-900/90 text-amber-300">
@@ -56,7 +56,7 @@ export default function ProcessSteps() {
                   </svg>
                 </span>
               </div>
-              <h3 className="mt-4 font-display text-base font-semibold text-[#0a0e1a] group-hover:text-amber-700">
+              <h3 className="mt-4 font-display text-base font-semibold text-[#0a0e1a] group-hover:text-[#F1E83B]">
                 {step.title}
               </h3>
               <p className="mt-2 text-sm text-slate-600">
@@ -70,10 +70,7 @@ export default function ProcessSteps() {
         À chaque étape, nous échangeons avec vous pour valider les choix avant d’avancer. Le projet ne démarre qu’après validation conjointe.
       </p>
       <div className="mt-10 flex flex-wrap justify-center gap-4">
-        <CTA href="/methode" variant="ghost">
-          Voir le processus complet &rarr;
-        </CTA>
-        <CTA href="/#contact" variant="outline">
+        <CTA href="/contact" variant="outline">
           Parler de mon projet
         </CTA>
       </div>

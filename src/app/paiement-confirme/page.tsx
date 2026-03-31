@@ -54,7 +54,7 @@ export default function PaiementConfirmePage() {
           <CTA href="/" variant="primary">
             Retour à l’accueil
           </CTA>
-          <CTA href="/#contact" variant="outline">
+          <CTA href="/contact" variant="outline">
             Nous contacter
           </CTA>
         </div>

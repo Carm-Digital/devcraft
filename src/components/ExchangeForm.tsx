@@ -167,7 +167,7 @@ export default function ExchangeForm() {
               Envoi en cours...
             </span>
           ) : (
-            "Réserver mon échange"
+            "Réserver un échange"
           )}
         </CTA>
         <p className="text-sm text-slate-500">
