@@ -1,4 +1,4 @@
-"use client";
+ "use client";
 
 import { useState, useEffect } from "react";
 import type { FormEvent } from "react";
@@ -11,9 +11,9 @@ import { DELIVERY_DELAYS, DELIVERY_DELAY_NOTE } from "@/config/deliveryDelays";
 import CTA from "@/components/ui/CTA";
 
 const inputClass =
-  "mt-1 block w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-[#0a0e1a] shadow-sm transition placeholder:text-slate-400 focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 focus:outline-none";
+  "mt-1 block w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-white shadow-sm transition placeholder:text-slate-500 focus:border-[#F1E83B] focus:ring-2 focus:ring-[#F1E83B]/20 focus:outline-none";
 const inputErrorClass = "border-red-500 focus:border-red-500 focus:ring-red-500/20";
-const labelClass = "block text-sm font-medium text-[#0a0e1a]";
+const labelClass = "block text-sm font-medium text-slate-300";
 
 const OFFER_VALUES: TypeSite[] = ["vitrine", "complet", "abonnement", "personnalise"];
 
@@ -135,29 +135,16 @@ export default function QualificationForm({ mode = "qualification", offerPrices 
     <form
       id="formulaire"
       onSubmit={handleSubmit}
-      className="space-y-8 rounded-2xl border border-slate-200/80 bg-white p-6 shadow-xl sm:p-8 lg:p-10"
+      className="space-y-8 rounded-2xl border border-white/10 bg-[#0a0e1a] p-6 shadow-xl sm:p-8 lg:p-10"
     >
-      <p className="rounded-xl border border-amber-200/80 bg-amber-50/80 px-4 py-3 text-sm text-slate-700">
-        <strong>Un système simple :</strong> vous choisissez une offre, le prix fixe s’affiche. Vous envoyez votre demande, nous vous recontactons pour finaliser le projet ensemble.
-      </p>
-
-      <div className="border-b border-slate-200 pb-6">
-        <h2 className="font-display text-xl font-semibold text-[#0a0e1a]">
-          Parlez-nous de votre projet
-        </h2>
-        <p className="mt-1 text-slate-600">
-          Décrivez votre besoin en quelques minutes. Plus votre demande est précise, plus notre réponse sera pertinente. Chaque projet est étudié avec attention.
-        </p>
-      </div>
-
       {/* Identité */}
       <fieldset className="space-y-6">
-        <legend className="text-sm font-semibold uppercase tracking-wider text-slate-500">
+        <legend className="text-sm font-semibold uppercase tracking-wider text-slate-400">
           Vos coordonnées
         </legend>
         <div className="grid gap-6 sm:grid-cols-2">
           <div>
-            <label htmlFor="qf-prenom" className={labelClass}>Prénom *</label>
+            <label htmlFor="qf-prenom" className={labelClass}>Votre prénom *</label>
             <input
               id="qf-prenom"
               type="text"
@@ -167,10 +154,10 @@ export default function QualificationForm({ mode = "qualification", offerPrices 
               placeholder="Jean"
               autoComplete="given-name"
             />
-            {errors.prenom && <p className="mt-1 text-sm text-red-600">{errors.prenom}</p>}
+            {errors.prenom && <p className="mt-1 text-sm text-red-500">{errors.prenom}</p>}
           </div>
           <div>
-            <label htmlFor="qf-nom" className={labelClass}>Nom *</label>
+            <label htmlFor="qf-nom" className={labelClass}>Votre nom *</label>
             <input
               id="qf-nom"
               type="text"
@@ -180,12 +167,12 @@ export default function QualificationForm({ mode = "qualification", offerPrices 
               placeholder="Dupont"
               autoComplete="family-name"
             />
-            {errors.nom && <p className="mt-1 text-sm text-red-600">{errors.nom}</p>}
+            {errors.nom && <p className="mt-1 text-sm text-red-500">{errors.nom}</p>}
           </div>
         </div>
         <div className="grid gap-6 sm:grid-cols-2">
           <div>
-            <label htmlFor="qf-email" className={labelClass}>Email *</label>
+            <label htmlFor="qf-email" className={labelClass}>Votre email *</label>
             <input
               id="qf-email"
               type="email"
@@ -195,10 +182,10 @@ export default function QualificationForm({ mode = "qualification", offerPrices 
               placeholder="jean.dupont@exemple.fr"
               autoComplete="email"
             />
-            {errors.email && <p className="mt-1 text-sm text-red-600">{errors.email}</p>}
+            {errors.email && <p className="mt-1 text-sm text-red-500">{errors.email}</p>}
           </div>
           <div>
-            <label htmlFor="qf-telephone" className={labelClass}>Téléphone *</label>
+            <label htmlFor="qf-telephone" className={labelClass}>Votre téléphone *</label>
             <input
               id="qf-telephone"
               type="tel"
@@ -208,11 +195,11 @@ export default function QualificationForm({ mode = "qualification", offerPrices 
               placeholder="06 12 34 56 78"
               autoComplete="tel"
             />
-            {errors.telephone && <p className="mt-1 text-sm text-red-600">{errors.telephone}</p>}
+            {errors.telephone && <p className="mt-1 text-sm text-red-500">{errors.telephone}</p>}
           </div>
         </div>
         <div>
-          <label htmlFor="qf-entreprise" className={labelClass}>Entreprise / Activité</label>
+          <label htmlFor="qf-entreprise" className={labelClass}>Votre entreprise ou activité</label>
           <input
             id="qf-entreprise"
             type="text"
@@ -227,24 +214,24 @@ export default function QualificationForm({ mode = "qualification", offerPrices 
 
       {/* Projet : type de site + tarif affiché */}
       <fieldset className="space-y-6">
-        <legend className="text-sm font-semibold uppercase tracking-wider text-slate-500">
+        <legend className="text-sm font-semibold uppercase tracking-wider text-slate-400">
           Votre projet
         </legend>
         <div>
-          <label htmlFor="qf-typeSite" className={labelClass}>Type de site souhaité *</label>
+          <label htmlFor="qf-typeSite" className={labelClass}>Quel type de site vous faut-il ? *</label>
           <select
             id="qf-typeSite"
             value={form.typeSite}
             onChange={(e) => update("typeSite", e.target.value as TypeSite)}
             className={errors.typeSite ? `${inputClass} ${inputErrorClass}` : inputClass}
           >
-            <option value="">— Choisir —</option>
-            <option value="vitrine">Site vitrine</option>
-            <option value="complet">Site complet avec achat intégré</option>
-            <option value="abonnement">Site avec abonnement intégré</option>
-            <option value="personnalise">Site personnalisé</option>
+            <option value="" className="bg-[#0a0e1a] text-white">— Choisir —</option>
+            <option value="vitrine" className="bg-[#0a0e1a] text-white">Site vitrine</option>
+            <option value="complet" className="bg-[#0a0e1a] text-white">Site complet avec achat intégré</option>
+            <option value="abonnement" className="bg-[#0a0e1a] text-white">Site avec abonnement intégré</option>
+            <option value="personnalise" className="bg-[#0a0e1a] text-white">Site personnalisé</option>
           </select>
-          {errors.typeSite && <p className="mt-1 text-sm text-red-600">{errors.typeSite}</p>}
+          {errors.typeSite && <p className="mt-1 text-sm text-red-500">{errors.typeSite}</p>}
         </div>
 
         {/* Budget souhaité */}
@@ -260,33 +247,33 @@ export default function QualificationForm({ mode = "qualification", offerPrices 
                   onClick={() => update("budget", option.id)}
                   className={`group flex w-full flex-col items-start rounded-2xl border-2 px-4 py-3 text-left text-sm transition sm:px-5 sm:py-4 ${
                     isSelected
-                      ? "border-amber-500 bg-amber-50/80 shadow-md ring-2 ring-amber-500/30"
-                      : "border-slate-200 bg-white hover:border-amber-200 hover:bg-slate-50/80 hover:shadow-sm"
+                      ? "border-[#F1E83B] bg-white/10 shadow-md ring-2 ring-[#F1E83B]/30"
+                      : "border-white/10 bg-white/5 text-white hover:border-[#F1E83B]/40 hover:bg-white/10 hover:shadow-sm"
                   }`}
                 >
-                  <span className={`font-display font-semibold ${isSelected ? "text-amber-800" : "text-[#0a0e1a]"}`}>
+                  <span className={`font-display font-semibold ${isSelected ? "text-[#F1E83B]" : "text-white"}`}>
                     {option.label}
                   </span>
-                  <span className="mt-1 text-xs text-slate-500">
+                  <span className="mt-1 text-xs text-slate-400">
                     Cette information reste indicative et nous permet de vous proposer la meilleure approche.
                   </span>
                 </button>
               );
             })}
           </div>
-          {errors.budget && <p className="mt-1 text-sm text-red-600">{errors.budget}</p>}
+          {errors.budget && <p className="mt-1 text-sm text-red-500">{errors.budget}</p>}
         </div>
 
         {/* Bloc tarif : visible dès qu’un type est choisi */}
         {selectedOffer && (
-          <div className="rounded-2xl border-2 border-amber-200/80 bg-gradient-to-br from-amber-50/90 to-white p-6 shadow-lg sm:p-8">
+          <div className="rounded-2xl border border-white/10 bg-white/5 p-6 shadow-lg sm:p-8">
             <p className="text-xs font-semibold uppercase tracking-wider text-[#F1E83B]">
               Tarif
             </p>
-            <p className="mt-2 font-display text-3xl font-bold tracking-tight text-[#0a0e1a] sm:text-4xl">
+            <p className="mt-2 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl">
               {selectedOffer.price}
             </p>
-            <p className="mt-4 text-sm leading-relaxed text-slate-600">
+            <p className="mt-4 text-sm leading-relaxed text-slate-300">
               {selectedOffer.isFixed ? NOTE_FIXED_PRICE : NOTE_SUR_DEVIS}
             </p>
           </div>
@@ -305,22 +292,22 @@ export default function QualificationForm({ mode = "qualification", offerPrices 
                   onClick={() => update("delai", option.id)}
                   className={`group relative flex flex-col items-start rounded-2xl border-2 p-4 text-left transition sm:p-5 ${
                     isSelected
-                      ? "border-amber-500 bg-amber-50/80 shadow-md ring-2 ring-amber-500/30"
-                      : "border-slate-200 bg-white hover:border-amber-200 hover:bg-slate-50/80 hover:shadow-sm"
+                      ? "border-[#F1E83B] bg-white/10 shadow-md ring-2 ring-[#F1E83B]/30"
+                      : "border-white/10 bg-white/5 text-white hover:border-[#F1E83B]/40 hover:bg-white/10 hover:shadow-sm"
                   }`}
                 >
                   {isSelected && (
-                    <span className="absolute right-3 top-3 flex h-5 w-5 items-center justify-center rounded-full bg-amber-500 text-white">
+                    <span className="absolute right-3 top-3 flex h-5 w-5 items-center justify-center rounded-full bg-[#F1E83B] text-[#0a0e1a]">
                       <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     </span>
                   )}
-                  <span className={`font-display font-semibold ${isSelected ? "text-amber-800" : "text-[#0a0e1a]"}`}>
+                  <span className={`font-display font-semibold ${isSelected ? "text-[#F1E83B]" : "text-white"}`}>
                     {option.name}
                   </span>
-                  <span className="mt-1 text-sm text-slate-600">{option.daysLabel}</span>
-                  <span className={`mt-2 text-sm font-medium ${option.supplementEur === 0 ? "text-slate-600" : "text-[#F1E83B]"}`}>
+                  <span className="mt-1 text-sm text-slate-400">{option.daysLabel}</span>
+                  <span className={`mt-2 text-sm font-medium ${option.supplementEur === 0 ? "text-slate-400" : "text-[#F1E83B]"}`}>
                     {option.supplementLabel}
                   </span>
                 </button>
@@ -332,33 +319,33 @@ export default function QualificationForm({ mode = "qualification", offerPrices 
           </p>
         </div>
         <div>
-          <label htmlFor="qf-description" className={labelClass}>Description du projet *</label>
+          <label htmlFor="qf-description" className={labelClass}>Décrivez votre projet *</label>
           <textarea
             id="qf-description"
             rows={5}
             value={form.description}
             onChange={(e) => update("description", e.target.value)}
             className={errors.description ? `${inputClass} ${inputErrorClass}` : inputClass}
-            placeholder="Décrivez vos objectifs, votre cible, le contenu prévu et tout élément utile pour nous permettre de vous proposer une solution adaptée."
+            placeholder="Votre activité, vos objectifs, votre cible, ce que vous voulez que les visiteurs fassent..."
           />
-          {errors.description && <p className="mt-1 text-sm text-red-600">{errors.description}</p>}
+          {errors.description && <p className="mt-1 text-sm text-red-500">{errors.description}</p>}
         </div>
         <div>
-          <label htmlFor="qf-styleSouhaite" className={labelClass}>Style souhaité</label>
+          <label htmlFor="qf-styleSouhaite" className={labelClass}>Style visuel souhaité</label>
           <input
             id="qf-styleSouhaite"
             type="text"
             value={form.styleSouhaite}
             onChange={(e) => update("styleSouhaite", e.target.value)}
             className={inputClass}
-            placeholder="Ex. moderne, épuré, coloré, corporate…"
+            placeholder="Moderne, épuré, coloré, dynamique..."
           />
         </div>
       </fieldset>
 
       {/* Éléments déjà en votre possession */}
       <fieldset className="space-y-6">
-        <legend className="text-sm font-semibold uppercase tracking-wider text-slate-500">
+        <legend className="text-sm font-semibold uppercase tracking-wider text-slate-400">
           Éléments déjà en votre possession
         </legend>
         <div className="grid gap-6 sm:grid-cols-3">
@@ -370,9 +357,9 @@ export default function QualificationForm({ mode = "qualification", offerPrices 
               onChange={(e) => update("hasLogo", e.target.value)}
               className={inputClass}
             >
-              <option value="">—</option>
-              <option value="oui">Oui</option>
-              <option value="non">Non</option>
+              <option value="" className="bg-[#0a0e1a] text-white">—</option>
+              <option value="oui" className="bg-[#0a0e1a] text-white">Oui</option>
+              <option value="non" className="bg-[#0a0e1a] text-white">Non</option>
             </select>
           </div>
           <div>
@@ -383,9 +370,9 @@ export default function QualificationForm({ mode = "qualification", offerPrices 
               onChange={(e) => update("hasTextes", e.target.value)}
               className={inputClass}
             >
-              <option value="">—</option>
-              <option value="oui">Oui</option>
-              <option value="non">Non</option>
+              <option value="" className="bg-[#0a0e1a] text-white">—</option>
+              <option value="oui" className="bg-[#0a0e1a] text-white">Oui</option>
+              <option value="non" className="bg-[#0a0e1a] text-white">Non</option>
             </select>
           </div>
           <div>
@@ -396,9 +383,9 @@ export default function QualificationForm({ mode = "qualification", offerPrices 
               onChange={(e) => update("hasPhotos", e.target.value)}
               className={inputClass}
             >
-              <option value="">—</option>
-              <option value="oui">Oui</option>
-              <option value="non">Non</option>
+              <option value="" className="bg-[#0a0e1a] text-white">—</option>
+              <option value="oui" className="bg-[#0a0e1a] text-white">Oui</option>
+              <option value="non" className="bg-[#0a0e1a] text-white">Non</option>
             </select>
           </div>
         </div>
@@ -413,16 +400,16 @@ export default function QualificationForm({ mode = "qualification", offerPrices 
           onChange={(e) => update("commentConnu", e.target.value)}
           className={inputClass}
         >
-          <option value="">— Choisir —</option>
-          <option value="recherche">Recherche Google</option>
-          <option value="recommandation">Recommandation</option>
-          <option value="reseau">Réseaux sociaux</option>
-          <option value="autre">Autre</option>
+          <option value="" className="bg-[#0a0e1a] text-white">— Choisir —</option>
+          <option value="recherche" className="bg-[#0a0e1a] text-white">Recherche Google</option>
+          <option value="recommandation" className="bg-[#0a0e1a] text-white">Recommandation</option>
+          <option value="reseau" className="bg-[#0a0e1a] text-white">Réseaux sociaux</option>
+          <option value="autre" className="bg-[#0a0e1a] text-white">Autre</option>
         </select>
       </div>
 
       {/* RGPD */}
-      <div className="rounded-2xl border border-slate-200/80 bg-slate-50/80 p-4 sm:p-5">
+      <div className="rounded-2xl border border-white/10 bg-white/5 p-4 sm:p-5">
         <div className="flex gap-3">
           <input
             id="qf-rgpd"
@@ -432,11 +419,11 @@ export default function QualificationForm({ mode = "qualification", offerPrices 
             className="mt-1 h-4 w-4 rounded border-slate-300 text-[#F1E83B] focus:ring-2 focus:ring-amber-500/20"
           />
           <div>
-            <label htmlFor="qf-rgpd" className="cursor-pointer text-sm text-slate-700">
+            <label htmlFor="qf-rgpd" className="cursor-pointer text-sm text-slate-300">
               J’accepte que mes données soient utilisées uniquement pour étudier mon projet et me recontacter. Elles ne seront pas transmises à des tiers et resteront confidentielles. *
             </label>
             {errors.acceptationRGPD && (
-              <p className="mt-1 text-sm text-red-600">{errors.acceptationRGPD}</p>
+              <p className="mt-1 text-sm text-red-500">{errors.acceptationRGPD}</p>
             )}
           </div>
         </div>
@@ -445,15 +432,15 @@ export default function QualificationForm({ mode = "qualification", offerPrices 
         </p>
       </div>
 
-      <p className="text-sm text-slate-600">
-        Les informations renseignées nous permettent de mieux cerner votre besoin et de vous répondre de façon personnalisée. Les prix sont clairs dès le départ ; nous échangerons avec vous pour valider les détails, vos contenus et vos attentes avant tout lancement.
+      <p className="text-sm text-slate-400">
+        Nous étudions chaque demande avec attention et revenons vers vous sous 24 heures.
       </p>
 
       <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between">
         <CTA type="submit" variant="primary" className="min-w-[220px]" disabled={isSubmitting}>
-          {isSubmitting ? "Envoi en cours…" : "Envoyer ma demande"}
+          {isSubmitting ? "Envoi en cours..." : "Envoyer ma demande →"}
         </CTA>
-        <div className="space-y-1 text-sm text-slate-600">
+        <div className="space-y-1 text-sm text-slate-400">
           <p>* Champs obligatoires. Aucun engagement.</p>
           <p className="text-slate-500">Nous vous recontactons rapidement pour discuter de votre projet.</p>
         </div>

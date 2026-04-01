@@ -1,74 +1,43 @@
 export const FAQ_ITEMS = [
   {
-    q: "Combien de temps prend la création d'un site ?",
-    a: "Cela dépend du type d’offre choisi (vitrine, complet, abonnement, personnalisé) et de la disponibilité de vos contenus. Lors de notre premier échange après votre demande, nous vous indiquons un délai réaliste et nous finalisons ensemble les détails du projet.",
+    q: "Combien coûte la création d'un site ?",
+    a: "Chaque projet est différent, donc chaque devis aussi. Le prix dépend du type de site, du nombre de pages, des fonctionnalités souhaitées et de vos contenus. Nous vous envoyons une proposition claire et détaillée après un premier échange — sans engagement de votre côté.",
   },
   {
-    q: "Quelle différence entre site vitrine et site complet ?",
-    a: "Le site vitrine présente votre activité avec les pages essentielles (accueil, présentation, services, contact). Le site complet va plus loin : plus de pages, structure plus riche, fonctionnalités avancées (formulaires, intégrations, etc.) et une expérience utilisateur plus travaillée. Nous vous aidons à choisir selon vos objectifs.",
+    q: "Combien de temps faut-il pour livrer un site ?",
+    a: "Pour un site vitrine, comptez généralement 2 à 4 semaines après validation du brief et réception de vos contenus. Pour un projet plus complexe, le délai est défini ensemble avant de démarrer. Nous ne démarrons pas sans vous avoir communiqué une date de livraison réaliste.",
   },
   {
-    q: "Peut-on demander un site totalement sur mesure ?",
-    a: "Oui. Notre offre « Site personnalisé » est dédiée aux projets spécifiques : design et fonctionnalités entièrement à la carte, étude détaillée du besoin avant devis et accompagnement renforcé. Nous en discutons ensemble pour voir si c’est la meilleure option pour vous.",
+    q: "Comment se déroule le projet concrètement ?",
+    a: "On commence par un échange pour comprendre votre activité et vos objectifs. On vous propose ensuite un cadrage (périmètre, délai, budget). Une fois validé, on avance sur le design et le développement avec des points réguliers. On livre, on met en ligne, et on vous transfère tout.",
+  },
+  {
+    q: "Est-ce que je reste propriétaire de mon site ?",
+    a: "Oui, intégralement. Le code, le nom de domaine et l'hébergement vous appartiennent. Vous pouvez faire appel à qui vous voulez pour la suite — nous ne créons aucune dépendance à notre agence.",
+  },
+  {
+    q: "Qu'est-ce que je dois fournir pour démarrer ?",
+    a: "L'essentiel : une idée claire de votre activité, vos textes (ou une base), vos visuels si vous en avez, et vos accès si vous avez déjà un domaine ou un hébergement. Si vous n'avez rien de tout ça, pas de panique — on vous guide.",
+  },
+  {
+    q: "Est-ce que vous vous occupez de l'hébergement et du nom de domaine ?",
+    a: "Oui, on peut gérer ça pour vous si vous le souhaitez. On vous conseille les meilleures options selon votre budget et vos besoins. Si vous avez déjà un hébergeur, on s'adapte.",
+  },
+  {
+    q: "Peut-on modifier le site après la livraison ?",
+    a: "Oui. On peut vous former à gérer le contenu vous-même, ou on s'en charge pour vous selon un forfait de maintenance. Les évolutions plus importantes (nouvelles fonctionnalités, refonte) font l'objet d'un nouveau devis.",
   },
   {
     q: "Comment se passe le paiement ?",
-    a: "Les modalités (acompte, échéancier, solde à la livraison) sont définies dans le devis que nous vous adressons après échange. Nous restons transparents sur les montants et les étapes. La question du paiement peut être adaptée selon l’envergure du projet.",
+    a: "On demande un acompte au démarrage du projet, puis le solde à la livraison. Le montant exact et les modalités sont précisés dans le devis. Aucun frais caché, tout est écrit noir sur blanc avant de commencer.",
   },
   {
-    q: "De quoi avez-vous besoin pour commencer ?",
-    a: "D’abord d’un échange avec vous : vos objectifs, le type de site souhaité, les fonctionnalités, vos préférences de style. Ensuite, dans l’idéal : vos textes (ou une base), vos visuels ou photos, votre logo si vous en avez un. Si tout n’est pas prêt, nous pouvons en discuter et avancer par étapes.",
+    q: "Est-ce que mon site sera bien référencé sur Google ?",
+    a: "On livre des sites techniquement optimisés pour le SEO : structure propre, temps de chargement rapide, balises bien renseignées. Le référencement naturel prend du temps et dépend aussi de votre contenu — on vous explique ce que vous pouvez faire de votre côté.",
   },
   {
-    q: "Puis-je fournir mes textes et mes photos plus tard ?",
-    a: "Oui. Nous pouvons structurer le site et préparer les emplacements, puis intégrer vos contenus au fur et à mesure. Nous en parlons ensemble pour organiser le planning et éviter les blocages.",
-  },
-  {
-    q: "Proposez-vous des modifications ?",
-    a: "Oui. Des allers-retours sont prévus pendant la phase de design et avant la mise en ligne. Le nombre d’itérations peut être précisé dans le devis selon la complexité du projet. L’objectif est que vous soyez satisfait du rendu final.",
-  },
-  {
-    q: "Le site sera-t-il responsive ?",
-    a: "Oui. Tous nos sites sont conçus pour s’afficher correctement sur ordinateur, tablette et mobile. L’expérience utilisateur est pensée pour tous les écrans.",
-  },
-] as const;
-
-export const PAYMENT_FAQ_ITEMS = [
-  {
-    q: "Comment se passe le paiement ?",
-    a: "Les modalités sont définies dans le devis que nous vous adressons après échange : acompte éventuel, échéancier, solde à la livraison. Nous restons transparents sur les montants et les étapes. Le paiement n’est jamais une surprise.",
-  },
-  {
-    q: "Dois-je payer avant le début du projet ?",
-    a: "Un acompte peut être demandé après validation du devis et avant le démarrage des travaux. Cela sécurise l’engagement des deux parties. Les conditions exactes sont indiquées dans chaque proposition.",
-  },
-  {
-    q: "Pourquoi payer un acompte ?",
-    a: "L’acompte permet de réserver le lancement de votre projet et de valider officiellement notre collaboration. Il est adapté à l’envergure du projet et toujours précisé dans le devis. C’est une étape de validation, pas un achat anonyme.",
-  },
-  {
-    q: "L’acompte lance-t-il directement le projet ?",
-    a: "Oui. Une fois l’acompte enregistré, votre projet entre en phase de préparation. Nous revenons vers vous pour organiser la récupération de vos contenus, visuels et préférences, puis nous lançons la conception et le développement.",
-  },
-  {
-    q: "Que se passe-t-il après le paiement ?",
-    a: "Vous recevez une confirmation. Nous vous recontactons pour les prochaines étapes : récupération des contenus, planning détaillé, lancement de la phase design. Vous êtes tenu informé à chaque étape clé.",
-  },
-  {
-    q: "Le paiement final est-il inclus ?",
-    a: "Le solde ou la suite de la facturation est défini selon la prestation convenue dans le devis. Les modalités (échéancier, solde à la livraison, etc.) vous sont précisées avant tout engagement.",
-  },
-  {
-    q: "Peut-on ajuster le projet ensuite ?",
-    a: "Oui. Des allers-retours sont prévus pendant la phase de design et avant la mise en ligne. Le nombre d’itérations peut être précisé dans le devis. L’objectif est que vous soyez satisfait du rendu final.",
-  },
-  {
-    q: "Comment fonctionne un site avec abonnement ?",
-    a: "Pour un site avec espace membre ou formules récurrentes, nous définissons ensemble le modèle (tarifs, durée, fonctionnalités). Un acompte ou des frais de mise en route peuvent être demandés ; la facturation récurrente est ensuite gérée selon nos échanges.",
-  },
-  {
-    q: "Le paiement se fait-il avant ou après échange ?",
-    a: "Toujours après échange. Nous devons d’abord échanger avec vous sur vos besoins, vos contenus et vos objectifs, puis vous adresser une proposition et un devis. Aucun paiement n’est demandé avant cette validation.",
+    q: "Travaillez-vous uniquement en Île-de-France ?",
+    a: "Non, on travaille avec des clients partout en France. Tout se passe à distance via visio, email et outils collaboratifs. La distance n'a jamais été un frein sur nos projets.",
   },
 ] as const;
 

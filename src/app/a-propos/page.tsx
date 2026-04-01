@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import Section from "@/components/ui/Section";
 import CTA from "@/components/ui/CTA";
 import PageHero from "@/components/layout/PageHero";
-import { ABOUT_VALUES, ABOUT_STACK } from "@/config/about";
+import { ABOUT_VALUES } from "@/config/about";
 
 export const metadata: Metadata = {
   title: "À propos | DevCraft, agence web Île-de-France",
   description:
-    "DevCraft est une agence web en Île-de-France qui crée des sites sur mesure, modernes et orientés conversion, avec un accompagnement humain de A à Z.",
+    "DevCraft est une agence web en Île-de-France qui conçoit des sites sur mesure, modernes et orientés conversion, avec un accompagnement humain de A à Z.",
 };
 
 const values = [
@@ -79,56 +79,35 @@ const values = [
 export default function AProposPage() {
   return (
     <>
+      {/* 1. HERO */}
       <PageHero
         eyebrow="Agence web"
-        title="À propos de DevCraft"
-        description="Une agence à la fois créative et technique, qui place la confiance et la personnalisation au centre de chaque projet."
+        title="Ce qu&apos;on est, ce qu&apos;on fait"
+        description="DevCraft conçoit des sites web sur mesure pour les entreprises qui veulent une présence en ligne claire, crédible et efficace."
       />
 
-      {/* Fondateur */}
+      {/* 2. QUI NOUS SOMMES */}
       <Section
-        title="Fondateur"
-        subtitle="Un freelance qui conçoit, développe et accompagne vos projets."
-        className="bg-[#f8fafc]"
+        title="Qui nous sommes"
+        subtitle="Une petite équipe, un fonctionnement simple, des sites pensés pour vos objectifs."
       >
-        <div className="mx-auto max-w-3xl">
-          <div className="flex flex-col items-center gap-6 text-center">
-            <div className="relative flex h-28 w-28 items-center justify-center rounded-full bg-white shadow-sm ring-2 ring-amber-200/80">
-              <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_top,rgba(234,179,8,0.35),transparent_60%)]" />
-              <span className="relative font-display text-3xl font-bold text-[#0a0e1a]">A</span>
-            </div>
-
-            <div className="space-y-2">
-              <h2 className="font-display text-2xl font-bold text-[#0a0e1a]">Aleer – Fondateur de DevCraft</h2>
-              <p className="text-sm font-medium text-slate-600">Île-de-France</p>
-              <p className="text-slate-700">
-                Développeur web freelance passionné par la création d&apos;expériences digitales efficaces.
-                <br />
-                J&apos;accompagne chaque client de A à Z.
-              </p>
-            </div>
-          </div>
-        </div>
-      </Section>
-
-      <Section
-        title="Qui suis-je ?"
-        subtitle="Je conçois et développe des sites internet professionnels pour les entreprises, les indépendants et les marques qui veulent une présence en ligne crédible et efficace."
-      >
-        <div className="mx-auto max-w-3xl space-y-6 text-slate-600">
+        <div className="mx-auto max-w-3xl space-y-5 text-slate-600">
           <p>
-            Je crois qu’un bon site ne se résume pas à un template et quelques textes. Il reflète votre activité, répond à vos objectifs et offre une expérience agréable à vos visiteurs. C’est pourquoi je prends le temps d’échanger avec vous avant toute chose : pour comprendre vos besoins, vos contenus et le rendu que vous souhaitez.
+            DevCraft est une agence web basée en Île-de-France. Nous concevons et réalisons des sites sur mesure pour
+            les entreprises, indépendants et organisations qui veulent être compris au premier coup d&apos;œil.
           </p>
           <p>
-            Que vous ayez besoin d’un site vitrine pour démarrer, d’un site plus complet pour structurer votre offre, d’un espace membre ou d’un projet entièrement sur mesure, je m&apos;adapte. Mon objectif est de vous livrer un site dont vous serez fiers et qui vous ressemble.
+            Notre travail : clarifier votre offre, structurer vos contenus et créer une expérience fluide pour vos
+            visiteurs. Vous échangez toujours avec une personne qui suit votre projet de bout en bout.
           </p>
         </div>
       </Section>
 
+      {/* 3. NOS VALEURS */}
       <Section
-        title="Nos valeurs"
-        subtitle="Ce qui guide notre façon de travailler au quotidien."
-        className="bg-[#f8fafc]"
+        title="Ce qui guide notre travail"
+        subtitle="Quelques repères simples qui structurent chaque projet que nous prenons en charge."
+        className="bg-slate-50"
       >
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {values.map((v) => {
@@ -136,50 +115,31 @@ export default function AProposPage() {
             return (
               <div
                 key={v.key}
-                className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm transition hover:border-amber-200 hover:shadow-lg"
+                className="rounded-2xl border border-white/10 bg-[#0a0e1a] p-6 shadow-sm transition hover:border-[#F1E83B]/40 hover:shadow-lg"
               >
                 <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-50 text-[#F1E83B]">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/5 text-[#F1E83B]">
                     {v.icon}
                   </div>
-                  <h3 className="font-display text-lg font-semibold text-[#0a0e1a]">{value.title}</h3>
+                  <h3 className="font-display text-lg font-semibold text-white">{value.title}</h3>
                 </div>
-                <p className="mt-2 text-slate-600">{value.desc}</p>
+                <p className="mt-2 text-sm text-slate-300">{value.desc}</p>
               </div>
             );
           })}
         </div>
       </Section>
 
+      {/* 4. CTA FINAL */}
       <Section
-        title="Travaillons ensemble"
-        subtitle="Vous avez un projet en tête ? Contactez-nous pour en discuter. Nous vous répondrons pour définir ensemble la meilleure approche."
+        title="Un projet en tête ?"
+        subtitle="Parlez-nous de votre contexte et de vos objectifs, nous revenons vers vous avec une première piste concrète."
         dark
       >
-        <div className="flex flex-wrap justify-center gap-4">
-          <CTA href="/formulaire" variant="secondary" dark>
-            Nous contacter
+        <div className="flex justify-center">
+          <CTA href="/formulaire" variant="primary">
+            Démarrer un projet
           </CTA>
-        </div>
-      </Section>
-
-      {/* Ma stack */}
-      <Section
-        title="Ma stack"
-        subtitle="Les technologies que j’utilise pour livrer des sites solides, rapides et modernes."
-        className="bg-[#f8fafc]"
-      >
-        <div className="mx-auto max-w-4xl">
-          <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-center">
-            {ABOUT_STACK.map((tech, idx) => (
-              <div key={tech} className="flex items-center gap-2">
-                <span className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-[#0a0e1a] shadow-sm ring-1 ring-amber-200/60">
-                  {tech}
-                </span>
-                {idx !== ABOUT_STACK.length - 1 && <span className="text-[#0a0e1a] text-sm opacity-60">·</span>}
-              </div>
-            ))}
-          </div>
         </div>
       </Section>
     </>

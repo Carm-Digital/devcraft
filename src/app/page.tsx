@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import Section from "@/components/ui/Section";
 import CTA from "@/components/ui/CTA";
-import ExchangeForm from "@/components/forms/ExchangeForm";
 import Logo from "@/components/layout/Logo";
-import { readSiteContent } from "@/lib/siteContent";
 import {
   STACK_ITEMS,
   COMMITMENT_ITEMS,
@@ -17,9 +15,7 @@ export const metadata: Metadata = {
     "DevCraft conçoit et développe des sites web sur-mesure pour les entreprises, TPE, PME, startups et e‑commerce. Un seul interlocuteur, tout est construit pour votre contexte.",
 };
 
-export default async function Home() {
-  const content = await readSiteContent();
-
+export default function Home() {
   return (
     <>
       {/* 1. HERO */}
@@ -130,17 +126,6 @@ export default async function Home() {
               </p>
             </div>
           ))}
-        </div>
-      </Section>
-
-      {/* 5. FORMULAIRE D'ÉCHANGE */}
-      <Section
-        id="echange"
-        title="Parlons de votre projet"
-        subtitle={content.contactText}
-      >
-        <div className="mx-auto max-w-3xl">
-          <ExchangeForm />
         </div>
       </Section>
     </>
