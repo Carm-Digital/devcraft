@@ -1,34 +1,8 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
+import type { LeadKind, LeadPayload } from "@/types/lead";
 
 export const runtime = "nodejs";
-
-type LeadKind = "exchange" | "qualification";
-
-type LeadPayload = {
-  kind: LeadKind;
-  // exchange
-  nom?: string;
-  telephone?: string;
-  email?: string;
-  creneau?: string;
-  message?: string;
-  // qualification
-  prenom?: string;
-  entreprise?: string;
-  typeSite?: string;
-  budget?: string;
-  delai?: string;
-  description?: string;
-  hasLogo?: string;
-  hasTextes?: string;
-  hasPhotos?: string;
-  styleSouhaite?: string;
-  commentConnu?: string;
-  acceptationRGPD?: boolean;
-  // metadata
-  source?: string;
-};
 
 function escapeHtml(value: string) {
   return value

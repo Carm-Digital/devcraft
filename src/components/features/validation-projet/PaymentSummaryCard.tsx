@@ -47,3 +47,4 @@ export default function PaymentSummaryCard({ config, showAmount }: PaymentSummar
     </div>
   );
 }
+

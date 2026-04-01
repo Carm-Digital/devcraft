@@ -1,5 +1,5 @@
-import Section from "@/components/Section";
-import CTA from "@/components/CTA";
+import Section from "@/components/ui/Section";
+import CTA from "@/components/ui/CTA";
 import { METHODE_STEPS, PAYMENT_STEPS } from "./stepsData";
 
 interface MethodeSectionProps {
@@ -156,3 +156,4 @@ export default function MethodeSection({
     </Section>
   );
 }
+

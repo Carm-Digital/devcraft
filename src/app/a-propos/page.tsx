@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import Section from "@/components/Section";
-import CTA from "@/components/CTA";
-import PageHero from "@/components/PageHero";
+import Section from "@/components/ui/Section";
+import CTA from "@/components/ui/CTA";
+import PageHero from "@/components/layout/PageHero";
+import { ABOUT_VALUES, ABOUT_STACK } from "@/config/about";
 
 export const metadata: Metadata = {
   title: "À propos | DevCraft, agence web Île-de-France",
@@ -11,8 +12,7 @@ export const metadata: Metadata = {
 
 const values = [
   {
-    title: "Sérieux",
-    desc: "Nous nous engageons sur des livrables clairs et des délais réalistes. Pas de promesse impossible, juste un travail soigné.",
+    key: "Sérieux",
     icon: (
       <svg className="h-5 w-5 text-[#F1E83B]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4" />
@@ -21,8 +21,7 @@ const values = [
     ),
   },
   {
-    title: "Écoute",
-    desc: "Chaque projet commence par comprendre votre besoin, votre activité et vos objectifs. Nous posons les bonnes questions.",
+    key: "Écoute",
     icon: (
       <svg className="h-5 w-5 text-[#F1E83B]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M8 10h.01M12 10h.01M16 10h.01" />
@@ -32,8 +31,7 @@ const values = [
     ),
   },
   {
-    title: "Personnalisation",
-    desc: "Pas de site en série : chaque réalisation est adaptée à son client, à son secteur et à son image.",
+    key: "Personnalisation",
     icon: (
       <svg className="h-5 w-5 text-[#F1E83B]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 20h9" />
@@ -42,8 +40,7 @@ const values = [
     ),
   },
   {
-    title: "Modernité",
-    desc: "Sites responsive, performants et aux standards actuels. Votre présence en ligne doit être à la hauteur.",
+    key: "Modernité",
     icon: (
       <svg className="h-5 w-5 text-[#F1E83B]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 2l3 7 7 3-7 3-3 7-3-7-7-3 7-3 3-7z" />
@@ -51,8 +48,7 @@ const values = [
     ),
   },
   {
-    title: "Accompagnement humain",
-    desc: "Un interlocuteur dédié, des échanges directs. Nous restons disponibles pour les ajustements et les questions.",
+    key: "Accompagnement humain",
     icon: (
       <svg className="h-5 w-5 text-[#F1E83B]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
@@ -63,8 +59,7 @@ const values = [
     ),
   },
   {
-    title: "Souci du détail",
-    desc: "Design soigné, textes clairs, expérience utilisateur travaillée. Les détails font la différence.",
+    key: "Souci du détail",
     icon: (
       <svg className="h-5 w-5 text-[#F1E83B]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 6V4" />
@@ -79,7 +74,7 @@ const values = [
       </svg>
     ),
   },
-];
+] as const;
 
 export default function AProposPage() {
   return (
@@ -136,20 +131,23 @@ export default function AProposPage() {
         className="bg-[#f8fafc]"
       >
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {values.map((v) => (
-            <div
-              key={v.title}
-              className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm transition hover:border-amber-200 hover:shadow-lg"
-            >
-              <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-50 text-[#F1E83B]">
-                  {v.icon}
+          {values.map((v) => {
+            const value = ABOUT_VALUES.find((item) => item.title === v.key)!;
+            return (
+              <div
+                key={v.key}
+                className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm transition hover:border-amber-200 hover:shadow-lg"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-50 text-[#F1E83B]">
+                    {v.icon}
+                  </div>
+                  <h3 className="font-display text-lg font-semibold text-[#0a0e1a]">{value.title}</h3>
                 </div>
-                <h3 className="font-display text-lg font-semibold text-[#0a0e1a]">{v.title}</h3>
+                <p className="mt-2 text-slate-600">{value.desc}</p>
               </div>
-              <p className="mt-2 text-slate-600">{v.desc}</p>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </Section>
 
@@ -173,12 +171,12 @@ export default function AProposPage() {
       >
         <div className="mx-auto max-w-4xl">
           <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-center">
-            {["Next.js", "React", "Tailwind", "WordPress", "Figma", "Vercel"].map((tech, idx) => (
+            {ABOUT_STACK.map((tech, idx) => (
               <div key={tech} className="flex items-center gap-2">
                 <span className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-[#0a0e1a] shadow-sm ring-1 ring-amber-200/60">
                   {tech}
                 </span>
-                {idx !== 5 && <span className="text-[#0a0e1a] text-sm opacity-60">·</span>}
+                {idx !== ABOUT_STACK.length - 1 && <span className="text-[#0a0e1a] text-sm opacity-60">·</span>}
               </div>
             ))}
           </div>

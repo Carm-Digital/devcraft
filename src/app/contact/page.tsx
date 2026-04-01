@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Section from "@/components/Section";
-import CTA from "@/components/CTA";
-import PageHero from "@/components/PageHero";
+import Section from "@/components/ui/Section";
+import CTA from "@/components/ui/CTA";
+import PageHero from "@/components/layout/PageHero";
 import { readSiteContent } from "@/lib/siteContent";
 
 export const metadata: Metadata = {

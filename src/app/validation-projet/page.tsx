@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Section from "@/components/Section";
-import CTA from "@/components/CTA";
+import Section from "@/components/ui/Section";
+import CTA from "@/components/ui/CTA";
 import { OFFER_IDS, getDepositConfig, OFFER_DEPOSITS } from "@/config/deposits";
 import type { OfferId } from "@/types/payment";
-import PaymentSummaryCard from "@/components/validation-projet/PaymentSummaryCard";
-import ValidateLaunchButton from "@/components/validation-projet/ValidateLaunchButton";
+import PaymentSummaryCard from "@/components/features/validation-projet/PaymentSummaryCard";
+import ValidateLaunchButton from "@/components/features/validation-projet/ValidateLaunchButton";
 import { isStripeConfigured } from "@/lib/stripe/config";
 
 export const metadata: Metadata = {

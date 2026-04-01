@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import CTA from "@/components/CTA";
+import CTA from "@/components/ui/CTA";
 
 export const metadata: Metadata = {
   title: "Paiement confirmé — Projet confirmé",

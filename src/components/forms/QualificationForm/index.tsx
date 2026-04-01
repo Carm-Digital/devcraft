@@ -8,7 +8,7 @@ import { QUALIFICATION_FORM_DEFAULT } from "@/types/qualification";
 import { validateQualificationForm } from "@/lib/validateQualification";
 import { OFFER_PRICES, NOTE_FIXED_PRICE, NOTE_SUR_DEVIS } from "@/config/offers";
 import { DELIVERY_DELAYS, DELIVERY_DELAY_NOTE } from "@/config/deliveryDelays";
-import CTA from "@/components/CTA";
+import CTA from "@/components/ui/CTA";
 
 const inputClass =
   "mt-1 block w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-[#0a0e1a] shadow-sm transition placeholder:text-slate-400 focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 focus:outline-none";
@@ -471,3 +471,4 @@ export default function QualificationForm({ mode = "qualification", offerPrices 
     </form>
   );
 }
+

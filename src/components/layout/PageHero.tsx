@@ -1,4 +1,4 @@
-import CTA from "@/components/CTA";
+import CTA from "@/components/ui/CTA";
 
 type HeroAction = {
   href: string;
@@ -44,3 +44,4 @@ export default function PageHero({
     </section>
   );
 }
+

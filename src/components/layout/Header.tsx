@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import Logo from "@/components/Logo";
-import CTA from "@/components/CTA";
+import Logo from "@/components/layout/Logo";
+import CTA from "@/components/ui/CTA";
 
 const navLinks = [
   { href: "/", label: "Accueil" },
@@ -108,3 +108,4 @@ export default function Header() {
     </header>
   );
 }
+

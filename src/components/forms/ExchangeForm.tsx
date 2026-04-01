@@ -1,15 +1,8 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import CTA from "@/components/CTA";
-
-type ExchangeFormData = {
-  nom: string;
-  telephone: string;
-  email: string;
-  creneau: string;
-  message: string;
-};
+import CTA from "@/components/ui/CTA";
+import type { ExchangeFormData } from "@/types/lead";
 
 const inputClass =
   "mt-1 block w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-[#0a0e1a] shadow-sm transition placeholder:text-slate-400 focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 focus:outline-none";

@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import Section from "@/components/Section";
-import QualificationForm from "@/components/QualificationForm";
-import QualificationFormLoadFallback from "@/components/QualificationFormLoadFallback";
+import Section from "@/components/ui/Section";
+import QualificationForm from "@/components/forms/QualificationForm";
+import QualificationFormLoadFallback from "@/components/forms/QualificationFormLoadFallback";
 import { readSiteContent, toOfferPrices } from "@/lib/siteContent";
-import PageHero from "@/components/PageHero";
+import PageHero from "@/components/layout/PageHero";
 
 export const metadata: Metadata = {
   title: "Demande de devis — Parlez-nous de votre projet",

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import CTA from "@/components/CTA";
+import CTA from "@/components/ui/CTA";
 import { OFFER_IDS } from "@/config/deposits";
 import type { OfferId } from "@/types/payment";
 

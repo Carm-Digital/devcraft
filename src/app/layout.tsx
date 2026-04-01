@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import ScrollToTopButton from "@/components/ScrollToTopButton";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import ScrollToTopButton from "@/components/ui/ScrollToTopButton";
 
 export const dynamic = "force-dynamic";
 

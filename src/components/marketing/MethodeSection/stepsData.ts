@@ -60,3 +60,4 @@ export const PAYMENT_STEPS = [
   "Création du site",
   "Paiement du solde à la livraison",
 ];
+

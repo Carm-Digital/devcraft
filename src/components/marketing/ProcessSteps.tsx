@@ -1,5 +1,5 @@
-import Section from "@/components/Section";
-import CTA from "@/components/CTA";
+import Section from "@/components/ui/Section";
+import CTA from "@/components/ui/CTA";
 
 /**
  * Aperçu \"Comment ça marche\" pour la page d’accueil.
@@ -77,3 +77,4 @@ export default function ProcessSteps() {
     </Section>
   );
 }
+

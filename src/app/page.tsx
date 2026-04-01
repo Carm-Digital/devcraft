@@ -1,9 +1,15 @@
 import type { Metadata } from "next";
-import Section from "@/components/Section";
-import CTA from "@/components/CTA";
-import ExchangeForm from "@/components/ExchangeForm";
-import Logo from "@/components/Logo";
+import Section from "@/components/ui/Section";
+import CTA from "@/components/ui/CTA";
+import ExchangeForm from "@/components/forms/ExchangeForm";
+import Logo from "@/components/layout/Logo";
 import { readSiteContent } from "@/lib/siteContent";
+import {
+  STACK_ITEMS,
+  COMMITMENT_ITEMS,
+  SERVICE_CARDS,
+  PROCESS_STEPS,
+} from "@/config/landing";
 
 export const metadata: Metadata = {
   title: "DevCraft — Sites web sur-mesure",
@@ -54,10 +60,9 @@ export default async function Home() {
               Ce que nous utilisons au quotidien
             </h2>
             <ul className="mt-4 space-y-2 text-sm text-slate-300">
-              <li>Next.js et React pour des interfaces modernes</li>
-              <li>TypeScript pour garder le projet solide dans le temps</li>
-              <li>Tailwind CSS pour des mises en page propres et rapides</li>
-              <li>Intégrations sur‑mesure (Stripe, CMS, API…) quand c&apos;est utile</li>
+              {STACK_ITEMS.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
             </ul>
           </div>
           <div>
@@ -65,10 +70,9 @@ export default async function Home() {
               Ce que vous pouvez attendre de nous
             </h2>
             <ul className="mt-4 space-y-2 text-sm text-slate-300">
-              <li>Une première réponse sous 24&nbsp;heures ouvrées</li>
-              <li>Des délais annoncés et tenus</li>
-              <li>Un code lisible, maintenable, sans dépendances superflues</li>
-              <li>Un seul interlocuteur du premier échange à la mise en ligne</li>
+              {COMMITMENT_ITEMS.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
             </ul>
           </div>
         </div>
@@ -81,20 +85,7 @@ export default async function Home() {
         subtitle="Trois manières d’aborder votre projet, toujours sur devis en fonction de votre situation."
       >
         <div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-3">
-          {[
-            {
-              title: "Site vitrine",
-              desc: "Présenter clairement qui vous êtes, ce que vous faites et comment vous contacter.",
-            },
-            {
-              title: "Site applicatif",
-              desc: "Mettre en forme un produit digital, un SaaS ou un parcours client plus avancé.",
-            },
-            {
-              title: "Projet sur‑mesure",
-              desc: "Adapter entièrement le site à votre contexte, vos outils et vos contraintes internes.",
-            },
-          ].map((item) => (
+          {SERVICE_CARDS.map((item) => (
             <a
               href="/formulaire"
               key={item.title}
@@ -123,28 +114,7 @@ export default async function Home() {
         dark
       >
         <div className="mx-auto grid max-w-5xl gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {[
-            {
-              num: "01",
-              title: "On se parle",
-              desc: "Un premier échange pour comprendre votre projet, vos contraintes et vos objectifs. Pas de jargon, pas de pression.",
-            },
-            {
-              num: "02",
-              title: "On cadre ensemble",
-              desc: "On définit le périmètre, les délais et le budget. Vous recevez une proposition claire avant de décider.",
-            },
-            {
-              num: "03",
-              title: "On construit",
-              desc: "Design et développement avancent ensemble, avec des points réguliers pour ajuster si besoin.",
-            },
-            {
-              num: "04",
-              title: "On livre",
-              desc: "Mise en ligne, transfert des accès, documentation si utile. Vous gardez la main sur votre site.",
-            },
-          ].map((step) => (
+          {PROCESS_STEPS.map((step) => (
             <div
               key={step.num}
               className="flex flex-col gap-3 rounded-2xl border border-white/10 bg-white/5 p-4 text-left sm:p-5"

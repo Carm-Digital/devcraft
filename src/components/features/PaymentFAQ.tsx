@@ -1,5 +1,5 @@
-import Section from "@/components/Section";
-import CTA from "@/components/CTA";
+import Section from "@/components/ui/Section";
+import CTA from "@/components/ui/CTA";
 
 const PAYMENT_FAQS = [
   {

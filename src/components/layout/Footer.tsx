@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Logo from "@/components/Logo";
+import Logo from "@/components/layout/Logo";
 import { readSiteContent } from "@/lib/siteContent";
 
 const footerLinks = {
@@ -80,3 +80,4 @@ export default async function Footer() {
     </footer>
   );
 }
+
