@@ -87,19 +87,22 @@ export default function AProposPage() {
       />
 
       {/* 2. QUI NOUS SOMMES */}
-      <Section
-        title="Qui nous sommes"
-        subtitle="Une petite équipe, un fonctionnement simple, des sites pensés pour vos objectifs."
-      >
-        <div className="mx-auto max-w-3xl space-y-5 text-slate-600">
-          <p>
-            DevCraft est une agence web basée en Île-de-France. Nous concevons et réalisons des sites sur mesure pour
-            les entreprises, indépendants et organisations qui veulent être compris au premier coup d&apos;œil.
+      <Section className="py-10 sm:py-14">
+        <div className="mx-auto max-w-3xl rounded-2xl border border-white/10 bg-[#0a0e1a] p-6 sm:p-8">
+          <h2 className="font-display text-3xl font-bold tracking-tight text-white sm:text-4xl">Qui nous sommes</h2>
+          <p className="mt-4 text-lg text-slate-400">
+            Une petite équipe, un fonctionnement simple, des sites pensés pour vos objectifs.
           </p>
-          <p>
-            Notre travail : clarifier votre offre, structurer vos contenus et créer une expérience fluide pour vos
-            visiteurs. Vous échangez toujours avec une personne qui suit votre projet de bout en bout.
-          </p>
+          <div className="mt-6 space-y-5 text-slate-300">
+            <p>
+              DevCraft est une agence web basée en Île-de-France. Nous concevons et réalisons des sites sur mesure pour
+              les entreprises, indépendants et organisations qui veulent être compris au premier coup d&apos;œil.
+            </p>
+            <p>
+              Notre travail : clarifier votre offre, structurer vos contenus et créer une expérience fluide pour vos
+              visiteurs. Vous échangez toujours avec une personne qui suit votre projet de bout en bout.
+            </p>
+          </div>
         </div>
       </Section>
 
@@ -107,7 +110,7 @@ export default function AProposPage() {
       <Section
         title="Ce qui guide notre travail"
         subtitle="Quelques repères simples qui structurent chaque projet que nous prenons en charge."
-        className="bg-slate-50"
+        className="bg-slate-50 py-10 sm:py-14"
       >
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {values.map((v) => {
@@ -135,6 +138,7 @@ export default function AProposPage() {
         title="Un projet en tête ?"
         subtitle="Parlez-nous de votre contexte et de vos objectifs, nous revenons vers vous avec une première piste concrète."
         dark
+        className="py-10 sm:py-14"
       >
         <div className="flex justify-center">
           <CTA href="/formulaire" variant="primary">

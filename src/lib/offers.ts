@@ -1,7 +1,7 @@
-import type { TypeSite } from "@/types/qualification";
+import type { OfferId } from "@/types/payment";
 import { OFFER_PRICES } from "@/config/offers";
 
-export type OfferId = Exclude<TypeSite, "">;
+export type { OfferId };
 
 type Offer = {
   id: OfferId;

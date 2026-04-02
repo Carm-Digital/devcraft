@@ -3,7 +3,7 @@
  * Prêt pour une future connexion backend / Stripe.
  */
 
-export type TypeSite = "vitrine" | "complet" | "abonnement" | "personnalise" | "";
+export type TypeSite = "vitrine" | "complet" | "abonnement" | "";
 
 export interface QualificationFormData {
   prenom: string;
@@ -12,7 +12,6 @@ export interface QualificationFormData {
   telephone: string;
   entreprise: string;
   typeSite: TypeSite;
-  budget: string;
   /** Délai de réalisation : standard (défaut), prioritaire, express, urgence */
   delai: string;
   description: string;
@@ -31,7 +30,6 @@ export const QUALIFICATION_FORM_DEFAULT: QualificationFormData = {
   telephone: "",
   entreprise: "",
   typeSite: "",
-  budget: "",
   delai: "standard",
   description: "",
   hasLogo: "",

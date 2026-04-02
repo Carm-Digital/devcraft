@@ -47,8 +47,8 @@ export default function Home() {
       </section>
 
       {/* BLOC STACK & ENGAGEMENTS */}
-      <div className="bg-slate-50 px-4 py-10 sm:px-6 lg:px-8">
-        <div className="mx-auto grid max-w-5xl gap-8 rounded-2xl border border-white/10 bg-[#0a0e1a] p-4 shadow-sm sm:p-6 md:grid-cols-2">
+      <div className="bg-slate-50 px-4 py-4 sm:px-6 lg:px-8">
+        <div className="mx-auto grid max-w-5xl gap-8 rounded-2xl border border-white/10 bg-[#0a0e1a] p-6 shadow-sm sm:p-8 md:grid-cols-2">
           <div>
             <h2 className="font-display text-sm font-semibold uppercase tracking-[0.18em] text-slate-400">
               Ce que nous utilisons au quotidien

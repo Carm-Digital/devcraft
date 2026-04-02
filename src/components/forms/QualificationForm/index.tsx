@@ -15,20 +15,19 @@ const inputClass =
 const inputErrorClass = "border-red-500 focus:border-red-500 focus:ring-red-500/20";
 const labelClass = "block text-sm font-medium text-slate-300";
 
-const OFFER_VALUES: TypeSite[] = ["vitrine", "complet", "abonnement", "personnalise"];
+const OFFER_VALUES: TypeSite[] = ["vitrine", "complet", "abonnement"];
+
+const BUDGET_BY_TYPE = {
+  vitrine: "150 € – 300 €",
+  complet: "300 € – 1 000 €",
+  abonnement: "+ 1 000 €",
+} as const;
 
 type QualificationFormProps = {
   /** Contexte d'utilisation : page de devis ou page contact */
   mode?: "qualification" | "contact";
   offerPrices?: typeof OFFER_PRICES;
 };
-
-const BUDGET_OPTIONS = [
-  { id: "150-300", label: "150 € – 300 €" },
-  { id: "300-700", label: "300 € – 700 €" },
-  { id: "700-1200", label: "700 € – 1 200 €" },
-  { id: "1200-plus", label: "+ 1 200 €" },
-] as const;
 
 export default function QualificationForm({ mode = "qualification", offerPrices = OFFER_PRICES }: QualificationFormProps) {
   const router = useRouter();
@@ -94,7 +93,9 @@ export default function QualificationForm({ mode = "qualification", offerPrices 
           telephone: form.telephone,
           entreprise: form.entreprise,
           typeSite: form.typeSite,
-          budget: form.budget,
+          budget: form.typeSite
+            ? BUDGET_BY_TYPE[form.typeSite as keyof typeof BUDGET_BY_TYPE] ?? ""
+            : "",
           delai: form.delai,
           description: form.description,
           hasLogo: form.hasLogo,
@@ -227,40 +228,23 @@ export default function QualificationForm({ mode = "qualification", offerPrices 
             <option value="vitrine" className="bg-[#0a0e1a] text-white">Site vitrine</option>
             <option value="complet" className="bg-[#0a0e1a] text-white">Site complet avec achat intégré</option>
             <option value="abonnement" className="bg-[#0a0e1a] text-white">Site avec abonnement intégré</option>
-            <option value="personnalise" className="bg-[#0a0e1a] text-white">Site personnalisé</option>
           </select>
           {errors.typeSite && <p className="mt-1 text-sm text-red-500">{errors.typeSite}</p>}
         </div>
 
-        {/* Budget souhaité */}
-        <div>
-          <p className={labelClass}>Budget estimé *</p>
-          <div className="mt-2 grid gap-3 sm:grid-cols-2">
-            {BUDGET_OPTIONS.map((option) => {
-              const isSelected = form.budget === option.id;
-              return (
-                <button
-                  key={option.id}
-                  type="button"
-                  onClick={() => update("budget", option.id)}
-                  className={`group flex w-full flex-col items-start rounded-2xl border-2 px-4 py-3 text-left text-sm transition sm:px-5 sm:py-4 ${
-                    isSelected
-                      ? "border-[#F1E83B] bg-white/10 shadow-md ring-2 ring-[#F1E83B]/30"
-                      : "border-white/10 bg-white/5 text-white hover:border-[#F1E83B]/40 hover:bg-white/10 hover:shadow-sm"
-                  }`}
-                >
-                  <span className={`font-display font-semibold ${isSelected ? "text-[#F1E83B]" : "text-white"}`}>
-                    {option.label}
-                  </span>
-                  <span className="mt-1 text-xs text-slate-400">
-                    Cette information reste indicative et nous permet de vous proposer la meilleure approche.
-                  </span>
-                </button>
-              );
-            })}
+        {form.typeSite && (
+          <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
+              Budget indicatif
+            </p>
+            <p className="mt-2 font-display text-2xl font-bold text-[#F1E83B]">
+              {BUDGET_BY_TYPE[form.typeSite as keyof typeof BUDGET_BY_TYPE]}
+            </p>
+            <p className="mt-2 text-sm text-slate-400">
+              Cette fourchette est indicative et nous aide à mieux cadrer votre projet.
+            </p>
           </div>
-          {errors.budget && <p className="mt-1 text-sm text-red-500">{errors.budget}</p>}
-        </div>
+        )}
 
         {/* Délai de réalisation — cartes cliquables */}
         <div className="space-y-4">

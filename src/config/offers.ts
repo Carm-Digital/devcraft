@@ -2,9 +2,9 @@
  * Offres DevCraft : libellés et tarifs affichés sur le formulaire et la page services.
  */
 
-import type { TypeSite } from "@/types/qualification";
+import type { OfferId } from "@/types/payment";
 
-export const OFFER_PRICES: Record<Exclude<TypeSite, "">, { label: string; price: string; isFixed: boolean }> = {
+export const OFFER_PRICES: Record<OfferId, { label: string; price: string; isFixed: boolean }> = {
   vitrine: {
     label: "Site vitrine",
     price: "300 €",
