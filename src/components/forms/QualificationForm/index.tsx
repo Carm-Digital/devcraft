@@ -1,4 +1,4 @@
- "use client";
+"use client";
 
 import { useState, useEffect } from "react";
 import type { FormEvent } from "react";
@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import type { QualificationFormData, QualificationFormErrors, TypeSite } from "@/types/qualification";
 import { QUALIFICATION_FORM_DEFAULT } from "@/types/qualification";
 import { validateQualificationForm } from "@/lib/validateQualification";
-import { OFFER_PRICES, NOTE_FIXED_PRICE, NOTE_SUR_DEVIS } from "@/config/offers";
+import { OFFER_PRICES } from "@/config/offers";
 import { DELIVERY_DELAYS, DELIVERY_DELAY_NOTE } from "@/config/deliveryDelays";
 import CTA from "@/components/ui/CTA";
 
@@ -129,8 +129,6 @@ export default function QualificationForm({ mode = "qualification", offerPrices 
     }
   };
 
-  const selectedOffer = form.typeSite ? offerPrices[form.typeSite] : null;
-
   return (
     <form
       id="formulaire"
@@ -212,7 +210,7 @@ export default function QualificationForm({ mode = "qualification", offerPrices 
         </div>
       </fieldset>
 
-      {/* Projet : type de site + tarif affiché */}
+      {/* Projet : type de site */}
       <fieldset className="space-y-6">
         <legend className="text-sm font-semibold uppercase tracking-wider text-slate-400">
           Votre projet
@@ -263,21 +261,6 @@ export default function QualificationForm({ mode = "qualification", offerPrices 
           </div>
           {errors.budget && <p className="mt-1 text-sm text-red-500">{errors.budget}</p>}
         </div>
-
-        {/* Bloc tarif : visible dès qu’un type est choisi */}
-        {selectedOffer && (
-          <div className="rounded-2xl border border-white/10 bg-white/5 p-6 shadow-lg sm:p-8">
-            <p className="text-xs font-semibold uppercase tracking-wider text-[#F1E83B]">
-              Tarif
-            </p>
-            <p className="mt-2 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl">
-              {selectedOffer.price}
-            </p>
-            <p className="mt-4 text-sm leading-relaxed text-slate-300">
-              {selectedOffer.isFixed ? NOTE_FIXED_PRICE : NOTE_SUR_DEVIS}
-            </p>
-          </div>
-        )}
 
         {/* Délai de réalisation — cartes cliquables */}
         <div className="space-y-4">
@@ -458,4 +441,3 @@ export default function QualificationForm({ mode = "qualification", offerPrices 
     </form>
   );
 }
-

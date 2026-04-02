@@ -81,7 +81,7 @@ export default function AProposPage() {
     <>
       {/* 1. HERO */}
       <PageHero
-        eyebrow="Agence web"
+        eyebrow="DevCraft"
         title="Ce qu&apos;on est, ce qu&apos;on fait"
         description="DevCraft conçoit des sites web sur mesure pour les entreprises qui veulent une présence en ligne claire, crédible et efficace."
       />

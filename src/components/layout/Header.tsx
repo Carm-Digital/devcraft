@@ -36,7 +36,7 @@ export default function Header() {
           aria-label="DevCraft Accueil"
         >
           <Logo background="dark" showName={false} disableLink className="h-12 w-12 shrink-0" />
-          <span className="font-display font-bold tracking-tight text-[#F1E83B]">DevCraft</span>
+          <span className="font-display font-bold tracking-tight text-white">DevCraft</span>
         </Link>
 
         <nav className="hidden md:flex md:items-center md:gap-0.5" aria-label="Navigation principale">

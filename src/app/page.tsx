@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Section from "@/components/ui/Section";
 import CTA from "@/components/ui/CTA";
-import Logo from "@/components/layout/Logo";
 import {
   STACK_ITEMS,
   COMMITMENT_ITEMS,
@@ -19,14 +18,13 @@ export default function Home() {
   return (
     <>
       {/* 1. HERO */}
-      <section className="relative min-h-[80vh] overflow-hidden bg-[#0a0e1a] px-4 pt-10 pb-36 sm:px-6 sm:pt-14 lg:px-8">
+      <section className="relative min-h-[80vh] overflow-hidden bg-[#0a0e1a] px-4 pt-16 pb-36 sm:px-6 sm:pt-24 lg:px-8">
         <div className="absolute inset-0 bg-gradient-to-b from-[#050815] via-[#0d1324] to-[#050815]" />
         <div className="hero-gradient-animated absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(37,99,235,0.18),transparent)]" />
         <div className="absolute bottom-0 left-0 right-0 h-24 bg-[#f8fafc] rounded-t-[3rem] sm:rounded-t-[4rem]" />
         <div className="absolute top-1/3 left-1/2 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-amber-500/5 blur-3xl" />
 
         <div className="relative mx-auto flex max-w-5xl flex-col items-center text-center">
-          <Logo background="dark" showName={false} disableLink className="mx-auto mb-3 h-24 w-auto" />
           <p className="animate-fade-up font-display text-base font-bold uppercase tracking-[0.35em] text-[#F1E83B]/90 sm:text-lg lg:text-xl">
             DevCraft · Agence web
           </p>
@@ -50,7 +48,7 @@ export default function Home() {
 
       {/* BLOC STACK & ENGAGEMENTS */}
       <div className="bg-slate-50 px-4 py-10 sm:px-6 lg:px-8">
-        <div className="mx-auto grid max-w-5xl gap-8 rounded-2xl border border-white/10 bg-[#0a0e1a] p-6 shadow-sm sm:p-8 md:grid-cols-2">
+        <div className="mx-auto grid max-w-5xl gap-8 rounded-2xl border border-white/10 bg-[#0a0e1a] p-4 shadow-sm sm:p-6 md:grid-cols-2">
           <div>
             <h2 className="font-display text-sm font-semibold uppercase tracking-[0.18em] text-slate-400">
               Ce que nous utilisons au quotidien

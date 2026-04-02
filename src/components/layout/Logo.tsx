@@ -14,6 +14,8 @@ type LogoProps = {
   disableLink?: boolean;
   className?: string;
   href?: string;
+  /** Classe Tailwind pour la couleur du nom "DevCraft" */
+  nameColor?: string;
 };
 
 // Logo principal DevCraft — PNG dans /public
@@ -27,11 +29,12 @@ export default function Logo({
   disableLink = false,
   className = "",
   href = "/",
+  nameColor = "text-[#F1E83B]",
 }: LogoProps) {
   const isDarkBackground = background === "dark";
-  const textClass = isDarkBackground
-    ? "text-[#F1E83B] font-display font-bold tracking-tight"
-    : "text-[#F1E83B] font-display font-bold tracking-tight";
+  const baseTextClass = isDarkBackground
+    ? "font-display font-bold tracking-tight"
+    : "font-display font-bold tracking-tight";
 
   // Si on n'affiche pas le nom (ex. navbar), on privilégie le symbole seul
   const src = showName
@@ -83,7 +86,7 @@ export default function Logo({
         className="h-10 w-10 shrink-0 object-contain drop-shadow-sm sm:h-11 sm:w-11"
         sizes="(max-width: 640px) 40px, 44px"
       />
-      <span className={`text-xl font-semibold sm:text-2xl sm:font-bold leading-none tracking-tight ${textClass}`}>
+      <span className={`text-xl font-semibold sm:text-2xl sm:font-bold leading-none tracking-tight ${baseTextClass} ${nameColor}`}>
         DevCraft
       </span>
     </span>
