@@ -11,7 +11,7 @@ export default function PaymentSummaryCard({ config, showAmount }: PaymentSummar
   return (
     <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-lg sm:p-8">
       <div className="border-b border-slate-100 pb-6">
-        <p className="text-sm font-semibold uppercase tracking-wider text-[#F1E83B]">
+        <p className="text-sm font-semibold uppercase tracking-wider text-[#00D4FF]">
           Récapitulatif
         </p>
         <h2 className="mt-2 text-xl font-bold text-slate-900">{config.shortLabel}</h2>
@@ -32,14 +32,14 @@ export default function PaymentSummaryCard({ config, showAmount }: PaymentSummar
         <ul className="mt-3 space-y-2">
           {config.includes.map((item) => (
             <li key={item} className="flex gap-2 text-slate-600">
-              <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-500" />
+              <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#00D4FF]" />
               {item}
             </li>
           ))}
         </ul>
       </div>
 
-      <div className="rounded-xl bg-slate-50 p-4">
+      <div className="rounded-xl bg-[#F5F4F0] p-4">
         <p className="text-sm text-slate-700">
           Chaque projet étant conçu sur mesure, cette validation intervient après échange et cadrage initial. Le paiement de cette étape permet de réserver le lancement de votre projet. Le solde ou la suite de la facturation est défini selon la prestation convenue.
         </p>

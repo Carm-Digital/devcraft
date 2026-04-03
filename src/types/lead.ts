@@ -26,6 +26,9 @@ export type LeadPayload = {
   hasLogo?: string;
   hasTextes?: string;
   hasPhotos?: string;
+  accompagnementLogo?: boolean;
+  accompagnementTextes?: boolean;
+  accompagnementPhotos?: boolean;
   styleSouhaite?: string;
   commentConnu?: string;
   acceptationRGPD?: boolean;

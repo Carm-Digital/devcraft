@@ -29,7 +29,7 @@ export default function Logo({
   disableLink = false,
   className = "",
   href = "/",
-  nameColor = "text-[#F1E83B]",
+  nameColor = "text-[#00D4FF]",
 }: LogoProps) {
   const isDarkBackground = background === "dark";
   const baseTextClass = isDarkBackground
@@ -95,7 +95,7 @@ export default function Logo({
   return href ? (
     <Link
       href={href}
-      className="inline-flex items-center rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-400"
+      className="inline-flex items-center rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00D4FF]"
       aria-label="DevCraft Accueil"
     >
       {content}

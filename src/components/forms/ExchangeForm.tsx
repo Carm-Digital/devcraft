@@ -5,8 +5,8 @@ import CTA from "@/components/ui/CTA";
 import type { ExchangeFormData } from "@/types/lead";
 
 const inputClass =
-  "mt-1 block w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-[#0a0e1a] shadow-sm transition placeholder:text-slate-400 focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 focus:outline-none";
-const labelClass = "block text-sm font-medium text-[#0a0e1a]";
+  "mt-1 block w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-[#0d0f14] shadow-sm transition placeholder:text-slate-400 focus:border-[#00D4FF] focus:ring-2 focus:ring-[#00D4FF]/20 focus:outline-none";
+const labelClass = "block text-sm font-medium text-[#0d0f14]";
 
 const DEFAULT_DATA: ExchangeFormData = {
   nom: "",
@@ -150,7 +150,7 @@ export default function ExchangeForm() {
           {isSubmitting ? (
             <span className="inline-flex items-center gap-2">
               <svg
-                className="h-4 w-4 animate-spin text-[#0a0e1a]"
+                className="h-4 w-4 animate-spin text-[#0d0f14]"
                 viewBox="0 0 24 24"
                 fill="none"
               >

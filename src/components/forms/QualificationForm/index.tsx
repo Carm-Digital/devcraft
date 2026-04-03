@@ -11,7 +11,7 @@ import { DELIVERY_DELAYS, DELIVERY_DELAY_NOTE } from "@/config/deliveryDelays";
 import CTA from "@/components/ui/CTA";
 
 const inputClass =
-  "mt-1 block w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-white shadow-sm transition placeholder:text-slate-500 focus:border-[#F1E83B] focus:ring-2 focus:ring-[#F1E83B]/20 focus:outline-none";
+  "mt-1 block w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-white shadow-sm transition placeholder:text-slate-500 focus:border-[#00D4FF] focus:ring-2 focus:ring-[#00D4FF]/20 focus:outline-none";
 const inputErrorClass = "border-red-500 focus:border-red-500 focus:ring-red-500/20";
 const labelClass = "block text-sm font-medium text-slate-300";
 
@@ -36,6 +36,10 @@ export default function QualificationForm({ mode = "qualification", offerPrices 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [clientId, setClientId] = useState<string | null>(null);
+  const [accompLogo, setAccompLogo] = useState(false);
+  const [accompTextes, setAccompTextes] = useState(false);
+  const [accompPhotos, setAccompPhotos] = useState(false);
   const isContactMode = mode === "contact";
 
   // Pré-remplissage via l'URL (sans `useSearchParams` pour éviter le besoin de Suspense)
@@ -108,16 +112,27 @@ export default function QualificationForm({ mode = "qualification", offerPrices 
         }),
       });
 
+      const data = (await res.json().catch(() => null)) as { ok?: boolean; clientId?: string; message?: string } | null;
+
       if (!res.ok) {
-        const data = await res.json().catch(() => null);
         throw new Error(data?.message ?? "Envoi impossible. Réessayez ou contactez-nous.");
       }
 
       setForm(QUALIFICATION_FORM_DEFAULT);
       setErrors({});
+      setAccompLogo(false);
+      setAccompTextes(false);
+      setAccompPhotos(false);
 
       if (isContactMode) {
+        if (data?.clientId) setClientId(data.clientId);
         setSubmitSuccess(true);
+        return;
+      }
+
+      if (data?.clientId) {
+        setClientId(data.clientId);
+        router.push(`/merci?id=${encodeURIComponent(data.clientId)}`);
         return;
       }
 
@@ -134,7 +149,7 @@ export default function QualificationForm({ mode = "qualification", offerPrices 
     <form
       id="formulaire"
       onSubmit={handleSubmit}
-      className="space-y-8 rounded-2xl border border-white/10 bg-[#0a0e1a] p-6 shadow-xl sm:p-8 lg:p-10"
+      className="space-y-8 rounded-2xl border border-white/10 bg-[#0d0f14] p-6 shadow-xl sm:p-8 lg:p-10"
     >
       {/* Identité */}
       <fieldset className="space-y-6">
@@ -224,10 +239,10 @@ export default function QualificationForm({ mode = "qualification", offerPrices 
             onChange={(e) => update("typeSite", e.target.value as TypeSite)}
             className={errors.typeSite ? `${inputClass} ${inputErrorClass}` : inputClass}
           >
-            <option value="" className="bg-[#0a0e1a] text-white">— Choisir —</option>
-            <option value="vitrine" className="bg-[#0a0e1a] text-white">Site vitrine</option>
-            <option value="complet" className="bg-[#0a0e1a] text-white">Site complet avec achat intégré</option>
-            <option value="abonnement" className="bg-[#0a0e1a] text-white">Site avec abonnement intégré</option>
+            <option value="" className="bg-[#0d0f14] text-white">— Choisir —</option>
+            <option value="vitrine" className="bg-[#0d0f14] text-white">Site vitrine</option>
+            <option value="complet" className="bg-[#0d0f14] text-white">Site complet avec achat intégré</option>
+            <option value="abonnement" className="bg-[#0d0f14] text-white">Site avec abonnement intégré</option>
           </select>
           {errors.typeSite && <p className="mt-1 text-sm text-red-500">{errors.typeSite}</p>}
         </div>
@@ -237,7 +252,7 @@ export default function QualificationForm({ mode = "qualification", offerPrices 
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
               Budget indicatif
             </p>
-            <p className="mt-2 font-display text-2xl font-bold text-[#F1E83B]">
+            <p className="mt-2 font-display text-2xl font-bold text-[#00D4FF]">
               {BUDGET_BY_TYPE[form.typeSite as keyof typeof BUDGET_BY_TYPE]}
             </p>
             <p className="mt-2 text-sm text-slate-400">
@@ -259,22 +274,22 @@ export default function QualificationForm({ mode = "qualification", offerPrices 
                   onClick={() => update("delai", option.id)}
                   className={`group relative flex flex-col items-start rounded-2xl border-2 p-4 text-left transition sm:p-5 ${
                     isSelected
-                      ? "border-[#F1E83B] bg-white/10 shadow-md ring-2 ring-[#F1E83B]/30"
-                      : "border-white/10 bg-white/5 text-white hover:border-[#F1E83B]/40 hover:bg-white/10 hover:shadow-sm"
+                      ? "border-[#00D4FF] bg-white/10 shadow-md ring-2 ring-[#00D4FF]/30"
+                      : "border-white/10 bg-white/5 text-white hover:border-[#00D4FF]/40 hover:bg-white/10 hover:shadow-sm"
                   }`}
                 >
                   {isSelected && (
-                    <span className="absolute right-3 top-3 flex h-5 w-5 items-center justify-center rounded-full bg-[#F1E83B] text-[#0a0e1a]">
+                    <span className="absolute right-3 top-3 flex h-5 w-5 items-center justify-center rounded-full bg-[#00D4FF] text-[#0d0f14]">
                       <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     </span>
                   )}
-                  <span className={`font-display font-semibold ${isSelected ? "text-[#F1E83B]" : "text-white"}`}>
+                  <span className={`font-display font-semibold ${isSelected ? "text-[#00D4FF]" : "text-white"}`}>
                     {option.name}
                   </span>
                   <span className="mt-1 text-sm text-slate-400">{option.daysLabel}</span>
-                  <span className={`mt-2 text-sm font-medium ${option.supplementEur === 0 ? "text-slate-400" : "text-[#F1E83B]"}`}>
+                  <span className={`mt-2 text-sm font-medium ${option.supplementEur === 0 ? "text-slate-400" : "text-[#00D4FF]"}`}>
                     {option.supplementLabel}
                   </span>
                 </button>
@@ -316,7 +331,7 @@ export default function QualificationForm({ mode = "qualification", offerPrices 
           Éléments déjà en votre possession
         </legend>
         <div className="grid gap-6 sm:grid-cols-3">
-          <div>
+          <div className="flex flex-col">
             <label htmlFor="qf-hasLogo" className={labelClass}>Logo ?</label>
             <select
               id="qf-hasLogo"
@@ -324,12 +339,26 @@ export default function QualificationForm({ mode = "qualification", offerPrices 
               onChange={(e) => update("hasLogo", e.target.value)}
               className={inputClass}
             >
-              <option value="" className="bg-[#0a0e1a] text-white">—</option>
-              <option value="oui" className="bg-[#0a0e1a] text-white">Oui</option>
-              <option value="non" className="bg-[#0a0e1a] text-white">Non</option>
+              <option value="" className="bg-[#0d0f14] text-white">—</option>
+              <option value="oui" className="bg-[#0d0f14] text-white">Oui</option>
+              <option value="non" className="bg-[#0d0f14] text-white">Non</option>
             </select>
+            {form.hasLogo === "non" && (
+              <label className="mt-3 flex cursor-pointer items-start gap-3 rounded-xl border border-white/10 bg-white/5 p-3 transition hover:bg-white/10">
+                <input
+                  type="checkbox"
+                  className="mt-0.5 h-4 w-4 shrink-0 rounded border-white/30 accent-[#00D4FF]"
+                  checked={accompLogo}
+                  onChange={(e) => setAccompLogo(e.target.checked)}
+                />
+                <span className="text-sm text-slate-300">
+                  Je souhaite être accompagné dans la création de mon logo. Ce service fera l&apos;objet d&apos;une
+                  facturation complémentaire définie lors de notre échange.
+                </span>
+              </label>
+            )}
           </div>
-          <div>
+          <div className="flex flex-col">
             <label htmlFor="qf-hasTextes" className={labelClass}>Textes ?</label>
             <select
               id="qf-hasTextes"
@@ -337,12 +366,26 @@ export default function QualificationForm({ mode = "qualification", offerPrices 
               onChange={(e) => update("hasTextes", e.target.value)}
               className={inputClass}
             >
-              <option value="" className="bg-[#0a0e1a] text-white">—</option>
-              <option value="oui" className="bg-[#0a0e1a] text-white">Oui</option>
-              <option value="non" className="bg-[#0a0e1a] text-white">Non</option>
+              <option value="" className="bg-[#0d0f14] text-white">—</option>
+              <option value="oui" className="bg-[#0d0f14] text-white">Oui</option>
+              <option value="non" className="bg-[#0d0f14] text-white">Non</option>
             </select>
+            {form.hasTextes === "non" && (
+              <label className="mt-3 flex cursor-pointer items-start gap-3 rounded-xl border border-white/10 bg-white/5 p-3 transition hover:bg-white/10">
+                <input
+                  type="checkbox"
+                  className="mt-0.5 h-4 w-4 shrink-0 rounded border-white/30 accent-[#00D4FF]"
+                  checked={accompTextes}
+                  onChange={(e) => setAccompTextes(e.target.checked)}
+                />
+                <span className="text-sm text-slate-300">
+                  Je souhaite être accompagné dans la rédaction de mes contenus. Ce service fera l&apos;objet d&apos;une
+                  facturation complémentaire définie lors de notre échange.
+                </span>
+              </label>
+            )}
           </div>
-          <div>
+          <div className="flex flex-col">
             <label htmlFor="qf-hasPhotos" className={labelClass}>Photos / visuels ?</label>
             <select
               id="qf-hasPhotos"
@@ -350,10 +393,24 @@ export default function QualificationForm({ mode = "qualification", offerPrices 
               onChange={(e) => update("hasPhotos", e.target.value)}
               className={inputClass}
             >
-              <option value="" className="bg-[#0a0e1a] text-white">—</option>
-              <option value="oui" className="bg-[#0a0e1a] text-white">Oui</option>
-              <option value="non" className="bg-[#0a0e1a] text-white">Non</option>
+              <option value="" className="bg-[#0d0f14] text-white">—</option>
+              <option value="oui" className="bg-[#0d0f14] text-white">Oui</option>
+              <option value="non" className="bg-[#0d0f14] text-white">Non</option>
             </select>
+            {form.hasPhotos === "non" && (
+              <label className="mt-3 flex cursor-pointer items-start gap-3 rounded-xl border border-white/10 bg-white/5 p-3 transition hover:bg-white/10">
+                <input
+                  type="checkbox"
+                  className="mt-0.5 h-4 w-4 shrink-0 rounded border-white/30 accent-[#00D4FF]"
+                  checked={accompPhotos}
+                  onChange={(e) => setAccompPhotos(e.target.checked)}
+                />
+                <span className="text-sm text-slate-300">
+                  Je souhaite être accompagné dans la réalisation ou la sélection de mes visuels. Ce service fera
+                  l&apos;objet d&apos;une facturation complémentaire définie lors de notre échange.
+                </span>
+              </label>
+            )}
           </div>
         </div>
       </fieldset>
@@ -367,11 +424,11 @@ export default function QualificationForm({ mode = "qualification", offerPrices 
           onChange={(e) => update("commentConnu", e.target.value)}
           className={inputClass}
         >
-          <option value="" className="bg-[#0a0e1a] text-white">— Choisir —</option>
-          <option value="recherche" className="bg-[#0a0e1a] text-white">Recherche Google</option>
-          <option value="recommandation" className="bg-[#0a0e1a] text-white">Recommandation</option>
-          <option value="reseau" className="bg-[#0a0e1a] text-white">Réseaux sociaux</option>
-          <option value="autre" className="bg-[#0a0e1a] text-white">Autre</option>
+          <option value="" className="bg-[#0d0f14] text-white">— Choisir —</option>
+          <option value="recherche" className="bg-[#0d0f14] text-white">Recherche Google</option>
+          <option value="recommandation" className="bg-[#0d0f14] text-white">Recommandation</option>
+          <option value="reseau" className="bg-[#0d0f14] text-white">Réseaux sociaux</option>
+          <option value="autre" className="bg-[#0d0f14] text-white">Autre</option>
         </select>
       </div>
 
@@ -383,7 +440,7 @@ export default function QualificationForm({ mode = "qualification", offerPrices 
             type="checkbox"
             checked={form.acceptationRGPD}
             onChange={(e) => update("acceptationRGPD", e.target.checked)}
-            className="mt-1 h-4 w-4 rounded border-slate-300 text-[#F1E83B] focus:ring-2 focus:ring-amber-500/20"
+            className="mt-1 h-4 w-4 rounded border-slate-300 text-[#00D4FF] focus:ring-2 focus:ring-[#00D4FF]/20"
           />
           <div>
             <label htmlFor="qf-rgpd" className="cursor-pointer text-sm text-slate-300">

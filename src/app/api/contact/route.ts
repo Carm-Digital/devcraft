@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
-import type { LeadKind, LeadPayload } from "@/types/lead";
+import type { LeadPayload } from "@/types/lead";
+import { generateClientId } from "@/lib/generateClientId";
+import { isKvStorageEnabled } from "@/lib/siteContent";
 
 export const runtime = "nodejs";
 
@@ -44,6 +46,27 @@ export async function POST(req: Request) {
     }
   }
 
+  let clientId: string | undefined;
+  if (kind === "qualification") {
+    clientId = generateClientId();
+    if (isKvStorageEnabled()) {
+      try {
+        const { kv } = await import("@vercel/kv");
+        await kv.set(
+          `demande:${clientId}`,
+          JSON.stringify({
+            clientId,
+            createdAt: new Date().toISOString(),
+            ...payload,
+          }),
+          { ex: 60 * 60 * 24 * 365 },
+        );
+      } catch (err) {
+        console.error("[api/contact] kv persist failed", err);
+      }
+    }
+  }
+
   const subject =
     kind === "exchange"
       ? "Nouvelle demande d’échange — DevCraft"
@@ -56,7 +79,7 @@ export async function POST(req: Request) {
 
   const htmlParts: string[] = [];
   const baseContainer =
-    "font-family: ui-sans-serif, system-ui; line-height:1.4; background:#ffffff; padding:0; margin:0; color:#0a0e1a;";
+    "font-family: ui-sans-serif, system-ui; line-height:1.4; background:#ffffff; padding:0; margin:0; color:#0d0f14;";
 
   htmlParts.push(`<div style="${baseContainer}">`);
   htmlParts.push(
@@ -65,7 +88,7 @@ export async function POST(req: Request) {
 
   // Header
   htmlParts.push(
-    `<div style="padding:22px 20px;background:linear-gradient(90deg,#0a0e1a 0%, #0a0e1a 65%, #f59e0b 100%);">` +
+    `<div style="padding:22px 20px;background:linear-gradient(90deg,#0d0f14 0%, #0d0f14 65%, #f59e0b 100%);">` +
       `<p style="margin:0 0 10px 0;font-size:14px;color:#ffffff;opacity:0.95;">Un nouveau prospect vient de remplir le formulaire sur ton site DevCraft.</p>` +
       `<h1 style="margin:0;font-size:20px;line-height:1.2;color:#ffffff;">${kind === "qualification" ? "Nouvelle demande de projet" : escapeHtml(subject)}</h1>` +
       `</div>`,
@@ -75,14 +98,14 @@ export async function POST(req: Request) {
   if (kind === "exchange") {
     htmlParts.push(`<div style="padding:18px 20px 10px 20px;">`);
     htmlParts.push(`<div style="border:1px solid #e5e7eb;border-radius:12px;padding:14px 14px;margin-bottom:12px;background:#ffffff;">`);
-    htmlParts.push(`<p style="margin:0 0 10px 0;font-weight:700;color:#0a0e1a;">Infos client</p>`);
+    htmlParts.push(`<p style="margin:0 0 10px 0;font-weight:700;color:#0d0f14;">Infos client</p>`);
     htmlParts.push(`<p style="margin:0;"><strong>Nom :</strong> ${escapeHtml(String(payload.nom ?? ""))}</p>`);
     htmlParts.push(`<p style="margin:6px 0 0 0;"><strong>Email :</strong> ${escapeHtml(String(payload.email ?? ""))}</p>`);
     htmlParts.push(`<p style="margin:6px 0 0 0;"><strong>Téléphone :</strong> ${escapeHtml(String(payload.telephone ?? ""))}</p>`);
     htmlParts.push(`</div>`);
 
     htmlParts.push(`<div style="border:1px solid #e5e7eb;border-radius:12px;padding:14px 14px;background:#ffffff;">`);
-    htmlParts.push(`<p style="margin:0 0 10px 0;font-weight:700;color:#0a0e1a;">Message</p>`);
+    htmlParts.push(`<p style="margin:0 0 10px 0;font-weight:700;color:#0d0f14;">Message</p>`);
     if (payload.creneau) htmlParts.push(`<p style="margin:0;"><strong>Créneau :</strong> ${escapeHtml(String(payload.creneau))}</p>`);
     if (payload.message) htmlParts.push(`<p style="margin:6px 0 0 0;"><strong>Message :</strong> ${escapeHtml(String(payload.message))}</p>`);
     htmlParts.push(`</div>`);
@@ -98,9 +121,18 @@ export async function POST(req: Request) {
 
     htmlParts.push(`<div style="padding:18px 20px 10px 20px;">`);
 
+    if (clientId) {
+      htmlParts.push(
+        `<div style="margin:12px 20px;padding:14px;background:#0d0f14;border-radius:12px;text-align:center;">` +
+          `<p style="margin:0;font-size:11px;color:#9ca3af;text-transform:uppercase;letter-spacing:0.1em;">Identifiant client</p>` +
+          `<p style="margin:6px 0 0 0;font-size:22px;font-weight:700;color:#00D4FF;letter-spacing:0.15em;">${escapeHtml(clientId)}</p>` +
+          `</div>`,
+      );
+    }
+
     // Infos client
     htmlParts.push(`<div style="border:1px solid #e5e7eb;border-radius:12px;padding:14px 14px;margin-bottom:12px;background:#ffffff;">`);
-    htmlParts.push(`<p style="margin:0 0 10px 0;font-weight:700;color:#0a0e1a;">Infos client</p>`);
+    htmlParts.push(`<p style="margin:0 0 10px 0;font-weight:700;color:#0d0f14;">Infos client</p>`);
     htmlParts.push(`<p style="margin:0;"><strong>Nom :</strong> ${escapeHtml(String(clientName))}</p>`);
     htmlParts.push(`<p style="margin:6px 0 0 0;"><strong>Email :</strong> ${escapeHtml(String(payload.email ?? ""))}</p>`);
     htmlParts.push(`<p style="margin:6px 0 0 0;"><strong>Téléphone :</strong> ${escapeHtml(String(payload.telephone ?? ""))}</p>`);
@@ -108,7 +140,7 @@ export async function POST(req: Request) {
 
     // Projet
     htmlParts.push(`<div style="border:1px solid #e5e7eb;border-radius:12px;padding:14px 14px;margin-bottom:12px;background:#ffffff;">`);
-    htmlParts.push(`<p style="margin:0 0 10px 0;font-weight:700;color:#0a0e1a;">Projet</p>`);
+    htmlParts.push(`<p style="margin:0 0 10px 0;font-weight:700;color:#0d0f14;">Projet</p>`);
     htmlParts.push(`<p style="margin:0;"><strong>Type de site :</strong> ${escapeHtml(String(payload.typeSite ?? "—"))}</p>`);
     htmlParts.push(`<p style="margin:6px 0 0 0;"><strong>Budget :</strong> ${escapeHtml(String(payload.budget ?? "—"))}</p>`);
     htmlParts.push(`<p style="margin:6px 0 0 0;"><strong>Délai :</strong> ${escapeHtml(String(payload.delai ?? "—"))}</p>`);
@@ -120,7 +152,7 @@ export async function POST(req: Request) {
 
     // Source
     htmlParts.push(`<div style="border:1px solid #e5e7eb;border-radius:12px;padding:14px 14px;background:#ffffff;">`);
-    htmlParts.push(`<p style="margin:0 0 10px 0;font-weight:700;color:#0a0e1a;">Source</p>`);
+    htmlParts.push(`<p style="margin:0 0 10px 0;font-weight:700;color:#0d0f14;">Source</p>`);
     htmlParts.push(`<p style="margin:0;"><strong>Comment il nous a connu :</strong> ${escapeHtml(sourceLabel)}</p>`);
     htmlParts.push(`</div>`);
 
@@ -128,7 +160,7 @@ export async function POST(req: Request) {
     htmlParts.push(`<div style="padding:18px 20px 24px 20px;">`);
     if (mailto) {
       htmlParts.push(
-        `<a href="${escapeHtml(mailto)}" style="display:inline-block;background:#f59e0b;color:#0a0e1a;text-decoration:none;font-weight:700;padding:12px 18px;border-radius:12px;">Répondre au client</a>`,
+        `<a href="${escapeHtml(mailto)}" style="display:inline-block;background:#f59e0b;color:#0d0f14;text-decoration:none;font-weight:700;padding:12px 18px;border-radius:12px;">Répondre au client</a>`,
       );
     } else {
       htmlParts.push(`<p style="margin:10px 0 0 0;color:#6b7280;font-size:14px;">Email client introuvable.</p>`);
@@ -155,6 +187,7 @@ export async function POST(req: Request) {
       : [
           "🚀 Nouvelle demande de projet — DevCraft",
           "",
+          ...(clientId ? [`Identifiant client : ${clientId}`, ""] : []),
           `Nom: ${fullNameQualification ?? payload.nom ?? "-"}`,
           `Email: ${payload.email ?? "-"}`,
           `Téléphone: ${payload.telephone ?? "-"}`,
@@ -204,6 +237,8 @@ export async function POST(req: Request) {
     );
   }
 
+  if (kind === "qualification" && clientId) {
+    return NextResponse.json({ ok: true, clientId });
+  }
   return NextResponse.json({ ok: true });
 }
-

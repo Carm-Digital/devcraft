@@ -28,7 +28,7 @@ export default function Header() {
   const inactiveText = "text-slate-300 hover:text-white";
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-[#0a0e1a]/95 backdrop-blur-md supports-[backdrop-filter]:bg-[#0a0e1a]/90">
+    <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-[#0d0f14]/95 backdrop-blur-md supports-[backdrop-filter]:bg-[#0d0f14]/90">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:h-18 sm:px-6 lg:px-8">
         <Link
           href="/"
@@ -45,10 +45,10 @@ export default function Header() {
               key={link.href}
               href={link.href}
               className={`relative rounded-lg px-3 py-2 text-sm font-medium transition ${
-                isActive(link.href) ? "text-[#F1E83B] bg-white/10" : inactiveText
+                isActive(link.href) ? "text-[#00D4FF] bg-white/10" : inactiveText
               } ${
                 isActive(link.href)
-                  ? "after:absolute after:-bottom-0.5 after:left-3 after:right-3 after:h-0.5 after:rounded-full after:bg-[#F1E83B]"
+                  ? "after:absolute after:-bottom-0.5 after:left-3 after:right-3 after:h-0.5 after:rounded-full after:bg-[#00D4FF]"
                   : ""
               } ${!isActive(link.href) ? "hover:bg-white/5" : ""}`}
             >
@@ -89,7 +89,7 @@ export default function Header() {
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
                 className={`rounded-lg px-3 py-2.5 text-sm font-medium ${
-                  isActive(link.href) ? "bg-white/10 text-amber-400" : "text-slate-300"
+                  isActive(link.href) ? "bg-white/10 text-[#00D4FF]" : "text-slate-300"
                 }`}
               >
                 {link.label}
@@ -98,7 +98,7 @@ export default function Header() {
             <Link
               href="/formulaire"
               onClick={() => setMobileOpen(false)}
-              className="mt-4 rounded-lg bg-amber-500 px-3 py-2.5 text-center text-sm font-semibold text-[#0a0e1a] shadow-sm"
+              className="mt-4 rounded-lg bg-[#00D4FF] px-3 py-2.5 text-center text-sm font-semibold text-[#0d0f14] shadow-sm"
             >
               Demander un devis
             </Link>

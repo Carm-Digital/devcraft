@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { ADMIN_SESSION_COOKIE } from "@/lib/adminAuth";
+import { appendJournalEntry } from "@/lib/adminJournal";
 import { readSiteContent, writeSiteContent } from "@/lib/siteContent";
 
 export const runtime = "nodejs";
@@ -42,6 +43,7 @@ export async function POST(req: Request) {
 
   try {
     const next = await writeSiteContent(body as Awaited<ReturnType<typeof readSiteContent>>);
+    await appendJournalEntry("Contenu du site", "Mise à jour enregistrée.");
     return NextResponse.json({ ok: true, content: next });
   } catch (err) {
     const message = err instanceof Error ? err.message : "Enregistrement impossible.";

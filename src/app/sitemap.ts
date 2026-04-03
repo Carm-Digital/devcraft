@@ -6,10 +6,6 @@ const routes = [
   "/faq",
   "/contact",
   "/formulaire",
-  "/reglement-devis",
-  "/paiement-confirme",
-  "/paiement-annule",
-  "/merci",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

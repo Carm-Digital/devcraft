@@ -9,28 +9,33 @@ export const metadata: Metadata = {
 };
 
 interface PageProps {
-  searchParams: Promise<{ offer?: string }>;
+  searchParams: Promise<{ offer?: string; id?: string }>;
 }
 
 export default async function PaiementAnnulePage({ searchParams }: PageProps) {
   const params = await searchParams;
+  const idParam = params.id?.trim();
   const offerParam = params.offer?.toLowerCase();
   const offerId: OfferId | null =
     offerParam && OFFER_IDS.includes(offerParam as OfferId) ? (offerParam as OfferId) : null;
-  const retryHref = offerId ? `/reglement-devis?offer=${offerId}` : "/reglement-devis";
+  const retryHref = idParam
+    ? `/reglement-devis?id=${encodeURIComponent(idParam)}`
+    : offerId
+      ? `/reglement-devis?offer=${offerId}`
+      : "/reglement-devis";
 
   return (
-    <section className="min-h-[80vh] bg-gradient-to-b from-slate-50 to-white px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
+    <section className="min-h-[80vh] bg-[#0d0f14] px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
       <div className="mx-auto max-w-2xl text-center">
-        <div className="inline-flex h-20 w-20 items-center justify-center rounded-full bg-slate-100 text-slate-500">
+        <div className="inline-flex h-20 w-20 items-center justify-center rounded-full bg-red-500/20 text-red-400">
           <svg className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
           </svg>
         </div>
-        <h1 className="mt-8 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+        <h1 className="mt-8 text-3xl font-bold tracking-tight text-white sm:text-4xl">
           Paiement interrompu
         </h1>
-        <p className="mt-4 text-slate-600">
+        <p className="mt-4 text-slate-300">
           Vous avez annulé le paiement ou quitté la page. Aucun prélèvement n’a été effectué. Vous pouvez reprendre le paiement quand vous le souhaitez ou nous contacter pour toute question.
         </p>
 

@@ -48,11 +48,11 @@ export default function ValidateLaunchButton({
   };
 
   const baseClass =
-    "inline-flex items-center justify-center rounded-lg font-semibold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-500 disabled:opacity-50 min-w-[200px] px-5 py-2.5 text-sm";
+    "inline-flex items-center justify-center rounded-lg font-semibold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00D4FF] disabled:opacity-50 min-w-[200px] px-5 py-2.5 text-sm";
   const variantClass =
     variant === "primary"
       ? "bg-slate-900 text-white hover:bg-slate-800"
-      : "bg-amber-600 text-white hover:bg-amber-700";
+      : "bg-[#00a8cc] text-white hover:bg-[#0099c9]";
 
   return (
     <div className="flex flex-col items-center gap-2">

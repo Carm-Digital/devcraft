@@ -15,29 +15,29 @@ const NEXT_STEPS = [
 
 export default function PaiementConfirmePage() {
   return (
-    <section className="min-h-[80vh] bg-gradient-to-b from-slate-50 to-white px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
+    <section className="min-h-[80vh] bg-[#0d0f14] px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
       <div className="mx-auto max-w-2xl text-center">
-        <div className="inline-flex h-20 w-20 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
+        <div className="inline-flex h-20 w-20 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-400">
           <svg className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
           </svg>
         </div>
-        <h1 className="mt-8 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+        <h1 className="mt-8 text-3xl font-bold tracking-tight text-white sm:text-4xl">
           Paiement confirmé
         </h1>
-        <p className="mt-4 text-lg font-medium text-slate-700">
+        <p className="mt-4 text-lg font-medium text-[#00D4FF]">
           Votre acompte a bien été enregistré
         </p>
-        <p className="mt-2 text-slate-600">
+        <p className="mt-2 text-slate-300">
           Votre projet peut désormais entrer en phase de préparation. Nous vous accompagnons pour la suite.
         </p>
 
-        <div className="mt-12 rounded-2xl border border-slate-200 bg-white p-6 text-left shadow-sm">
-          <h2 className="font-semibold text-slate-900">Prochaines étapes</h2>
-          <ul className="mt-4 space-y-3 text-slate-600">
+        <div className="mt-12 rounded-2xl border border-white/10 bg-white/5 p-6 text-left">
+          <h2 className="font-semibold text-white">Prochaines étapes</h2>
+          <ul className="mt-4 space-y-3 text-slate-300">
             {NEXT_STEPS.map((step, i) => (
               <li key={i} className="flex gap-3">
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-amber-100 text-xs font-bold text-amber-800">
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#00D4FF] text-xs font-bold text-[#0d0f14]">
                   {i + 1}
                 </span>
                 {step}

@@ -5,6 +5,8 @@ type SectionProps = {
   children: React.ReactNode;
   className?: string;
   dark?: boolean;
+  /** Accent radial cyan (sections sombres uniquement) */
+  accent?: boolean;
 };
 
 export default function Section({
@@ -14,19 +16,28 @@ export default function Section({
   children,
   className = "",
   dark = false,
+  accent = false,
 }: SectionProps) {
   return (
     <section
       id={id}
-      className={`py-16 sm:py-20 ${dark ? "bg-[#0a0e1a] text-white" : "bg-[#f8fafc]"} ${className}`}
+      className={`relative overflow-hidden py-16 sm:py-20 ${
+        dark ? "bg-[#0d0f14] text-white" : "bg-white"
+      } ${className}`}
     >
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      {dark && accent && (
+        <div
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_50%_0%,rgba(0,212,255,0.06),transparent)]"
+          aria-hidden
+        />
+      )}
+      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         {(title || subtitle) && (
           <div className="mx-auto max-w-2xl text-center">
             {title && (
               <h2
-                className={`font-display text-3xl font-bold tracking-tight sm:text-4xl ${
-                  dark ? "text-white" : "text-[#0a0e1a]"
+                className={`font-display text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl ${
+                  dark ? "text-white" : "text-[#0d0f14]"
                 }`}
               >
                 {title}
@@ -46,4 +57,3 @@ export default function Section({
     </section>
   );
 }
-

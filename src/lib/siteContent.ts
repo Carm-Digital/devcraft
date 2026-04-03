@@ -10,6 +10,21 @@ export type EditableOfferPrices = {
   abonnement: string;
 };
 
+export type SiteSocialLinks = {
+  instagram: string;
+  tiktok: string;
+  twitter: string;
+  snapchat: string;
+};
+
+export type SiteColors = {
+  nuit: string;
+  electric: string;
+  gold: string;
+  offwhite: string;
+  foreground: string;
+};
+
 export type SiteContent = {
   heroTitle: string;
   heroSubtitle: string;
@@ -17,6 +32,13 @@ export type SiteContent = {
   contactText: string;
   footerText: string;
   offerPrices: EditableOfferPrices;
+  contactEmail: string;
+  expeditionEmail: string;
+  nomAgence: string;
+  socialLinks: SiteSocialLinks;
+  colors: SiteColors;
+  /** Si true, le site public affiche la page maintenance (admin et API admin exclus). */
+  maintenanceMode: boolean;
 };
 
 export const DEFAULT_SITE_CONTENT: SiteContent = {
@@ -33,6 +55,23 @@ export const DEFAULT_SITE_CONTENT: SiteContent = {
     complet: "900 EUR",
     abonnement: "1 300 EUR",
   },
+  contactEmail: "devcraft.store@gmail.com",
+  expeditionEmail: "contact@dev-craft.store",
+  nomAgence: "DevCraft",
+  socialLinks: {
+    instagram: "#",
+    tiktok: "#",
+    twitter: "#",
+    snapchat: "#",
+  },
+  colors: {
+    nuit: "#0d0f14",
+    electric: "#2563eb",
+    gold: "#00D4FF",
+    offwhite: "#F5F4F0",
+    foreground: "#0d0f14",
+  },
+  maintenanceMode: false,
 };
 
 const DATA_DIR = path.join(process.cwd(), "data");
@@ -47,6 +86,37 @@ function normalizeValue(value: unknown, fallback: string) {
   if (typeof value !== "string") return fallback;
   const trimmed = value.trim();
   return trimmed.length > 0 ? trimmed : fallback;
+}
+
+function normalizeSocialLinks(raw: unknown): SiteSocialLinks {
+  const d = DEFAULT_SITE_CONTENT.socialLinks;
+  if (!raw || typeof raw !== "object") return { ...d };
+  const o = raw as Record<string, unknown>;
+  return {
+    instagram: normalizeValue(o.instagram, d.instagram),
+    tiktok: normalizeValue(o.tiktok, d.tiktok),
+    twitter: normalizeValue(o.twitter, d.twitter),
+    snapchat: normalizeValue(o.snapchat, d.snapchat),
+  };
+}
+
+function normalizeHexColor(value: unknown, fallback: string): string {
+  const s = normalizeValue(value, fallback);
+  if (/^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6}|[0-9A-Fa-f]{8})$/.test(s)) return s;
+  return fallback;
+}
+
+function normalizeColors(raw: unknown): SiteColors {
+  const d = DEFAULT_SITE_CONTENT.colors;
+  if (!raw || typeof raw !== "object") return { ...d };
+  const o = raw as Record<string, unknown>;
+  return {
+    nuit: normalizeHexColor(o.nuit, d.nuit),
+    electric: normalizeHexColor(o.electric, d.electric),
+    gold: normalizeHexColor(o.gold, d.gold),
+    offwhite: normalizeHexColor(o.offwhite, d.offwhite),
+    foreground: normalizeHexColor(o.foreground, d.foreground),
+  };
 }
 
 function mergeWithDefaults(raw: unknown): SiteContent {
@@ -67,6 +137,13 @@ function mergeWithDefaults(raw: unknown): SiteContent {
       complet: normalizeValue(rawPrices.complet, DEFAULT_SITE_CONTENT.offerPrices.complet),
       abonnement: normalizeValue(rawPrices.abonnement, DEFAULT_SITE_CONTENT.offerPrices.abonnement),
     },
+    contactEmail: normalizeValue(obj.contactEmail, DEFAULT_SITE_CONTENT.contactEmail),
+    expeditionEmail: normalizeValue(obj.expeditionEmail, DEFAULT_SITE_CONTENT.expeditionEmail),
+    nomAgence: normalizeValue(obj.nomAgence, DEFAULT_SITE_CONTENT.nomAgence),
+    socialLinks: normalizeSocialLinks(obj.socialLinks),
+    colors: normalizeColors(obj.colors),
+    maintenanceMode:
+      typeof obj.maintenanceMode === "boolean" ? obj.maintenanceMode : DEFAULT_SITE_CONTENT.maintenanceMode,
   };
 }
 

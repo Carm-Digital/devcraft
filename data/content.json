@@ -8,5 +8,21 @@
     "vitrine": "300 EUR",
     "complet": "900 EUR",
     "abonnement": "1 300 EUR"
+  },
+  "contactEmail": "devcraft.store@gmail.com",
+  "expeditionEmail": "contact@dev-craft.store",
+  "nomAgence": "DevCraft",
+  "socialLinks": {
+    "instagram": "#",
+    "tiktok": "#",
+    "twitter": "#",
+    "snapchat": "#"
+  },
+  "colors": {
+    "nuit": "#0a0e1a",
+    "electric": "#2563eb",
+    "gold": "#F1E83B",
+    "offwhite": "#f8fafc",
+    "foreground": "#0a0e1a"
   }
 }

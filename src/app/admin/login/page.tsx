@@ -2,6 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import Logo from "@/components/layout/Logo";
 
 export default function AdminLoginPage() {
   const router = useRouter();
@@ -41,7 +42,7 @@ export default function AdminLoginPage() {
   }
 
   return (
-    <main className="min-h-screen bg-[#0a0e1a] px-4 py-16 sm:px-6 lg:px-8">
+    <main className="min-h-screen bg-[#0d0f14] px-4 py-16 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-md rounded-2xl border border-white/10 bg-white/5 p-6 shadow-xl sm:p-8">
         <h1 className="font-display text-2xl font-bold text-white">Admin DevCraft</h1>
         <p className="mt-2 text-sm text-slate-300">
@@ -58,7 +59,7 @@ export default function AdminLoginPage() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="mt-1 w-full rounded-xl border border-slate-300/20 bg-white px-4 py-2.5 text-[#0a0e1a] focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-500/20"
+              className="mt-1 w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-white placeholder:text-slate-500 focus:border-[#00D4FF] focus:outline-none focus:ring-2 focus:ring-[#00D4FF]/20"
               required
               autoComplete="username"
             />
@@ -72,7 +73,7 @@ export default function AdminLoginPage() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="mt-1 w-full rounded-xl border border-slate-300/20 bg-white px-4 py-2.5 text-[#0a0e1a] focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-500/20"
+              className="mt-1 w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-white placeholder:text-slate-500 focus:border-[#00D4FF] focus:outline-none focus:ring-2 focus:ring-[#00D4FF]/20"
               required
               autoComplete="current-password"
             />
@@ -80,16 +81,22 @@ export default function AdminLoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full rounded-xl bg-amber-500 px-4 py-2.5 text-sm font-semibold text-[#0a0e1a] transition hover:bg-amber-400 disabled:cursor-not-allowed disabled:opacity-70"
+            className="w-full rounded-xl bg-[#00D4FF] px-4 py-2.5 text-sm font-semibold text-[#0d0f14] transition hover:bg-[#00D4FF]/90 disabled:cursor-not-allowed disabled:opacity-70"
           >
             {loading ? "Connexion..." : "Se connecter"}
           </button>
           {error && (
-            <p className="rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">
+            <p className="rounded-xl border border-red-500/30 bg-red-500/10 px-3 py-2 text-sm text-red-300">
               {error}
             </p>
           )}
         </form>
+        <a
+          href="/"
+          className="mt-4 block text-center text-sm text-slate-500 transition hover:text-slate-300"
+        >
+          ← Retour au site
+        </a>
       </div>
     </main>
   );

@@ -24,7 +24,7 @@ export default async function QualificationPage() {
         secondaryDescription="Les fourchettes de budget sont indicatives — elles nous aident à mieux cadrer votre projet. Aucun engagement avant échange."
       />
 
-      <Section id="formulaire" className="bg-[#f8fafc]">
+      <Section id="formulaire" className="bg-[#F5F4F0]">
         <div id="contact" className="mx-auto max-w-3xl">
           <p className="mb-6 text-sm text-slate-600 text-center sm:text-left">
             Plus votre demande est précise, plus notre retour sera utile.
@@ -34,9 +34,9 @@ export default async function QualificationPage() {
           </div>
 
           <noscript>
-            <div className="mt-6 rounded-2xl border border-amber-200 bg-amber-50 p-6 text-left text-slate-700">
+            <div className="mt-6 rounded-2xl border border-[#00D4FF]/20 bg-[#00D4FF]/5 p-6 text-left text-slate-700">
               Le formulaire ne se charge pas ? Écrivez-nous directement :{" "}
-              <a href="mailto:devcraft.store@gmail.com" className="font-semibold text-amber-800">
+              <a href="mailto:devcraft.store@gmail.com" className="font-semibold text-[#00D4FF]">
                 devcraft.store@gmail.com
               </a>
               .

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Section from "@/components/ui/Section";
 import CTA from "@/components/ui/CTA";
 import PageHero from "@/components/layout/PageHero";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 import { ABOUT_VALUES } from "@/config/about";
 
 export const metadata: Metadata = {
@@ -14,7 +15,7 @@ const values = [
   {
     key: "Sérieux",
     icon: (
-      <svg className="h-5 w-5 text-[#F1E83B]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+      <svg className="h-5 w-5 text-[#00D4FF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4" />
         <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
@@ -23,7 +24,7 @@ const values = [
   {
     key: "Écoute",
     icon: (
-      <svg className="h-5 w-5 text-[#F1E83B]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+      <svg className="h-5 w-5 text-[#00D4FF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M8 10h.01M12 10h.01M16 10h.01" />
         <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 16h0" />
@@ -33,7 +34,7 @@ const values = [
   {
     key: "Personnalisation",
     icon: (
-      <svg className="h-5 w-5 text-[#F1E83B]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+      <svg className="h-5 w-5 text-[#00D4FF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 20h9" />
         <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4 12.5-12.5z" />
       </svg>
@@ -42,7 +43,7 @@ const values = [
   {
     key: "Modernité",
     icon: (
-      <svg className="h-5 w-5 text-[#F1E83B]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+      <svg className="h-5 w-5 text-[#00D4FF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 2l3 7 7 3-7 3-3 7-3-7-7-3 7-3 3-7z" />
       </svg>
     ),
@@ -50,7 +51,7 @@ const values = [
   {
     key: "Accompagnement humain",
     icon: (
-      <svg className="h-5 w-5 text-[#F1E83B]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+      <svg className="h-5 w-5 text-[#00D4FF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
         <path strokeLinecap="round" strokeLinejoin="round" d="M8.5 11a4 4 0 100-8 4 4 0 000 8z" />
         <path strokeLinecap="round" strokeLinejoin="round" d="M20 8v6" />
@@ -61,7 +62,7 @@ const values = [
   {
     key: "Souci du détail",
     icon: (
-      <svg className="h-5 w-5 text-[#F1E83B]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+      <svg className="h-5 w-5 text-[#00D4FF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 6V4" />
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 20v-2" />
         <path strokeLinecap="round" strokeLinejoin="round" d="M6 12H4" />
@@ -88,7 +89,7 @@ export default function AProposPage() {
 
       {/* 2. QUI NOUS SOMMES */}
       <Section className="py-10 sm:py-14">
-        <div className="mx-auto max-w-3xl rounded-2xl border border-white/10 bg-[#0a0e1a] p-6 sm:p-8">
+        <div className="mx-auto max-w-3xl rounded-2xl border border-white/10 bg-[#0d0f14] p-6 sm:p-8">
           <h2 className="font-display text-3xl font-bold tracking-tight text-white sm:text-4xl">Qui nous sommes</h2>
           <p className="mt-4 text-lg text-slate-400">
             Une petite équipe, un fonctionnement simple, des sites pensés pour vos objectifs.
@@ -110,24 +111,23 @@ export default function AProposPage() {
       <Section
         title="Ce qui guide notre travail"
         subtitle="Quelques repères simples qui structurent chaque projet que nous prenons en charge."
-        className="bg-slate-50 py-10 sm:py-14"
+        className="bg-[#F5F4F0] py-10 sm:py-14"
       >
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {values.map((v) => {
+          {values.map((v, index) => {
             const value = ABOUT_VALUES.find((item) => item.title === v.key)!;
             return (
-              <div
-                key={v.key}
-                className="rounded-2xl border border-white/10 bg-[#0a0e1a] p-6 shadow-sm transition hover:border-[#F1E83B]/40 hover:shadow-lg"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/5 text-[#F1E83B]">
-                    {v.icon}
+              <ScrollReveal key={v.key} direction="up" delay={index * 100}>
+                <div className="rounded-2xl border border-white/10 bg-[#0d0f14] p-6 shadow-sm transition hover:border-[#00D4FF]/40 hover:shadow-lg">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/5 text-[#00D4FF]">
+                      {v.icon}
+                    </div>
+                    <h3 className="font-display text-lg font-semibold text-white">{value.title}</h3>
                   </div>
-                  <h3 className="font-display text-lg font-semibold text-white">{value.title}</h3>
+                  <p className="mt-2 text-sm text-slate-300">{value.desc}</p>
                 </div>
-                <p className="mt-2 text-sm text-slate-300">{value.desc}</p>
-              </div>
+              </ScrollReveal>
             );
           })}
         </div>

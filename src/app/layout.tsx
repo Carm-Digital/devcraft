@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import ScrollToTopButton from "@/components/ui/ScrollToTopButton";
+import { readSiteContent } from "@/lib/siteContent";
 
 export const dynamic = "force-dynamic";
 
@@ -44,11 +45,12 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const content = await readSiteContent();
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? "https://dev-craft.store";
   const structuredData = {
     "@context": "https://schema.org",
@@ -59,9 +61,23 @@ export default function RootLayout({
     serviceType: "Création de site web",
   };
 
+  const themeCss = `:root {
+  --color-nuit: ${content.colors.nuit};
+  --color-electric: ${content.colors.electric};
+  --color-gold: ${content.colors.gold};
+  --color-offwhite: ${content.colors.offwhite};
+  --color-foreground: ${content.colors.foreground};
+  --color-ink: ${content.colors.foreground};
+}`;
+
   return (
     <html lang="fr">
-      <body className={`${geistSans.variable} ${geistMono.variable} ${plusJakarta.variable} font-sans antialiased`}>
+      <head>
+        <style dangerouslySetInnerHTML={{ __html: themeCss }} />
+      </head>
+      <body
+        className={`grain-overlay ${geistSans.variable} ${geistMono.variable} ${plusJakarta.variable} font-sans antialiased`}
+      >
         <Header />
         <main className="min-h-screen">{children}</main>
         <Footer />

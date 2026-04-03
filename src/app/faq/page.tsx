@@ -23,9 +23,9 @@ export default function FAQPage() {
           {FAQ_ITEMS.map((item) => (
             <details
               key={item.q}
-              className="group rounded-2xl border border-slate-200/80 bg-white shadow-sm transition hover:border-amber-100"
+              className="group rounded-2xl border border-slate-200/80 bg-white shadow-sm transition hover:border-[#00D4FF]/10"
             >
-              <summary className="cursor-pointer list-none px-6 py-4 font-display font-medium text-[#0a0e1a] [&::-webkit-details-marker]:hidden">
+              <summary className="cursor-pointer list-none px-6 py-4 font-display font-medium text-[#0d0f14] [&::-webkit-details-marker]:hidden">
                 <span className="flex items-center justify-between">
                   {item.q}
                   <span className="ml-2 shrink-0 text-slate-400 transition group-open:rotate-180">

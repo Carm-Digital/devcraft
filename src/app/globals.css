@@ -1,33 +1,28 @@
 @import "tailwindcss";
 
-/* DevCraft — Identité visuelle premium : bleu nuit, bleu électrique, doré */
+/* DevCraft — Agence Tech Premium : nuit profonde, cyan, bleu électrique */
 @theme inline {
-  /* Couleurs principales (alignées logo) */
-  --color-nuit: #0a0e1a;
-  --color-nuit-light: #111827;
-  --color-nuit-muted: #1e293b;
-  --color-electric: #2563eb;
-  --color-electric-subtle: #3b82f6;
-  --color-electric-muted: #60a5fa;
-  --color-gold: #F1E83B;
-  --color-gold-light: #F1E83B;
-  --color-gold-bright: #F1E83B;
-  --color-gold-muted: #d9d122;
-  --color-offwhite: #f8fafc;
-  --color-cream: #f1f5f9;
-  --color-ink: #0a0e1a;
-  --color-border: #1e293b;
-  --color-border-light: #334155;
+  --color-nuit: #0d0f14;
+  --color-nuit-light: #13161f;
+  --color-nuit-muted: #1a1e2e;
+  --color-cyan: #00d4ff;
+  --color-cyan-muted: #00a8cc;
+  --color-cyan-subtle: #004d5c;
+  --color-electric: #4f8ef7;
+  --color-offwhite: #f5f4f0;
+  --color-cream: #edebe5;
+  --color-ink: #0d0f14;
+  --color-border: #1a1e2e;
+  --color-border-light: #252836;
 
-  /* Rétrocompatibilité + mapping */
   --color-background: var(--color-offwhite);
   --color-foreground: var(--color-ink);
   --color-muted: #64748b;
   --color-muted-foreground: #94a3b8;
   --color-primary: var(--color-nuit);
   --color-primary-foreground: var(--color-offwhite);
-  --color-accent: var(--color-gold);
-  --color-accent-hover: var(--color-gold-muted);
+  --color-accent: var(--color-cyan);
+  --color-accent-hover: var(--color-cyan-muted);
   --color-card: #ffffff;
   --color-card-hover: var(--color-cream);
   --font-sans: var(--font-geist-sans);
@@ -39,11 +34,10 @@
   --background: var(--color-offwhite);
   --foreground: var(--color-ink);
   --muted: #64748b;
-  --accent: var(--color-gold);
-  --accent-hover: var(--color-gold-muted);
-  --nuit: #0a0e1a;
-  --gold: #F1E83B;
-  --gold-light: #F1E83B;
+  --accent: var(--color-cyan);
+  --accent-hover: var(--color-cyan-muted);
+  --nuit: #0d0f14;
+  --cyan: #00d4ff;
 }
 
 html {
@@ -74,8 +68,13 @@ body {
 }
 
 @keyframes glow-pulse {
-  0%, 100% { opacity: 0.4; }
-  50% { opacity: 0.7; }
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.7;
+  }
 }
 
 @keyframes hero-gradient-drift {
@@ -93,12 +92,63 @@ body {
   }
 }
 
+@keyframes grain {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  10% {
+    transform: translate(-2%, -3%);
+  }
+  20% {
+    transform: translate(3%, 2%);
+  }
+  30% {
+    transform: translate(-1%, 4%);
+  }
+  40% {
+    transform: translate(4%, -1%);
+  }
+  50% {
+    transform: translate(-3%, 3%);
+  }
+  60% {
+    transform: translate(2%, -4%);
+  }
+  70% {
+    transform: translate(-4%, 1%);
+  }
+  80% {
+    transform: translate(3%, -2%);
+  }
+  90% {
+    transform: translate(-2%, 4%);
+  }
+}
+
+.grain-overlay::before {
+  content: "";
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.035;
+  pointer-events: none;
+  z-index: 9999;
+  animation: grain 8s steps(10) infinite;
+}
+
 .hero-gradient-animated {
   animation: hero-gradient-drift 18s ease-in-out infinite alternate;
 }
 
 .hero-cta-animated {
-  transition: transform 180ms ease-out, box-shadow 180ms ease-out, filter 180ms ease-out;
+  transition:
+    transform 180ms ease-out,
+    box-shadow 180ms ease-out,
+    filter 180ms ease-out;
 }
 
 .hero-cta-animated:hover {
@@ -110,18 +160,31 @@ body {
   animation: fadeUp 0.6s ease-out forwards;
 }
 
-.animate-delay-1 { animation-delay: 0.1s; }
-.animate-delay-2 { animation-delay: 0.2s; }
-.animate-delay-3 { animation-delay: 0.3s; }
-.animate-delay-4 { animation-delay: 0.4s; }
+.animate-delay-1 {
+  animation-delay: 0.1s;
+}
+.animate-delay-2 {
+  animation-delay: 0.2s;
+}
+.animate-delay-3 {
+  animation-delay: 0.3s;
+}
+.animate-delay-4 {
+  animation-delay: 0.4s;
+}
 
-/* Focus visible (accent doré) */
 *:focus-visible {
-  outline: 2px solid var(--color-gold);
+  outline: 2px solid var(--color-cyan);
   outline-offset: 2px;
 }
 
-/* Utilitaires premium */
-.bg-nuit { background-color: var(--color-nuit); }
-.text-gold { color: var(--color-gold); }
-.border-gold { border-color: var(--color-gold); }
+/* Utilitaires (accent cyan) */
+.bg-nuit {
+  background-color: var(--color-nuit);
+}
+.text-gold {
+  color: var(--color-cyan);
+}
+.border-gold {
+  border-color: var(--color-cyan);
+}

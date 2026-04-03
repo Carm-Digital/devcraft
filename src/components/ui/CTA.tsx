@@ -14,30 +14,29 @@ type CTAProps = {
 };
 
 const BASE =
-  "inline-flex items-center justify-center rounded-xl font-semibold transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-400 disabled:opacity-50";
+  "inline-flex items-center justify-center rounded-full px-6 py-3 font-semibold transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00D4FF] disabled:opacity-50";
 
-/* Clair (sur fond clair) : primary = doré, secondary = bleu nuit contour */
+/* Primary : identique sur fond clair et sombre */
+const PRIMARY =
+  "bg-[#00D4FF] text-[#0d0f14] hover:scale-[1.03] hover:shadow-[0_0_20px_rgba(0,212,255,0.4)]";
+
 const VARIANTS: Record<CTAVariant, string> = {
-  primary:
-    "bg-gradient-to-r from-[#F1E83B] to-[#F1E83B] text-[#0a0e1a] shadow-lg shadow-amber-900/20 hover:from-[#F1E83B] hover:to-[#F1E83B] hover:shadow-amber-900/30 px-5 py-2.5 text-sm",
+  primary: PRIMARY,
   secondary:
-    "border-2 border-[#0a0e1a] text-[#0a0e1a] hover:bg-[#0a0e1a] hover:text-white px-5 py-2.5 text-sm",
+    "border-2 border-[#00D4FF]/60 bg-transparent text-[#00D4FF] hover:border-[#00D4FF] hover:bg-[#00D4FF]/10",
   outline:
-    "border-2 border-slate-300 text-slate-700 hover:border-[#0a0e1a] hover:bg-slate-50 hover:text-[#0a0e1a] px-5 py-2.5 text-sm",
+    "border-2 border-[#0d0f14]/30 bg-transparent text-[#0d0f14] hover:border-[#0d0f14] hover:bg-[#0d0f14]/5",
   ghost:
-    "text-slate-700 hover:bg-slate-100 px-5 py-2.5 text-sm",
+    "bg-transparent text-slate-600 hover:bg-[#0d0f14]/5 hover:text-[#0d0f14]",
 };
 
-/* Sombre (sur fond nuit) : primary = doré, secondary = contour blanc/doré */
 const VARIANTS_DARK: Record<CTAVariant, string> = {
-  primary:
-    "bg-gradient-to-r from-[#F1E83B] to-[#F1E83B] text-[#0a0e1a] shadow-lg shadow-amber-900/30 hover:from-[#F1E83B] hover:to-[#F1E83B] px-5 py-2.5 text-sm",
+  primary: PRIMARY,
   secondary:
-    "border-2 border-white/80 text-white hover:bg-white hover:text-[#0a0e1a] px-5 py-2.5 text-sm",
+    "border-2 border-[#00D4FF]/60 bg-transparent text-[#00D4FF] hover:border-[#00D4FF] hover:bg-[#00D4FF]/10",
   outline:
-    "border-2 border-white/40 text-white hover:bg-white/10 px-5 py-2.5 text-sm",
-  ghost:
-    "text-slate-300 hover:bg-white/5 hover:text-white px-5 py-2.5 text-sm",
+    "border-2 border-white/40 bg-transparent text-white hover:border-white hover:bg-white/10",
+  ghost: "bg-transparent text-slate-400 hover:bg-white/5 hover:text-white",
 };
 
 const DEFAULT_HREF = "/formulaire";
@@ -57,7 +56,11 @@ export default function CTA({
   const isLink = href && type !== "submit" && !onClick;
 
   if (isLink) {
-    return <Link href={href} className={classes}>{children}</Link>;
+    return (
+      <Link href={href} className={classes}>
+        {children}
+      </Link>
+    );
   }
 
   return (
@@ -66,4 +69,3 @@ export default function CTA({
     </button>
   );
 }
-
