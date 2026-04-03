@@ -17,7 +17,7 @@ export default async function PaiementAnnulePage({ searchParams }: PageProps) {
   const offerParam = params.offer?.toLowerCase();
   const offerId: OfferId | null =
     offerParam && OFFER_IDS.includes(offerParam as OfferId) ? (offerParam as OfferId) : null;
-  const retryHref = offerId ? `/validation-projet?offer=${offerId}` : "/validation-projet";
+  const retryHref = offerId ? `/reglement-devis?offer=${offerId}` : "/reglement-devis";
 
   return (
     <section className="min-h-[80vh] bg-gradient-to-b from-slate-50 to-white px-4 py-20 sm:px-6 sm:py-28 lg:px-8">

@@ -45,7 +45,7 @@ Le tunnel de validation du projet permet de faire payer un acompte après échan
 
 1. **Configuration** : copier `.env.local.example` vers `.env.local` et renseigner `STRIPE_SECRET_KEY` et `NEXT_PUBLIC_BASE_URL`.
 2. **Offres** : les montants et libellés sont dans `src/config/deposits.ts` (vitrine, complet, abonnement, personnalisé). Mettre `amountCents: null` pour une offre « sur devis » (pas de paiement en ligne).
-3. **Pages** : `/validation-projet?offer=vitrine` (ou complet, abonnement, personnalise), `/paiement-confirme`, `/paiement-annule`.
+3. **Pages** : `/reglement-devis?offer=vitrine` (ou complet, abonnement, personnalise), `/paiement-confirme`, `/paiement-annule`.
 4. **API** : `POST /api/stripe/create-checkout-session` avec `{ offerId }` crée une session Stripe Checkout et renvoie l’URL de redirection.
 
 L’architecture est prête pour ajouter plus tard Stripe Billing / abonnements (voir commentaire dans `src/lib/stripe/config.ts`).

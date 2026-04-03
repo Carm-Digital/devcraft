@@ -6,7 +6,7 @@ const routes = [
   "/faq",
   "/contact",
   "/formulaire",
-  "/validation-projet",
+  "/reglement-devis",
   "/paiement-confirme",
   "/paiement-annule",
   "/merci",

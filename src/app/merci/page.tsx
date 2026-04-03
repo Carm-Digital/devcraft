@@ -52,7 +52,7 @@ export default function MerciPage() {
             Si nous vous avons envoyé un lien pour régler l’acompte et confirmer le lancement de votre projet, vous pouvez y accéder ci-dessous.
           </p>
           <a
-            href="/validation-projet"
+            href="/reglement-devis"
             className="mt-3 inline-flex text-sm font-semibold text-[#F1E83B] hover:text-[#F1E83B]"
           >
             Accéder à la validation du projet →

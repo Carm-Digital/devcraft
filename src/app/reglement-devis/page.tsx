@@ -4,8 +4,8 @@ import Section from "@/components/ui/Section";
 import CTA from "@/components/ui/CTA";
 import { OFFER_IDS, getDepositConfig, OFFER_DEPOSITS } from "@/config/deposits";
 import type { OfferId } from "@/types/payment";
-import PaymentSummaryCard from "@/components/features/validation-projet/PaymentSummaryCard";
-import ValidateLaunchButton from "@/components/features/validation-projet/ValidateLaunchButton";
+import PaymentSummaryCard from "@/components/features/reglement-devis/PaymentSummaryCard";
+import ValidateLaunchButton from "@/components/features/reglement-devis/ValidateLaunchButton";
 import { isStripeConfigured } from "@/lib/stripe/config";
 
 export const metadata: Metadata = {
@@ -18,7 +18,7 @@ interface PageProps {
   searchParams: Promise<{ offer?: string }>;
 }
 
-export default async function ValidationProjetPage({ searchParams }: PageProps) {
+export default async function ReglementDevisPage({ searchParams }: PageProps) {
   const params = await searchParams;
   const offerParam = params.offer?.toLowerCase();
   const offerId: OfferId | null =
@@ -98,7 +98,7 @@ export default async function ValidationProjetPage({ searchParams }: PageProps) 
             {OFFER_IDS.map((id) => (
               <Link
                 key={id}
-                href={`/validation-projet?offer=${id}`}
+                href={`/reglement-devis?offer=${id}`}
                 className="block rounded-xl border border-slate-200 bg-white p-4 transition hover:border-amber-300 hover:shadow-md sm:p-5"
               >
                 <div className="flex items-center justify-between">

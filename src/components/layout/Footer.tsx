@@ -6,10 +6,10 @@ const footerLinks = {
   navigation: [
     { href: "/", label: "Accueil" },
     { href: "/formulaire", label: "Demander un devis" },
-    { href: "/a-propos", label: "À propos" },
+    { href: "/a-propos", label: "À Propos" },
     { href: "/faq", label: "FAQ" },
     { href: "/contact", label: "Contact" },
-    { href: "/validation-projet", label: "Paiement acompte" },
+    { href: "/reglement-devis", label: "Règlement devis" },
   ],
   contact: {
     email: "devcraft.store@gmail.com",
