@@ -14,16 +14,16 @@ type CTAProps = {
 };
 
 const BASE =
-  "inline-flex items-center justify-center rounded-full px-6 py-3 font-semibold transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00D4FF] disabled:opacity-50";
+  "inline-flex items-center justify-center rounded-full px-6 py-3 font-semibold transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-50";
 
 /* Primary : identique sur fond clair et sombre */
 const PRIMARY =
-  "bg-[#00D4FF] text-[#0d0f14] hover:scale-[1.03] hover:shadow-[0_0_20px_rgba(0,212,255,0.4)]";
+  "bg-accent text-nuit hover:scale-[1.03] hover:shadow-[0_0_20px_rgba(0,212,255,0.4)]";
 
 const VARIANTS: Record<CTAVariant, string> = {
   primary: PRIMARY,
   secondary:
-    "border-2 border-[#00D4FF]/60 bg-transparent text-[#00D4FF] hover:border-[#00D4FF] hover:bg-[#00D4FF]/10",
+    "border-2 border-accent/60 bg-transparent text-accent hover:border-accent hover:bg-accent/10",
   outline:
     "border-2 border-[#0d0f14]/30 bg-transparent text-[#0d0f14] hover:border-[#0d0f14] hover:bg-[#0d0f14]/5",
   ghost:
@@ -33,7 +33,7 @@ const VARIANTS: Record<CTAVariant, string> = {
 const VARIANTS_DARK: Record<CTAVariant, string> = {
   primary: PRIMARY,
   secondary:
-    "border-2 border-[#00D4FF]/60 bg-transparent text-[#00D4FF] hover:border-[#00D4FF] hover:bg-[#00D4FF]/10",
+    "border-2 border-accent/60 bg-transparent text-accent hover:border-accent hover:bg-accent/10",
   outline:
     "border-2 border-white/40 bg-transparent text-white hover:border-white hover:bg-white/10",
   ghost: "bg-transparent text-slate-400 hover:bg-white/5 hover:text-white",

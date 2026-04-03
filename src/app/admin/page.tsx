@@ -116,11 +116,11 @@ const ADMIN_TABS: { id: AdminTabId; label: string }[] = [
 ];
 
 const THEME_COLOR_ROWS: { key: keyof SiteColors; label: string; zone: string }[] = [
-  { key: "nuit", label: "Fond sombre (nuit)", zone: "Header, footer, modules sombres, héros foncés" },
-  { key: "electric", label: "Bleu électrique", zone: "Dégradés, accents bleus, liens" },
-  { key: "gold", label: "Accent doré", zone: "Boutons primaires, surlignages, identité" },
-  { key: "offwhite", label: "Fond clair", zone: "Arrière-plans de page, sections claires" },
-  { key: "foreground", label: "Texte principal", zone: "Corps de texte, titres sur fond clair" },
+  { key: "nuit", label: "Fond sombre", zone: "Header, footer, hero, tous les modules sombres" },
+  { key: "electric", label: "Bleu accent", zone: "Dégradés, effets de fond, radial gradients" },
+  { key: "gold", label: "Accent principal (cyan)", zone: "Boutons, liens actifs, eyebrow, badges, icônes" },
+  { key: "offwhite", label: "Fond clair", zone: "Fond des pages, sections claires, cartes blanches" },
+  { key: "foreground", label: "Texte principal", zone: "Textes sombres sur fond clair" },
 ];
 
 /** Valeur #rrggbb pour <input type="color" /> */

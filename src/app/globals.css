@@ -178,13 +178,50 @@ body {
   outline-offset: 2px;
 }
 
-/* Utilitaires (accent cyan) */
+/* Utilitaires thème (variables injectées par layout depuis l’admin) */
+.bg-accent {
+  background-color: var(--color-gold);
+}
+.text-accent {
+  color: var(--color-gold);
+}
+.border-accent {
+  border-color: var(--color-gold);
+}
+.border-accent\/60 {
+  border-color: color-mix(in srgb, var(--color-gold) 60%, transparent);
+}
+.hover\:border-accent:hover {
+  border-color: var(--color-gold);
+}
+.hover\:bg-accent\/10:hover {
+  background-color: color-mix(in srgb, var(--color-gold) 10%, transparent);
+}
+.focus-visible\:outline-accent:focus-visible {
+  outline-color: var(--color-gold);
+}
 .bg-nuit {
   background-color: var(--color-nuit);
 }
+.text-nuit {
+  color: var(--color-nuit);
+}
+.bg-offwhite {
+  background-color: var(--color-offwhite);
+}
+.ring-accent {
+  --tw-ring-color: var(--color-gold);
+}
+.shadow-accent {
+  --tw-shadow-color: var(--color-gold);
+}
+.outline-accent {
+  outline-color: var(--color-gold);
+}
+/* Alias historiques */
 .text-gold {
-  color: var(--color-cyan);
+  color: var(--color-gold);
 }
 .border-gold {
-  border-color: var(--color-cyan);
+  border-color: var(--color-gold);
 }

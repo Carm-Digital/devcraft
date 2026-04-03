@@ -66,7 +66,7 @@ export const DEFAULT_SITE_CONTENT: SiteContent = {
   },
   colors: {
     nuit: "#0d0f14",
-    electric: "#2563eb",
+    electric: "#4F8EF7",
     gold: "#00D4FF",
     offwhite: "#F5F4F0",
     foreground: "#0d0f14",

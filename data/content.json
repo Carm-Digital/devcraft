@@ -19,10 +19,10 @@
     "snapchat": "#"
   },
   "colors": {
-    "nuit": "#0a0e1a",
-    "electric": "#2563eb",
-    "gold": "#F1E83B",
-    "offwhite": "#f8fafc",
-    "foreground": "#0a0e1a"
+    "nuit": "#0d0f14",
+    "electric": "#4F8EF7",
+    "gold": "#00D4FF",
+    "offwhite": "#F5F4F0",
+    "foreground": "#0d0f14"
   }
 }
