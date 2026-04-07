@@ -29,7 +29,7 @@ export default async function Footer() {
   const content = await readSiteContent();
 
   return (
-    <footer className="border-t border-white/10 bg-[#0d0f14]">
+    <footer className="border-t border-white/10 bg-nuit">
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
           <div className="max-w-xs">

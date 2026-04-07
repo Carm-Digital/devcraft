@@ -22,7 +22,7 @@ export default function Section({
     <section
       id={id}
       className={`relative overflow-hidden py-16 sm:py-20 ${
-        dark ? "bg-[#0d0f14] text-white" : "bg-white"
+        dark ? "bg-nuit text-white" : "bg-white"
       } ${className}`}
     >
       {dark && accent && (

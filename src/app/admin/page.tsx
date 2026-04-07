@@ -115,12 +115,44 @@ const ADMIN_TABS: { id: AdminTabId; label: string }[] = [
   { id: "couleurs", label: "Couleurs" },
 ];
 
-const THEME_COLOR_ROWS: { key: keyof SiteColors; label: string; zone: string }[] = [
-  { key: "nuit", label: "Fond sombre", zone: "Header, footer, hero, tous les modules sombres" },
-  { key: "electric", label: "Bleu accent", zone: "Dégradés, effets de fond, radial gradients" },
-  { key: "gold", label: "Accent principal (cyan)", zone: "Boutons, liens actifs, eyebrow, badges, icônes" },
-  { key: "offwhite", label: "Fond clair", zone: "Fond des pages, sections claires, cartes blanches" },
-  { key: "foreground", label: "Texte principal", zone: "Textes sombres sur fond clair" },
+const DEFAULT_COLORS: SiteColors = {
+  nuit: "#0d0f14",
+  electric: "#4F8EF7",
+  gold: "#00D4FF",
+  offwhite: "#F5F4F0",
+  foreground: "#0d0f14",
+};
+
+const COLOR_VAR_MAP: Record<keyof SiteColors, string> = {
+  nuit: "--color-nuit",
+  electric: "--color-electric",
+  gold: "--color-gold",
+  offwhite: "--color-offwhite",
+  foreground: "--color-foreground",
+};
+
+const THEME_COLOR_GROUPS: {
+  title: string;
+  rows: { key: keyof SiteColors; label: string; zone: string }[];
+}[] = [
+  {
+    title: "Fonds",
+    rows: [
+      { key: "nuit", label: "Fond sombre", zone: "Header, footer, hero, tous les modules sombres" },
+      { key: "offwhite", label: "Fond clair", zone: "Fond des pages, sections claires, cartes blanches" },
+    ],
+  },
+  {
+    title: "Accents",
+    rows: [
+      { key: "gold", label: "Accent principal (cyan)", zone: "Boutons, liens actifs, eyebrow, badges, icônes" },
+      { key: "electric", label: "Bleu accent", zone: "Dégradés, effets de fond, radial gradients" },
+    ],
+  },
+  {
+    title: "Textes",
+    rows: [{ key: "foreground", label: "Texte principal", zone: "Textes sombres sur fond clair" }],
+  },
 ];
 
 /** Valeur #rrggbb pour <input type="color" /> */
@@ -1135,52 +1167,255 @@ export default function AdminPage() {
                   </p>
                 </div>
 
-                <div className="space-y-6">
-                  {THEME_COLOR_ROWS.map((row) => {
-                    const value = state.content!.colors[row.key];
-                    return (
-                      <div
-                        key={row.key}
-                        className="flex flex-col gap-3 border-b border-slate-100 pb-6 last:border-0 last:pb-0 sm:flex-row sm:items-center sm:gap-6"
-                      >
+                <div className="rounded-2xl border border-slate-200 bg-white p-4 sm:p-5">
+                  <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-500">
+                    Aperçu des couleurs du site
+                  </p>
+                  <div className="space-y-3">
+                    {/* Fond sombre + textes */}
+                    <div className="rounded-xl p-4" style={{ backgroundColor: state.content.colors.nuit }}>
+                      <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-400">
+                        Fond sombre (header, hero, footer, modules)
+                      </p>
+                      <div className="flex flex-wrap items-center gap-3">
+                        <span className="text-sm font-bold text-white">Texte blanc</span>
+                        <span className="text-sm text-slate-300">Texte secondaire</span>
+                        <span className="text-sm text-slate-400">Texte discret</span>
+                        <span className="text-sm font-bold" style={{ color: state.content.colors.gold }}>
+                          DevCraft (accent)
+                        </span>
+                        <span className="text-sm font-bold" style={{ color: state.content.colors.electric }}>
+                          Bleu accent
+                        </span>
+                      </div>
+                      <div className="mt-3 flex flex-wrap gap-2">
+                        <span
+                          className="rounded-full px-3 py-1 text-xs font-semibold"
+                          style={{
+                            backgroundColor: state.content.colors.gold,
+                            color: state.content.colors.nuit,
+                          }}
+                        >
+                          Bouton primaire
+                        </span>
+                        <span
+                          className="rounded-full border-2 px-3 py-1 text-xs font-semibold"
+                          style={{ borderColor: state.content.colors.gold, color: state.content.colors.gold }}
+                        >
+                          Bouton secondaire
+                        </span>
+                        <span
+                          className="rounded-full border-2 px-3 py-1 text-xs font-semibold"
+                          style={{ borderColor: "rgba(255,255,255,0.4)", color: "white" }}
+                        >
+                          Bouton outline
+                        </span>
+                      </div>
+                      <div className="mt-3 flex items-center gap-2">
+                        <div className="h-6 w-6 rounded-full" style={{ backgroundColor: state.content.colors.gold }} />
+                        <span className="text-sm font-bold text-white">DevCraft</span>
+                        <span className="mx-2 text-slate-600">·</span>
+                        <span className="text-xs text-slate-300">Accueil</span>
+                        <span
+                          className="rounded px-2 py-0.5 text-xs font-semibold"
+                          style={{
+                            backgroundColor: "rgba(255,255,255,0.1)",
+                            color: state.content.colors.gold,
+                          }}
+                        >
+                          Lien actif
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Fond clair + textes */}
+                    <div
+                      className="rounded-xl border p-4"
+                      style={{
+                        backgroundColor: state.content.colors.offwhite,
+                        borderColor: `${state.content.colors.nuit}15`,
+                      }}
+                    >
+                      <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-400">
+                        Fond clair (sections, cartes)
+                      </p>
+                      <div className="flex flex-wrap items-center gap-3">
+                        <span className="text-sm font-bold" style={{ color: state.content.colors.foreground }}>
+                          Texte principal
+                        </span>
+                        <span className="text-sm text-slate-600">Texte secondaire</span>
+                        <span className="text-sm text-slate-400">Texte discret</span>
+                      </div>
+                      <div className="mt-3 grid grid-cols-2 gap-2">
                         <div
-                          className="h-10 w-10 shrink-0 rounded-lg border border-slate-200 shadow-inner"
-                          style={{ backgroundColor: hexForColorInput(value) }}
-                          aria-hidden
-                        />
-                        <div className="min-w-0 flex-1">
-                          <p className="font-semibold text-[#0d0f14]">{row.label}</p>
-                          <p className="text-sm text-slate-500">{row.zone}</p>
-                          <div className="mt-3 flex flex-wrap items-center gap-3">
-                            <input
-                              type="color"
-                              className="h-10 w-14 cursor-pointer rounded border border-slate-200 bg-white p-0"
-                              value={hexForColorInput(value)}
-                              onChange={(e) => updateColor(row.key, e.target.value)}
-                              aria-label={`Couleur : ${row.label}`}
-                            />
-                            <input
-                              type="text"
-                              className={`${inputClass} max-w-[11rem] font-mono text-sm`}
-                              value={value}
-                              onChange={(e) => updateColor(row.key, e.target.value)}
-                              placeholder="#000000"
-                              spellCheck={false}
-                            />
-                          </div>
+                          className="rounded-xl border bg-white p-3"
+                          style={{ borderColor: `${state.content.colors.nuit}20` }}
+                        >
+                          <p className="text-sm font-semibold" style={{ color: state.content.colors.foreground }}>
+                            Carte claire
+                          </p>
+                          <p className="mt-1 text-xs text-slate-500">Description de la carte</p>
+                          <p
+                            className="mt-2 text-xs font-medium uppercase tracking-wider"
+                            style={{ color: state.content.colors.gold }}
+                          >
+                            Sur devis
+                          </p>
+                        </div>
+                        <div
+                          className="rounded-xl p-3"
+                          style={{
+                            backgroundColor: state.content.colors.nuit,
+                            border: "1px solid rgba(255,255,255,0.1)",
+                          }}
+                        >
+                          <p className="text-sm font-semibold text-white">Carte sombre</p>
+                          <p className="mt-1 text-xs text-slate-400">Description de la carte</p>
+                          <p
+                            className="mt-2 text-xs font-medium uppercase tracking-wider"
+                            style={{ color: state.content.colors.gold }}
+                          >
+                            Sur devis
+                          </p>
                         </div>
                       </div>
-                    );
-                  })}
+                    </div>
+
+                    {/* Eyebrow + titres */}
+                    <div className="rounded-xl p-4" style={{ backgroundColor: state.content.colors.nuit }}>
+                      <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-400">
+                        Typographie hero
+                      </p>
+                      <p
+                        className="mb-1 text-xs font-bold uppercase tracking-widest"
+                        style={{ color: state.content.colors.gold }}
+                      >
+                        · DevCraft · Agence web ·
+                      </p>
+                      <p className="text-lg font-bold leading-tight text-white">
+                        Un site clair qui donne
+                        <br />
+                        envie d&apos;avancer
+                      </p>
+                      <p className="mt-2 text-xs text-slate-300">
+                        Sous-titre de description du projet et de l&apos;agence.
+                      </p>
+                    </div>
+
+                    {/* Bordures et séparateurs */}
+                    <div className="rounded-xl border border-slate-200 bg-white p-4">
+                      <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-400">
+                        Bordures et accents
+                      </p>
+                      <div className="space-y-2">
+                        <div className="h-px w-full" style={{ backgroundColor: `${state.content.colors.gold}40` }} />
+                        <div className="flex gap-2">
+                          <div
+                            className="h-8 w-8 rounded-lg"
+                            style={{
+                              backgroundColor: `${state.content.colors.gold}15`,
+                              border: `2px solid ${state.content.colors.gold}`,
+                            }}
+                          />
+                          <div
+                            className="h-8 w-8 rounded-lg"
+                            style={{
+                              backgroundColor: `${state.content.colors.electric}15`,
+                              border: `2px solid ${state.content.colors.electric}`,
+                            }}
+                          />
+                          <div
+                            className="h-8 w-8 rounded-lg border-2"
+                            style={{ borderColor: `${state.content.colors.nuit}30` }}
+                          />
+                          <div
+                            className="h-8 flex-1 rounded-lg"
+                            style={{
+                              backgroundColor: state.content.colors.offwhite,
+                              border: `1px solid ${state.content.colors.nuit}20`,
+                            }}
+                          />
+                        </div>
+                        <div>
+                          <div
+                            className="mr-2 inline-block h-1.5 w-1.5 rounded-full"
+                            style={{ backgroundColor: state.content.colors.gold }}
+                          />
+                          <span
+                            className="text-xs font-bold uppercase tracking-widest"
+                            style={{ color: state.content.colors.gold }}
+                          >
+                            Point eyebrow
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
-                <div className="flex items-center gap-3">
+                <div className="space-y-8">
+                  {THEME_COLOR_GROUPS.map((group) => (
+                    <section key={group.title} className="space-y-4">
+                      <h3 className="border-b border-slate-200 pb-2 font-display text-lg font-bold text-[#0d0f14]">
+                        {group.title}
+                      </h3>
+                      <div className="space-y-6">
+                        {group.rows.map((row) => {
+                          const value = state.content!.colors[row.key];
+                          return (
+                            <div
+                              key={row.key}
+                              className="flex flex-col gap-3 border-b border-slate-100 pb-6 last:border-0 last:pb-0 sm:flex-row sm:items-center sm:gap-6"
+                            >
+                              <div
+                                className="h-10 w-10 shrink-0 rounded-lg border border-slate-200 shadow-inner"
+                                style={{ backgroundColor: hexForColorInput(value) }}
+                                aria-hidden
+                              />
+                              <div className="min-w-0 flex-1">
+                                <p className="font-semibold text-[#0d0f14]">{row.label}</p>
+                                <p className="text-sm text-slate-500">{row.zone}</p>
+                                <p className="mt-1 font-mono text-xs text-slate-400">{COLOR_VAR_MAP[row.key]}</p>
+                                <div className="mt-3 flex flex-wrap items-center gap-3">
+                                  <input
+                                    type="color"
+                                    className="h-10 w-14 cursor-pointer rounded border border-slate-200 bg-white p-0"
+                                    value={hexForColorInput(value)}
+                                    onChange={(e) => updateColor(row.key, e.target.value)}
+                                    aria-label={`Couleur : ${row.label}`}
+                                  />
+                                  <input
+                                    type="text"
+                                    className={`${inputClass} max-w-[11rem] font-mono text-sm`}
+                                    value={value}
+                                    onChange={(e) => updateColor(row.key, e.target.value)}
+                                    placeholder="#000000"
+                                    spellCheck={false}
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </section>
+                  ))}
+                </div>
+
+                <div className="flex flex-wrap items-center gap-3">
                   <button
                     type="submit"
                     disabled={state.saving}
                     className="rounded-xl bg-[#0d0f14] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#111827] disabled:cursor-not-allowed disabled:opacity-70"
                   >
                     {state.saving ? "Enregistrement..." : "Enregistrer les couleurs"}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => updateField("colors", DEFAULT_COLORS)}
+                    className="rounded-xl border border-slate-300 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
+                  >
+                    Réinitialiser
                   </button>
                 </div>
               </form>

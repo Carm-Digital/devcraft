@@ -29,6 +29,17 @@ export const metadata: Metadata = {
   description:
     "DevCraft crée votre site web professionnel en moins de 7 jours. Vitrine, e-commerce, sur mesure. Devis gratuit sous 24h.",
   keywords: ["création site web", "agence web", "site professionnel", "site sur mesure", "DevCraft"],
+  icons: {
+    icon: [
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: { url: "/apple-touch-icon.png", sizes: "180x180" },
+    other: [
+      { rel: "android-chrome", url: "/android-chrome-192x192.png", sizes: "192x192" },
+      { rel: "android-chrome", url: "/android-chrome-512x512.png", sizes: "512x512" },
+    ],
+  },
   openGraph: {
     type: "website",
     images: [
@@ -68,6 +79,9 @@ export default async function RootLayout({
   --color-offwhite: ${content.colors.offwhite};
   --color-foreground: ${content.colors.foreground};
   --color-ink: ${content.colors.foreground};
+  --color-accent: ${content.colors.gold};
+  --color-accent-muted: ${content.colors.gold}99;
+  --color-nuit-border: ${content.colors.nuit}1a;
 }`;
 
   return (

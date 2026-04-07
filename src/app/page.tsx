@@ -19,14 +19,14 @@ export default function Home() {
   return (
     <>
       {/* 1. HERO */}
-      <section className="relative min-h-[80vh] overflow-hidden bg-[#0d0f14] px-4 pt-16 pb-36 sm:px-6 sm:pt-24 lg:px-8">
+      <section className="relative min-h-[80vh] overflow-hidden bg-nuit px-4 pt-16 pb-36 sm:px-6 sm:pt-24 lg:px-8">
         <div className="absolute inset-0 bg-gradient-to-b from-[#050815] via-[#0d1324] to-[#050815]" />
         <div className="hero-gradient-animated absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(37,99,235,0.18),transparent)]" />
         <div className="absolute bottom-0 left-0 right-0 h-24 bg-[#F5F4F0] rounded-t-[3rem] sm:rounded-t-[4rem]" />
         <div className="absolute top-1/3 left-1/2 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#00D4FF]/5 blur-3xl" />
 
         <div className="relative mx-auto flex max-w-5xl flex-col items-center text-center">
-          <p className="animate-fade-up font-display text-base font-bold uppercase tracking-[0.35em] text-[#00D4FF]/90 sm:text-lg lg:text-xl">
+          <p className="animate-fade-up text-accent opacity-90 font-display text-base font-bold uppercase tracking-[0.35em] sm:text-lg lg:text-xl">
             DevCraft · Agence web
           </p>
           <div className="relative mt-10 max-w-3xl">
@@ -50,7 +50,7 @@ export default function Home() {
       {/* BLOC STACK & ENGAGEMENTS */}
       <div className="bg-[#F5F4F0] px-4 py-4 sm:px-6 lg:px-8">
         <ScrollReveal direction="up" delay={0}>
-          <div className="mx-auto grid max-w-5xl gap-8 rounded-2xl border border-white/10 bg-[#0d0f14] p-6 shadow-sm sm:p-8 md:grid-cols-2">
+          <div className="mx-auto grid max-w-5xl gap-8 rounded-2xl border border-white/10 bg-nuit p-6 shadow-sm sm:p-8 md:grid-cols-2">
           <div>
             <h2 className="font-display text-sm font-semibold uppercase tracking-[0.18em] text-slate-400">
               Ce que nous utilisons au quotidien
@@ -86,9 +86,9 @@ export default function Home() {
             <ScrollReveal key={item.title} direction="up" delay={index * 100}>
               <a
                 href="/formulaire"
-                className="group flex h-full flex-col rounded-2xl border border-white/10 bg-[#0d0f14] p-5 text-left shadow-sm transition hover:-translate-y-1 hover:border-[#00D4FF]/50 hover:shadow-lg sm:p-6 cursor-pointer"
+                className="group flex h-full flex-col rounded-2xl border border-white/10 bg-nuit p-5 text-left shadow-sm transition hover:-translate-y-1 hover:border-accent/50 hover:shadow-lg sm:p-6 cursor-pointer"
               >
-                <h3 className="font-display text-lg font-semibold text-white group-hover:text-[#00D4FF]">
+                <h3 className="font-display text-lg font-semibold text-white group-hover:text-accent">
                   {item.title}
                 </h3>
                 <p className="mt-3 text-sm text-slate-400">
@@ -108,14 +108,14 @@ export default function Home() {
         id="processus"
         title="Comment ça se passe"
         subtitle="Un cadre simple, sans surprise."
-        className="bg-[#0d0f14]"
+        className="bg-nuit"
         dark
       >
         <div className="mx-auto grid max-w-5xl gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {PROCESS_STEPS.map((step, index) => (
             <ScrollReveal key={step.num} direction="up" delay={index * 100}>
               <div className="flex flex-col gap-3 rounded-2xl border border-white/10 bg-white/5 p-4 text-left sm:p-5">
-                <span className="font-display text-sm font-semibold tracking-[0.18em] text-[#00D4FF]">
+                <span className="font-display text-sm font-semibold tracking-[0.18em] text-accent">
                   {step.num}
                 </span>
                 <h3 className="font-display text-base font-semibold text-white">

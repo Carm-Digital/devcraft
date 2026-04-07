@@ -22,11 +22,11 @@ function renderTitle(title: string, titleAccent?: string) {
   }
   const i = title.indexOf(" ");
   if (i === -1) {
-    return <span className="text-[#00D4FF]">{title}</span>;
+    return <span className="text-accent">{title}</span>;
   }
   return (
     <>
-      <span className="text-[#00D4FF]">{title.slice(0, i)}</span>
+      <span className="text-accent">{title.slice(0, i)}</span>
       <span className="text-white">{title.slice(i)}</span>
     </>
   );
@@ -41,7 +41,7 @@ export default function PageHero({
   actions = [],
 }: PageHeroProps) {
   return (
-    <section className="relative overflow-hidden bg-[#0d0f14] px-4 pt-20 pb-28 text-white sm:px-6 sm:pt-28 sm:pb-36 lg:px-8">
+    <section className="relative overflow-hidden bg-nuit px-4 pt-20 pb-28 text-white sm:px-6 sm:pt-28 sm:pb-36 lg:px-8">
       <div className="absolute inset-0 bg-gradient-to-b from-[#050815] via-[#0d1324] to-[#050815]" />
       <div className="hero-gradient-animated absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(37,99,235,0.18),transparent)]" />
       <div
@@ -51,9 +51,9 @@ export default function PageHero({
       <div className="absolute bottom-0 left-0 right-0 h-24 rounded-t-[3rem] bg-[#F5F4F0] sm:rounded-t-[4rem]" />
       <div className="relative mx-auto max-w-3xl text-center">
         {eyebrow && (
-          <p className="animate-fade-up inline-flex items-center justify-center font-display text-base font-bold uppercase tracking-[0.35em] text-[#00D4FF]/90 sm:text-lg lg:text-xl">
+          <p className="animate-fade-up text-accent opacity-90 inline-flex items-center justify-center font-display text-base font-bold uppercase tracking-[0.35em] sm:text-lg lg:text-xl">
             <span
-              className="mb-0.5 mr-2 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-[#00D4FF] align-middle"
+              className="bg-accent mb-0.5 mr-2 inline-block h-1.5 w-1.5 shrink-0 rounded-full align-middle"
               aria-hidden
             />
             {eyebrow}
