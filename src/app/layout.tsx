@@ -66,6 +66,13 @@ export default async function RootLayout({
     url: baseUrl,
     areaServed: "Île-de-France",
     serviceType: "Création de site web",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Île-de-France",
+      addressCountry: "FR",
+    },
+    sameAs: ["https://www.instagram.com/devcraft.store/"],
+    email: "devcraft.store@gmail.com",
   };
 
   const themeCss = `:root {
@@ -88,8 +95,16 @@ export default async function RootLayout({
       <body
         className={`grain-overlay ${geistSans.variable} ${geistMono.variable} ${plusJakarta.variable} font-sans antialiased`}
       >
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:rounded-xl focus:bg-[#00D4FF] focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-[#0d0f14]"
+        >
+          Aller au contenu
+        </a>
         <Header />
-        <main className="min-h-screen">{children}</main>
+        <main id="main-content" className="min-h-screen">
+          {children}
+        </main>
         <Footer />
         <ScrollToTopButton />
         <script
