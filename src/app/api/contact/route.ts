@@ -155,6 +155,25 @@ export async function POST(req: Request) {
     htmlParts.push(`<p style="margin:0 0 10px 0;font-weight:700;color:#0d0f14;">Source</p>`);
     htmlParts.push(`<p style="margin:0;"><strong>Comment il nous a connu :</strong> ${escapeHtml(sourceLabel)}</p>`);
     htmlParts.push(`</div>`);
+    if (payload.maintenanceMensuelle) {
+      htmlParts.push(`<div style="border:1px solid #00D4FF33;border-radius:12px;padding:14px;background:#00D4FF0d;margin-top:12px;">`);
+      htmlParts.push(`<p style="margin:0;font-weight:700;color:#00D4FF;">🔧 Maintenance mensuelle souhaitée</p>`);
+      htmlParts.push(`<p style="margin:6px 0 0 0;font-size:13px;color:#374151;">Le client souhaite un contrat de maintenance mensuelle après livraison.</p>`);
+      htmlParts.push(`</div>`);
+    }
+    if (payload.accompagnementLogo || payload.accompagnementTextes || payload.accompagnementPhotos) {
+      const items = [
+        payload.accompagnementLogo && "Création de logo",
+        payload.accompagnementTextes && "Rédaction des contenus",
+        payload.accompagnementPhotos && "Réalisation / sélection des visuels",
+      ]
+        .filter(Boolean)
+        .join(", ");
+      htmlParts.push(`<div style="border:1px solid #00D4FF33;border-radius:12px;padding:14px;background:#00D4FF0d;margin-top:12px;">`);
+      htmlParts.push(`<p style="margin:0;font-weight:700;color:#00D4FF;">🎨 Accompagnements souhaités</p>`);
+      htmlParts.push(`<p style="margin:6px 0 0 0;font-size:13px;color:#374151;">${items}</p>`);
+      htmlParts.push(`</div>`);
+    }
 
     // CTA
     htmlParts.push(`<div style="padding:18px 20px 24px 20px;">`);
@@ -199,6 +218,8 @@ export async function POST(req: Request) {
           `Message: ${payload.description ?? "-"}`,
           "",
           `Comment il nous a connu: ${payload.commentConnu ?? "-"}`,
+          `Maintenance mensuelle : ${payload.maintenanceMensuelle ? "Oui, intéressé(e)" : "Non"}`,
+          `Accompagnements : ${[payload.accompagnementLogo && "Logo", payload.accompagnementTextes && "Textes", payload.accompagnementPhotos && "Photos"].filter(Boolean).join(", ") || "Aucun"}`,
         ].join("\n");
 
   if (!resendApiKey) {

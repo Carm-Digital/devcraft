@@ -6,8 +6,6 @@ import Footer from "@/components/layout/Footer";
 import ScrollToTopButton from "@/components/ui/ScrollToTopButton";
 import { readSiteContent } from "@/lib/siteContent";
 
-export const dynamic = "force-dynamic";
-
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -25,6 +23,7 @@ const plusJakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL ?? "https://dev-craft.store"),
   title: "Création de site web professionnel | DevCraft",
   description:
     "DevCraft crée votre site web professionnel en moins de 7 jours. Vitrine, e-commerce, sur mesure. Devis gratuit sous 24h.",
@@ -42,17 +41,14 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    images: [
-      {
-        url: `${process.env.NEXT_PUBLIC_BASE_URL ?? "https://dev-craft.store"}/logo.png`,
-        width: 1200,
-        height: 630,
-        alt: "DevCraft — Création de site web",
-      },
-    ],
+    images: [{ url: "/logo.png", width: 974, height: 649, alt: "DevCraft — Agence web" }],
   },
   twitter: {
     card: "summary_large_image",
+    title: "DevCraft — Agence web sur-mesure",
+    description:
+      "DevCraft crée votre site web professionnel en moins de 7 jours. Vitrine, e-commerce, sur mesure. Devis gratuit sous 24h.",
+    images: ["/logo.png"],
   },
 };
 

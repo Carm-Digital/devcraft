@@ -19,6 +19,9 @@ const footerLinks = {
     { href: "/faq", label: "FAQ" },
     { href: "/contact", label: "Contact" },
     { href: "/reglement-devis", label: "Règlement devis" },
+    { href: "/mentions-legales", label: "Mentions légales" },
+    { href: "/politique-confidentialite", label: "Confidentialité" },
+    { href: "/cgv", label: "CGV" },
   ],
   contact: {
     email: "devcraft.store@gmail.com",
@@ -33,7 +36,7 @@ export default async function Footer() {
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
           <div className="max-w-xs">
-            <Logo background="dark" href="/" className="mb-4 inline-block" nameColor="text-white" />
+            <Logo href="/" className="mb-4 inline-block" nameColor="text-white" />
             <p className="text-sm leading-relaxed text-slate-400">
               {content.footerText}
             </p>

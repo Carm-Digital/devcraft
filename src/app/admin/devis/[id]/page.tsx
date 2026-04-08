@@ -3,15 +3,10 @@
 import { FormEvent, useCallback, useEffect, useMemo, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import type { DevisData } from "@/components/features/devis/DevisPDF";
+import { TYPE_SITE_LABEL } from "@/config/typeSiteLabels";
 
 const inputClass =
   "mt-1 w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-[#0d0f14] shadow-sm focus:border-[#00D4FF] focus:outline-none focus:ring-2 focus:ring-[#00D4FF]/20";
-
-const TYPE_SITE_LABEL: Record<string, string> = {
-  vitrine: "Site vitrine",
-  complet: "Site complet",
-  abonnement: "Abonnement",
-};
 
 type DemandeRecord = {
   clientId?: string;

@@ -2,12 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 
 type LogoProps = {
-  /**
-   * Couleur du fond sur lequel le logo est posé.
-   * - "light"  = fond clair (utilise `devcrafttt light.png`)
-   * - "dark"   = fond sombre (utilise `logo-devcraft.png`)
-   */
-  background?: "light" | "dark";
   /** Afficher le nom "DevCraft" à côté du logo */
   showName?: boolean;
   /** Ne pas envelopper dans un lien (pour envelopper soi-même avec du texte, ex. navbar) */
@@ -18,36 +12,21 @@ type LogoProps = {
   nameColor?: string;
 };
 
-// Logo principal DevCraft — PNG dans /public
-const LOGO_ON_LIGHT = "/aaaaaaaaaaaaaaaaaaa.png";
-const LOGO_ON_DARK = "/aaaaaaaaaaaaaaaaaaa.png";
-const LOGO_SYMBOL = "/aaaaaaaaaaaaaaaaaaa.png";
+const LOGO_ASSET = "/logo-symbol.png";
 
 export default function Logo({
-  background = "dark",
   showName = true,
   disableLink = false,
   className = "",
   href = "/",
   nameColor = "text-[#00D4FF]",
 }: LogoProps) {
-  const isDarkBackground = background === "dark";
-  const baseTextClass = isDarkBackground
-    ? "font-display font-bold tracking-tight"
-    : "font-display font-bold tracking-tight";
+  const baseTextClass = "font-display font-bold tracking-tight";
 
-  // Si on n'affiche pas le nom (ex. navbar), on privilégie le symbole seul
-  const src = showName
-    ? background === "light"
-      ? LOGO_ON_LIGHT
-      : LOGO_ON_DARK
-    : LOGO_SYMBOL;
-
-  // Variante symbole seul (navbar) : hauteur ~48px, proportions conservées
   if (!showName) {
     const imageEl = (
       <Image
-        src={src}
+        src={LOGO_ASSET}
         alt="Logo DevCraft"
         width={96}
         height={96}
@@ -78,7 +57,7 @@ export default function Logo({
       style={{ minHeight: "40px" }}
     >
       <Image
-        src={src}
+        src={LOGO_ASSET}
         alt="Logo DevCraft"
         width={112}
         height={112}
@@ -104,4 +83,3 @@ export default function Logo({
     content
   );
 }
-

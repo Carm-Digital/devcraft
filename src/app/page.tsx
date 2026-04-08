@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Section from "@/components/ui/Section";
 import CTA from "@/components/ui/CTA";
 import ScrollReveal from "@/components/ui/ScrollReveal";
@@ -84,7 +85,7 @@ export default function Home() {
         <div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-3">
           {SERVICE_CARDS.map((item, index) => (
             <ScrollReveal key={item.title} direction="up" delay={index * 100}>
-              <a
+              <Link
                 href="/formulaire"
                 className="group flex h-full flex-col rounded-2xl border border-white/10 bg-nuit p-5 text-left shadow-sm transition hover:-translate-y-1 hover:border-accent/50 hover:shadow-lg sm:p-6 cursor-pointer"
               >
@@ -97,7 +98,7 @@ export default function Home() {
                 <p className="mt-4 text-xs font-medium uppercase tracking-[0.18em] text-slate-500">
                   Toujours sur devis, jamais de formule figée
                 </p>
-              </a>
+              </Link>
             </ScrollReveal>
           ))}
         </div>

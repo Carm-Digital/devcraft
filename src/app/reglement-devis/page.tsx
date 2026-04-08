@@ -11,17 +11,12 @@ import ClientIdAccessForm from "@/components/features/reglement-devis/ClientIdAc
 import DemandeCheckoutButton from "@/components/features/reglement-devis/DemandeCheckoutButton";
 import { isStripeConfigured } from "@/lib/stripe/config";
 import { isKvStorageEnabled } from "@/lib/siteContent";
+import { TYPE_SITE_LABEL } from "@/config/typeSiteLabels";
 
 export const metadata: Metadata = {
   title: "Règlement devis — DevCraft",
   description:
     "Accédez à votre espace de règlement et procédez au paiement sécurisé de votre acompte ou solde.",
-};
-
-const TYPE_SITE_LABEL: Record<string, string> = {
-  vitrine: "Site vitrine",
-  complet: "Site complet",
-  abonnement: "Abonnement",
 };
 
 const STATUT_LABELS: Record<string, string> = {

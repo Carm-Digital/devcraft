@@ -31,6 +31,7 @@ export type LeadPayload = {
   accompagnementPhotos?: boolean;
   styleSouhaite?: string;
   commentConnu?: string;
+  maintenanceMensuelle?: boolean;
   acceptationRGPD?: boolean;
   // metadata
   source?: string;

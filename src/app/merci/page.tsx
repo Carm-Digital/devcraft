@@ -37,7 +37,7 @@ export default async function MerciPage({ searchParams }: PageProps) {
         </p>
 
         {clientId ? (
-          <div className="mt-8 rounded-2xl border-2 border-[#0d0f14] bg-[#0d0f14] px-5 py-5 text-center shadow-md">
+          <div className="mt-8 rounded-2xl border-2 border-[#00D4FF]/30 bg-[#0d0f14] px-5 py-5 text-center shadow-md">
             <p className="text-xs font-semibold uppercase tracking-[0.12em] text-slate-400">
               Votre identifiant client
             </p>

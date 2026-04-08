@@ -38,7 +38,7 @@ export default function Header() {
           className="inline-flex items-center gap-2.5 shrink-0 mr-3 sm:mr-4"
           aria-label="DevCraft Accueil"
         >
-          <Logo background="dark" showName={false} disableLink className="h-12 w-12 shrink-0" />
+          <Logo showName={false} disableLink className="h-12 w-12 shrink-0" />
           <span className="font-display font-bold tracking-tight text-white">DevCraft</span>
         </Link>
 

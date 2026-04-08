@@ -40,6 +40,7 @@ export default function QualificationForm({ mode = "qualification", offerPrices 
   const [accompLogo, setAccompLogo] = useState(false);
   const [accompTextes, setAccompTextes] = useState(false);
   const [accompPhotos, setAccompPhotos] = useState(false);
+  const [wantsMaintenance, setWantsMaintenance] = useState(false);
   const isContactMode = mode === "contact";
 
   // Pré-remplissage via l'URL (sans `useSearchParams` pour éviter le besoin de Suspense)
@@ -107,6 +108,10 @@ export default function QualificationForm({ mode = "qualification", offerPrices 
           hasPhotos: form.hasPhotos,
           styleSouhaite: form.styleSouhaite,
           commentConnu: form.commentConnu,
+          maintenanceMensuelle: wantsMaintenance,
+          accompagnementLogo: accompLogo,
+          accompagnementTextes: accompTextes,
+          accompagnementPhotos: accompPhotos,
           acceptationRGPD: form.acceptationRGPD,
           source: "qualification_form",
         }),
@@ -123,6 +128,7 @@ export default function QualificationForm({ mode = "qualification", offerPrices 
       setAccompLogo(false);
       setAccompTextes(false);
       setAccompPhotos(false);
+      setWantsMaintenance(false);
 
       if (isContactMode) {
         if (data?.clientId) setClientId(data.clientId);
@@ -413,6 +419,52 @@ export default function QualificationForm({ mode = "qualification", offerPrices 
             )}
           </div>
         </div>
+      </fieldset>
+
+      <fieldset className="space-y-4">
+        <legend className="text-sm font-semibold uppercase tracking-wider text-slate-400">
+          Maintenance mensuelle
+        </legend>
+        <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-white/10 bg-white/5 p-4 transition hover:bg-white/10">
+          <input
+            type="checkbox"
+            className="mt-0.5 h-4 w-4 shrink-0 rounded border-white/30 accent-[#00D4FF]"
+            checked={wantsMaintenance}
+            onChange={(e) => setWantsMaintenance(e.target.checked)}
+          />
+          <div>
+            <p className="font-semibold text-white">Je souhaite inclure un contrat de maintenance mensuelle</p>
+            <p className="mt-1 text-sm text-slate-400">
+              Un forfait mensuel adapté à votre site, incluant les mises à jour techniques, la sécurité, les
+              sauvegardes et un quota de modifications de contenu. La formule et le tarif sont définis ensemble après
+              livraison du site.
+            </p>
+          </div>
+        </label>
+
+        {wantsMaintenance && (
+          <div className="space-y-2 rounded-xl border border-[#00D4FF]/20 bg-[#00D4FF]/5 p-4">
+            <p className="text-sm font-semibold text-[#00D4FF]">Ce que couvre la maintenance :</p>
+            <ul className="space-y-1 text-sm text-slate-300">
+              {[
+                "Mises à jour techniques et de sécurité",
+                "Sauvegardes régulières",
+                "Modifications de contenu (textes, images, sections)",
+                "Support prioritaire par email",
+                "Suivi des performances et optimisations",
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-2">
+                  <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-[#00D4FF]" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <p className="mt-2 text-xs text-slate-400">
+              Le tarif mensuel est défini selon le type de site et la formule choisie lors de notre échange. Aucun
+              engagement minimum imposé.
+            </p>
+          </div>
+        )}
       </fieldset>
 
       {/* Source */}
