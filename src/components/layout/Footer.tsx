@@ -2,14 +2,6 @@ import Link from "next/link";
 import Logo from "@/components/layout/Logo";
 import SocialNetworkIcon from "@/components/social/SocialNetworkIcon";
 import { readSiteContent } from "@/lib/siteContent";
-import type { SiteSocialLinks } from "@/lib/siteContent";
-
-const FOOTER_SOCIAL: { field: keyof SiteSocialLinks; label: string }[] = [
-  { field: "instagram", label: "Instagram DevCraft" },
-  { field: "tiktok", label: "TikTok DevCraft" },
-  { field: "twitter", label: "X (Twitter) DevCraft" },
-  { field: "snapchat", label: "Snapchat DevCraft" },
-];
 
 const footerLinks = {
   navigation: [
@@ -30,6 +22,12 @@ const footerLinks = {
 
 export default async function Footer() {
   const content = await readSiteContent();
+  const socialItems = [
+    { field: "instagram" as const, label: "Instagram" },
+    { field: "tiktok" as const, label: "TikTok" },
+    { field: "twitter" as const, label: "Twitter / X" },
+    { field: "snapchat" as const, label: "Snapchat" },
+  ];
 
   return (
     <footer className="border-t border-white/10 bg-nuit">
@@ -69,23 +67,26 @@ export default async function Footer() {
                 </a>
                 <p className="mt-1 text-sm text-slate-400">Disponible sous 24h</p>
               </div>
-              <div className="mt-4 flex flex-wrap gap-3">
-                {FOOTER_SOCIAL.map(({ field, label }) => {
-                  const href = content.socialLinks[field].trim() || "#";
-                  return (
-                    <a
-                      key={field}
-                      href={href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-slate-500 transition hover:text-[#00D4FF]/90"
-                      aria-label={label}
-                    >
-                      <SocialNetworkIcon field={field} />
-                    </a>
-                  );
-                })}
-              </div>
+              {socialItems.some((item) => content.socialLinks[item.field]?.startsWith("http")) && (
+                <div className="mt-4 flex gap-3">
+                  {socialItems.map((item) => {
+                    const href = content.socialLinks[item.field];
+                    if (!href?.startsWith("http")) return null;
+                    return (
+                      <a
+                        key={item.field}
+                        href={href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-slate-500 transition hover:text-[#00D4FF]"
+                        aria-label={`${item.label} DevCraft`}
+                      >
+                        <SocialNetworkIcon field={item.field} />
+                      </a>
+                    );
+                  })}
+                </div>
+              )}
             </div>
           </div>
         </div>

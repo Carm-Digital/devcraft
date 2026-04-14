@@ -88,15 +88,21 @@ function normalizeValue(value: unknown, fallback: string) {
   return trimmed.length > 0 ? trimmed : fallback;
 }
 
+function normalizeOptionalUrl(value: unknown, fallback: string): string {
+  if (typeof value !== "string") return fallback;
+  // Accepte les chaînes vides et les URLs valides — ne force pas le fallback si vide
+  return value.trim();
+}
+
 function normalizeSocialLinks(raw: unknown): SiteSocialLinks {
   const d = DEFAULT_SITE_CONTENT.socialLinks;
   if (!raw || typeof raw !== "object") return { ...d };
   const o = raw as Record<string, unknown>;
   return {
-    instagram: normalizeValue(o.instagram, d.instagram),
-    tiktok: normalizeValue(o.tiktok, d.tiktok),
-    twitter: normalizeValue(o.twitter, d.twitter),
-    snapchat: normalizeValue(o.snapchat, d.snapchat),
+    instagram: normalizeOptionalUrl(o.instagram, d.instagram),
+    tiktok: normalizeOptionalUrl(o.tiktok, d.tiktok),
+    twitter: normalizeOptionalUrl(o.twitter, d.twitter),
+    snapchat: normalizeOptionalUrl(o.snapchat, d.snapchat),
   };
 }
 

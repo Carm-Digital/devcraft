@@ -41,11 +41,12 @@ export default async function ContactPage() {
       >
         <div className="mx-auto flex max-w-xl flex-wrap items-center justify-center gap-4">
           {CONTACT_SOCIAL_ITEMS.map((item) => {
-            const href = content.socialLinks[item.field].trim() || "#";
+            const itemWithHref = { ...item, href: content.socialLinks[item.field].trim() };
+            if (!itemWithHref.href?.startsWith("http")) return null;
             return (
               <a
                 key={item.field}
-                href={href}
+                href={itemWithHref.href}
                 aria-label={item.name}
                 className="group flex h-12 w-12 items-center justify-center rounded-full bg-[#0d0f14] text-slate-100 transition hover:bg-[#00D4FF] hover:text-[#0d0f14]"
               >

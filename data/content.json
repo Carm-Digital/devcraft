@@ -13,10 +13,10 @@
   "expeditionEmail": "contact@dev-craft.store",
   "nomAgence": "DevCraft",
   "socialLinks": {
-    "instagram": "#",
+    "instagram": "https://www.instagram.com/devcraft.store/",
     "tiktok": "#",
-    "twitter": "#",
-    "snapchat": "#"
+    "twitter": "https://x.com/_devcraft",
+    "snapchat": "https://www.snapchat.com/@dev-craft"
   },
   "colors": {
     "nuit": "#0d0f14",
@@ -24,5 +24,6 @@
     "gold": "#00D4FF",
     "offwhite": "#F5F4F0",
     "foreground": "#0d0f14"
-  }
+  },
+  "maintenanceMode": false
 }

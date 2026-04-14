@@ -1075,42 +1075,58 @@ export default function AdminPage() {
                   <div>
                     <label className="text-sm font-semibold text-[#0d0f14]">Instagram</label>
                     <input
-                      type="url"
+                      type="text"
                       className={inputClass}
                       placeholder="https://…"
                       value={state.content.socialLinks.instagram}
                       onChange={(e) => updateSocialLink("instagram", e.target.value)}
                     />
+                    {state.content.socialLinks.instagram.trim() !== "" &&
+                      !/^https?:\/\//.test(state.content.socialLinks.instagram.trim()) && (
+                        <p className="mt-1 text-xs text-orange-400">L&apos;URL doit commencer par https://</p>
+                      )}
                   </div>
                   <div>
                     <label className="text-sm font-semibold text-[#0d0f14]">TikTok</label>
                     <input
-                      type="url"
+                      type="text"
                       className={inputClass}
                       placeholder="https://…"
                       value={state.content.socialLinks.tiktok}
                       onChange={(e) => updateSocialLink("tiktok", e.target.value)}
                     />
+                    {state.content.socialLinks.tiktok.trim() !== "" &&
+                      !/^https?:\/\//.test(state.content.socialLinks.tiktok.trim()) && (
+                        <p className="mt-1 text-xs text-orange-400">L&apos;URL doit commencer par https://</p>
+                      )}
                   </div>
                   <div>
                     <label className="text-sm font-semibold text-[#0d0f14]">Twitter / X</label>
                     <input
-                      type="url"
+                      type="text"
                       className={inputClass}
                       placeholder="https://…"
                       value={state.content.socialLinks.twitter}
                       onChange={(e) => updateSocialLink("twitter", e.target.value)}
                     />
+                    {state.content.socialLinks.twitter.trim() !== "" &&
+                      !/^https?:\/\//.test(state.content.socialLinks.twitter.trim()) && (
+                        <p className="mt-1 text-xs text-orange-400">L&apos;URL doit commencer par https://</p>
+                      )}
                   </div>
                   <div>
                     <label className="text-sm font-semibold text-[#0d0f14]">Snapchat</label>
                     <input
-                      type="url"
+                      type="text"
                       className={inputClass}
                       placeholder="https://…"
                       value={state.content.socialLinks.snapchat}
                       onChange={(e) => updateSocialLink("snapchat", e.target.value)}
                     />
+                    {state.content.socialLinks.snapchat.trim() !== "" &&
+                      !/^https?:\/\//.test(state.content.socialLinks.snapchat.trim()) && (
+                        <p className="mt-1 text-xs text-orange-400">L&apos;URL doit commencer par https://</p>
+                      )}
                   </div>
                 </div>
 
