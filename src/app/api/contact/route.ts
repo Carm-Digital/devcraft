@@ -3,6 +3,7 @@ import { Resend } from "resend";
 import type { LeadPayload } from "@/types/lead";
 import { generateClientId } from "@/lib/generateClientId";
 import { isKvStorageEnabled } from "@/lib/siteContent";
+import { checkRateLimit } from "@/lib/rateLimit";
 
 export const runtime = "nodejs";
 
@@ -16,6 +17,22 @@ function escapeHtml(value: string) {
 }
 
 export async function POST(req: Request) {
+  const ip =
+    req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
+    req.headers.get("x-real-ip") ??
+    "unknown";
+
+  const { allowed, retryAfter } = checkRateLimit(ip);
+  if (!allowed) {
+    return NextResponse.json(
+      { error: "RATE_LIMIT", message: "Trop de requêtes. Réessayez dans quelques minutes." },
+      {
+        status: 429,
+        headers: { "Retry-After": String(retryAfter ?? 60) },
+      },
+    );
+  }
+
   const payload = (await req.json().catch(() => null)) as LeadPayload | null;
   if (!payload || typeof payload !== "object" || payload.kind === undefined) {
     return NextResponse.json({ error: "INVALID_PAYLOAD" }, { status: 400 });
