@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import Section from "@/components/ui/Section";
-import QualificationForm from "@/components/forms/QualificationForm";
-import QualificationFormLoadFallback from "@/components/forms/QualificationFormLoadFallback";
-import { readSiteContent, toOfferPrices } from "@/lib/siteContent";
+import DevisForm from "@/components/forms/DevisForm";
+import DevisFormLoadFallback from "@/components/forms/DevisFormLoadFallback";
 import PageHero from "@/components/layout/PageHero";
 
 export const metadata: Metadata = {
@@ -11,10 +10,7 @@ export const metadata: Metadata = {
     "Décrivez votre projet en quelques minutes. DevCraft analyse votre demande et vous recontacte rapidement avec une proposition adaptée.",
 };
 
-export default async function QualificationPage() {
-  const content = await readSiteContent();
-  const offerPrices = toOfferPrices(content);
-
+export default function QualificationPage() {
   return (
     <>
       <PageHero
@@ -30,7 +26,7 @@ export default async function QualificationPage() {
             Plus votre demande est précise, plus notre retour sera utile.
           </p>
           <div id="qualification-form-root">
-            <QualificationForm offerPrices={offerPrices} />
+            <DevisForm />
           </div>
 
           <noscript>
@@ -45,7 +41,7 @@ export default async function QualificationPage() {
         </div>
       </Section>
 
-      <QualificationFormLoadFallback />
+      <DevisFormLoadFallback />
     </>
   );
 }

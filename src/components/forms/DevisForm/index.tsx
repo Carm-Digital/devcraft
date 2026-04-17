@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 import type { QualificationFormData, QualificationFormErrors, TypeSite } from "@/types/qualification";
 import { QUALIFICATION_FORM_DEFAULT } from "@/types/qualification";
 import { validateQualificationForm } from "@/lib/validateQualification";
-import { OFFER_PRICES } from "@/config/offers";
 import { DELIVERY_DELAYS, DELIVERY_DELAY_NOTE } from "@/config/deliveryDelays";
 import CTA from "@/components/ui/CTA";
 
@@ -23,25 +22,16 @@ const BUDGET_BY_TYPE = {
   abonnement: "+ 1 000 €",
 } as const;
 
-type QualificationFormProps = {
-  /** Contexte d'utilisation : page de devis ou page contact */
-  mode?: "qualification" | "contact";
-  offerPrices?: typeof OFFER_PRICES;
-};
-
-export default function QualificationForm({ mode = "qualification", offerPrices = OFFER_PRICES }: QualificationFormProps) {
+export default function DevisForm() {
   const router = useRouter();
   const [form, setForm] = useState<QualificationFormData>(QUALIFICATION_FORM_DEFAULT);
   const [errors, setErrors] = useState<QualificationFormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
-  const [clientId, setClientId] = useState<string | null>(null);
   const [accompLogo, setAccompLogo] = useState(false);
   const [accompTextes, setAccompTextes] = useState(false);
   const [accompPhotos, setAccompPhotos] = useState(false);
   const [wantsMaintenance, setWantsMaintenance] = useState(false);
-  const isContactMode = mode === "contact";
 
   // Pré-remplissage via l'URL (sans `useSearchParams` pour éviter le besoin de Suspense)
   useEffect(() => {
@@ -83,7 +73,6 @@ export default function QualificationForm({ mode = "qualification", offerPrices 
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length > 0) return;
     setIsSubmitting(true);
-    setSubmitSuccess(false);
     setSubmitError(null);
 
     try {
@@ -130,14 +119,7 @@ export default function QualificationForm({ mode = "qualification", offerPrices 
       setAccompPhotos(false);
       setWantsMaintenance(false);
 
-      if (isContactMode) {
-        if (data?.clientId) setClientId(data.clientId);
-        setSubmitSuccess(true);
-        return;
-      }
-
       if (data?.clientId) {
-        setClientId(data.clientId);
         router.push(`/merci?id=${encodeURIComponent(data.clientId)}`);
         return;
       }
@@ -524,12 +506,6 @@ export default function QualificationForm({ mode = "qualification", offerPrices 
 
       {submitError && (
         <p className="mt-3 rounded-xl border border-red-200 bg-red-50 px-4 py-2 text-sm text-red-700">{submitError}</p>
-      )}
-
-      {submitSuccess && (
-        <p className="mt-4 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800">
-          Votre demande a bien été envoyée. Nous revenons vers vous sous 24–48 h ouvrées.
-        </p>
       )}
     </form>
   );

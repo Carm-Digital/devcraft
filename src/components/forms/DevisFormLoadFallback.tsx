@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-export default function QualificationFormLoadFallback() {
+export default function DevisFormLoadFallback() {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -31,4 +31,3 @@ export default function QualificationFormLoadFallback() {
     </div>
   );
 }
-

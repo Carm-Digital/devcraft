@@ -1,6 +1,5 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
-import { OFFER_PRICES } from "@/config/offers";
 
 const KV_CONTENT_KEY = "devcraft:site_content";
 
@@ -227,13 +226,4 @@ export async function writeSiteContent(content: SiteContent): Promise<SiteConten
     }
     throw new Error(err instanceof Error ? err.message : "Erreur d'écriture.");
   }
-}
-
-export function toOfferPrices(content: SiteContent) {
-  return {
-    ...OFFER_PRICES,
-    vitrine: { ...OFFER_PRICES.vitrine, price: content.offerPrices.vitrine },
-    complet: { ...OFFER_PRICES.complet, price: content.offerPrices.complet },
-    abonnement: { ...OFFER_PRICES.abonnement, price: content.offerPrices.abonnement },
-  };
 }
