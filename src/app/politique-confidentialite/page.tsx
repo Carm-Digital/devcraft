@@ -25,10 +25,10 @@ export default function PolitiqueConfidentialitePage() {
             Le responsable du traitement des données est <strong className="text-[#0d0f14]">DevCraft</strong>. Pour toute
             question relative à vos données :{" "}
             <a
-              href="mailto:devcraft.store@gmail.com"
+              href="mailto:devcraft.shop@gmail.com"
               className="font-medium text-[#00D4FF] underline-offset-2 hover:underline"
             >
-              devcraft.store@gmail.com
+              devcraft.shop@gmail.com
             </a>
             .
           </p>
@@ -75,10 +75,10 @@ export default function PolitiqueConfidentialitePage() {
             rectification, d’effacement, de limitation du traitement, de portabilité et d’opposition dans les conditions
             prévues par la loi. Pour exercer ces droits, écrivez-nous à{" "}
             <a
-              href="mailto:devcraft.store@gmail.com"
+              href="mailto:devcraft.shop@gmail.com"
               className="font-medium text-[#00D4FF] underline-offset-2 hover:underline"
             >
-              devcraft.store@gmail.com
+              devcraft.shop@gmail.com
             </a>
             .
           </p>

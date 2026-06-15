@@ -54,7 +54,7 @@ export const DEFAULT_SITE_CONTENT: SiteContent = {
     complet: "900 EUR",
     abonnement: "1 300 EUR",
   },
-  contactEmail: "devcraft.store@gmail.com",
+  contactEmail: "devcraft.shop@gmail.com",
   expeditionEmail: "contact@dev-craft.store",
   nomAgence: "DevCraft",
   socialLinks: {

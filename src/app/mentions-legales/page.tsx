@@ -28,10 +28,10 @@ export default function MentionsLegalesPage() {
           <p>
             <strong className="text-[#0d0f14]">Email :</strong>{" "}
             <a
-              href="mailto:devcraft.store@gmail.com"
+              href="mailto:devcraft.shop@gmail.com"
               className="font-medium text-[#00D4FF] underline-offset-2 hover:underline"
             >
-              devcraft.store@gmail.com
+              devcraft.shop@gmail.com
             </a>
           </p>
 

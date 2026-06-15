@@ -72,7 +72,7 @@ export default async function RootLayout({
       addressCountry: "FR",
     },
     sameAs: ["https://www.instagram.com/devcraft.store/"],
-    email: "devcraft.store@gmail.com",
+    email: "devcraft.shop@gmail.com",
   };
 
   const themeCss = `:root {

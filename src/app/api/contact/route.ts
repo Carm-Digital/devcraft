@@ -45,7 +45,7 @@ export async function POST(req: Request) {
 
   const resendApiKey = process.env.RESEND_API_KEY;
   const from = "contact@dev-craft.store";
-  const to = "devcraft.store@gmail.com";
+  const to = "devcraft.shop@gmail.com";
 
   const requestId = String(req.headers.get("x-request-id") ?? Date.now());
   // Log structuré côté serveur (garder les erreurs, limiter les traces info)

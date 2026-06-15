@@ -7,7 +7,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 export default function AdminLoginPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [email, setEmail] = useState("devcraft.store@gmail.com");
+  const [email, setEmail] = useState("devcraft.shop@gmail.com");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);

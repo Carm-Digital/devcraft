@@ -23,7 +23,7 @@ export default function DevisFormLoadFallback() {
         Le formulaire ne se charge pas ? Écrivez-nous directement :
       </p>
       <a
-        href="mailto:devcraft.store@gmail.com"
+        href="mailto:devcraft.shop@gmail.com"
         className="inline-flex items-center justify-center rounded-xl bg-[#00D4FF] px-5 py-2.5 text-sm font-semibold text-[#0d0f14] shadow-sm transition hover:bg-[#00D4FF]"
       >
         Écrire un email

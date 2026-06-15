@@ -16,7 +16,7 @@ const footerLinks = {
     { href: "/cgv", label: "CGV" },
   ],
   contact: {
-    email: "devcraft.store@gmail.com",
+    email: "devcraft.shop@gmail.com",
   },
 };
 

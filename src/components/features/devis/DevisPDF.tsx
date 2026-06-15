@@ -228,7 +228,7 @@ export function DevisPDF({ data }: DevisPDFProps) {
         </View>
 
         <Text style={styles.footer} fixed>
-          DevCraft — devcraft.store@gmail.com — dev-craft.store
+          DevCraft — devcraft.shop@gmail.com — dev-craft.store
         </Text>
       </Page>
     </Document>

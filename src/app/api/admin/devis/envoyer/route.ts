@@ -163,7 +163,7 @@ function buildClientEmailHtml(devisData: DevisData, reglementUrl: string) {
           </tr>
           <tr>
             <td style="padding:16px 24px;background-color:#f4f5f7;font-size:12px;color:#5a6170;text-align:center;border-top:1px solid #e2e4e8;">
-              DevCraft — <a href="mailto:devcraft.store@gmail.com" style="color:#0d0f14;">devcraft.store@gmail.com</a> — <a href="https://dev-craft.store" style="color:#0d0f14;">dev-craft.store</a>
+              DevCraft — <a href="mailto:devcraft.shop@gmail.com" style="color:#0d0f14;">devcraft.shop@gmail.com</a> — <a href="https://dev-craft.store" style="color:#0d0f14;">dev-craft.store</a>
             </td>
           </tr>
         </table>

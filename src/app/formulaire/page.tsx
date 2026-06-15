@@ -32,8 +32,8 @@ export default function QualificationPage() {
           <noscript>
             <div className="mt-6 rounded-2xl border border-[#00D4FF]/20 bg-[#00D4FF]/5 p-6 text-left text-slate-700">
               Le formulaire ne se charge pas ? Écrivez-nous directement :{" "}
-              <a href="mailto:devcraft.store@gmail.com" className="font-semibold text-[#00D4FF]">
-                devcraft.store@gmail.com
+              <a href="mailto:devcraft.shop@gmail.com" className="font-semibold text-[#00D4FF]">
+                devcraft.shop@gmail.com
               </a>
               .
             </div>
