@@ -1,15 +1,19 @@
 export const ADMIN_SESSION_COOKIE = "devcraft_admin_session";
 
 function getRequiredEmail() {
-  return process.env.ADMIN_EMAIL ?? "devcraft.shop@gmail.com";
+  const email = process.env.ADMIN_EMAIL;
+  if (!email) throw new Error("ADMIN_EMAIL non configuré");
+  return email;
 }
 
 function getRequiredPassword() {
-  return process.env.ADMIN_PASSWORD ?? "carm1004";
+  const password = process.env.ADMIN_PASSWORD;
+  if (!password) throw new Error("ADMIN_PASSWORD non configuré");
+  return password;
 }
 
 export function isAdminPasswordConfigured() {
-  return getRequiredEmail().length > 0 && getRequiredPassword().length > 0;
+  return Boolean(process.env.ADMIN_EMAIL && process.env.ADMIN_PASSWORD);
 }
 
 export function createSessionToken() {
