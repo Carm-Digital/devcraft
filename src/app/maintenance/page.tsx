@@ -1,7 +1,9 @@
+import Image from "next/image";
+
 export default function MaintenancePage() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-[#0d0f14] px-6 py-16 text-center text-slate-100">
-      <img
+      <Image
         src="/logo.svg"
         alt="DevCraft"
         width={180}

@@ -1,8 +1,8 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import Logo from "@/components/layout/Logo";
 
 export default function AdminLoginPage() {
   const router = useRouter();
@@ -91,12 +91,12 @@ export default function AdminLoginPage() {
             </p>
           )}
         </form>
-        <a
+        <Link
           href="/"
           className="mt-4 block text-center text-sm text-slate-500 transition hover:text-slate-300"
         >
           ← Retour au site
-        </a>
+        </Link>
       </div>
     </main>
   );
